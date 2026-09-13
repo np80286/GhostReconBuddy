@@ -21,7 +21,7 @@ Unknown data stays unknown. Missing compatibility never means incompatible. All 
 Requirements: Node 22.13+ and npm. Dependencies have been installed and a lockfile is included.
 
 ```sh
-cd /Users/np303/dev/GhostReconBuddy
+cd GhostReconBuddy
 npm run dev
 ```
 
@@ -29,7 +29,7 @@ Open the local address printed by the server, normally http://localhost:3000. Wi
 
 ## Your checks
 
-As requested, the user runs all tests. Codex is authorized to handle Git for this project. The initial implementation has not passed these checks yet:
+The initial implementation has not passed these checks yet:
 
 ```sh
 npm run check
@@ -77,12 +77,7 @@ Expected after one initial import: 28 weapons, 12 pairs, 24 measurements. Counts
 
 - GitHub: https://github.com/np80286/GhostReconBuddy
 - Primary branch: `main`.
-- Canonical local directory: `/Users/np303/dev/GhostReconBuddy`.
-- The previous Documents location is a filesystem symlink to this directory so existing Codex tasks continue to reach the same files.
-
 The repository contains source, the curated catalog, database migrations, setup examples and documentation. Dependencies, local environment files, generated output, raw imports and backups are ignored. The initial source snapshot is not a claim that the application checks have passed; run the checks above and review their output before deployment.
-
-A private Sites project was registered in `.openai/hosting.json`. The GitHub repository is separate from website deployment; publishing the website remains pending.
 
 ## Project map
 
