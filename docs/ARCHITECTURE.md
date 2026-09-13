@@ -2,11 +2,11 @@
 
 ## Current implementation
 
-React and TypeScript render a compact read-only reference using the Sites/Vinext scaffold and existing accessible UI primitives. A bundled source-backed snapshot opens without infrastructure. The page checks the read API once on mount; no polling or hidden write endpoints are present. PostgreSQL stores both normalized research tables and an immutable JSON representation of the same release. One transaction imports both and switches the published release pointer. Readers query the published snapshot, so partially imported rows cannot leak into the page.
+React and TypeScript render a compact read-only reference using Vinext and accessible UI primitives. A bundled source-backed snapshot opens without infrastructure. The page checks the read API once on mount; no polling or hidden write endpoints are present. PostgreSQL stores both normalized research tables and an immutable JSON representation of the same release. One transaction imports both and switches the published release pointer. Readers query the published snapshot, so partially imported rows cannot leak into the page.
 
 The initial API returns the whole curated release. This is appropriate for a small seed; it is not the final bulk-data delivery design. When the catalog grows, expose paginated filtered read endpoints, a small search index and per-weapon queries. PostgreSQL has a basic full-text index ready for that work. Do not send video, screenshots or raw spreadsheets in a catalog response.
 
-The application does not use SQLite or Cloudflare D1. The generated configuration contains null D1/R2 bindings. Development tooling may keep internal local caches; those are not the application database.
+The application does not use SQLite or Cloudflare D1. Development tooling may keep local caches; those are not the application database.
 
 ## Durable data model
 
@@ -51,6 +51,6 @@ These commands are instructions, not executed verification. Use a fresh database
 
 ## Publication status
 
-A private Sites registration exists; there is no deployed site yet. All Git operations and tests remain user-run. Production build output, an authenticated source push and deployment are still required. Dependency updates from the original scaffold address reported advisories; compatibility must be checked with the provided command before publication. PostgreSQL connectivity must also be tested in the target runtime before switching a hosted app from its snapshot to the live database.
+The repository is source-ready for public collaboration. Production build output, hosting configuration and deployment remain environment-specific. Dependency updates from the original scaffold address reported advisories; compatibility must be checked with the provided command before publication. PostgreSQL connectivity must also be tested in the target runtime before switching a hosted app from its snapshot to the live database.
 
 The dependency installation after upgrading the affected framework/runtime packages reported zero known vulnerabilities on September 12, 2026. This is a dependency advisory result, not a production build or security review.
