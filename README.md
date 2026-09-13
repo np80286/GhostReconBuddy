@@ -37,6 +37,12 @@ npm run check
 
 This validates catalog integrity, runs the data guardrail tests, checks types, runs lint and builds the production bundle. Send the output back before publishing.
 
+## Free public deployment
+
+The public app is deployed to GitHub Pages by [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Every push to `main` builds the bundled catalog as a static site and publishes it at `https://np80286.github.io/GhostReconBuddy/`. No paid hosting service, database account, or subscription is required for the public snapshot.
+
+The PostgreSQL path is optional local or self-hosted infrastructure for larger datasets. The static public site uses the bundled JSON snapshot and does not expose database credentials.
+
 Manual checks:
 
 1. Search `SR-25`; SR25 should appear through its alias.
@@ -77,6 +83,7 @@ Expected after one initial import: 28 weapons, 12 pairs, 24 measurements. Counts
 
 - GitHub: https://github.com/np80286/GhostReconBuddy
 - Primary branch: `main`.
+
 The repository contains source, the curated catalog, database migrations, setup examples and documentation. Dependencies, local environment files, generated output, raw imports and backups are ignored. The initial source snapshot is not a claim that the application checks have passed; run the checks above and review their output before deployment.
 
 ## Project map
