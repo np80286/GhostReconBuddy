@@ -132,7 +132,9 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/catalog', { signal: controller.signal })
+      fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/api/catalog`, {
+        signal: controller.signal,
+      })
       .then(async (response) => {
         if (!response.ok) throw new Error('Catalog unavailable');
         const result = await response.json();
