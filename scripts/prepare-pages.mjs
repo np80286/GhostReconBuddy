@@ -6,7 +6,9 @@ const output = 'site';
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(`${source}/GhostReconBuddy.html`, `${output}/index.html`);
-await cp(`${source}/GhostReconBuddy/_next`, `${output}/_next`, { recursive: true });
+await cp(`${source}/GhostReconBuddy/_next`, `${output}/_next`, {
+  recursive: true,
+});
 await cp(`${source}/GhostReconBuddy/favicon.svg`, `${output}/favicon.svg`);
 await cp(`${source}/404.html`, `${output}/404.html`);
 

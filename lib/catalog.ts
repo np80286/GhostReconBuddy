@@ -1,7 +1,34 @@
 import seed from '@/data/catalog.json';
 export type Catalog = typeof seed;
+export type DamageWorkbook = {
+  sourceFile: string;
+  sha256: string;
+  sheetCount: number;
+  cellCount: number;
+  formulaCount: number;
+  sheets: {
+    name: string;
+    rowCount: number;
+    columnCount: number;
+    mergedRanges: string[];
+    rows: {
+      number: number;
+      cells: {
+        column: number;
+        value: string | number | boolean | null;
+        formula?: string;
+      }[];
+    }[];
+  }[];
+};
+export type DamageWorkbookResult = {
+  workbook: DamageWorkbook;
+  storage: 'snapshot' | 'postgres';
+};
 export type Weapon = Catalog['weapons'][number];
 export type Measurement = Catalog['measurements'][number];
+export type WeaponSheetStats = Catalog['weaponSheetStats'][number];
+export type WeaponDamageProfile = Catalog['damageProfiles'][number];
 export type CatalogResult = {
   catalog: Catalog;
   storage: 'snapshot' | 'postgres';
@@ -26,7 +53,7 @@ export function filterWeapons(
         (category === 'All classes' || category === w.category) &&
         (province === 'All provinces' || province === w.province) &&
         (!measuredOnly ||
-          catalog.measurements.some((m) => m.weaponId === w.id)),
+          catalog.weaponSheetStats.some((m) => m.weaponId === w.id)),
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 }

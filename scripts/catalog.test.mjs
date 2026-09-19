@@ -10,9 +10,10 @@ const changed = (edit) => {
   edit(d);
   return d;
 };
-test('curated starter release is valid', () =>
-  assert.equal(validateCatalog(seed), seed));
-test('cross-game weapon records cannot enter Wildlands', () =>
+void test('curated starter release is valid', () => {
+  assert.equal(validateCatalog(seed), seed);
+});
+void test('cross-game weapon records cannot enter Wildlands', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -21,8 +22,9 @@ test('cross-game weapon records cannot enter Wildlands', () =>
         }),
       ),
     /cross-game/,
-  ));
-test('a number without a real source cannot publish', () =>
+  );
+});
+void test('a number without a real source cannot publish', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -31,8 +33,9 @@ test('a number without a real source cannot publish', () =>
         }),
       ),
     /missing source/,
-  ));
-test('unknown is not zero', () =>
+  );
+});
+void test('unknown is not zero', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -41,8 +44,9 @@ test('unknown is not zero', () =>
         }),
       ),
     /shot count/,
-  ));
-test('unsupported compatibility cannot produce a comparison', () =>
+  );
+});
+void test('unsupported compatibility cannot produce a comparison', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -51,8 +55,9 @@ test('unsupported compatibility cannot produce a comparison', () =>
         }),
       ),
     /supported compatibility/,
-  ));
-test('conflicting observations cannot silently use the first row', () =>
+  );
+});
+void test('conflicting observations cannot silently use the first row', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -65,8 +70,9 @@ test('conflicting observations cannot silently use the first row', () =>
         }),
       ),
     /ambiguous comparison/,
-  ));
-test('comparison cannot mix target types', () =>
+  );
+});
+void test('comparison cannot mix target types', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -75,8 +81,9 @@ test('comparison cannot mix target types', () =>
         }),
       ),
     /target and firing/,
-  ));
-test('unknown trial context must be explicit', () =>
+  );
+});
+void test('unknown trial context must be explicit', () => {
   assert.throws(
     () =>
       validateCatalog(
@@ -85,8 +92,9 @@ test('unknown trial context must be explicit', () =>
         }),
       ),
     /explicit condition/,
-  ));
-test('null distance and sample count remain permissible unknowns', () =>
+  );
+});
+void test('null distance and sample count remain permissible unknowns', () => {
   assert.doesNotThrow(() =>
     validateCatalog(
       changed((d) => {
@@ -94,4 +102,5 @@ test('null distance and sample count remain permissible unknowns', () =>
         d.measurements[0].sampleCount = null;
       }),
     ),
-  ));
+  );
+});

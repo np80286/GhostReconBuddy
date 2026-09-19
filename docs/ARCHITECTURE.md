@@ -4,7 +4,9 @@
 
 React and TypeScript render a compact read-only reference using Vinext and accessible UI primitives. A bundled source-backed snapshot opens without infrastructure. The page checks the read API once on mount; no polling or hidden write endpoints are present. PostgreSQL stores both normalized research tables and an immutable JSON representation of the same release. One transaction imports both and switches the published release pointer. Readers query the published snapshot, so partially imported rows cannot leak into the page.
 
-The initial API returns the whole curated release. This is appropriate for a small seed; it is not the final bulk-data delivery design. When the catalog grows, expose paginated filtered read endpoints, a small search index and per-weapon queries. PostgreSQL has a basic full-text index ready for that work. Do not send video, screenshots or raw spreadsheets in a catalog response.
+The catalog API returns the curated release. The full damage workbook is stored in a separate immutable PostgreSQL sidecar row and is requested only when the Damage Lab opens. Static builds dynamically load its compact cell snapshot as a separate chunk. The original XLSX remains in `resources/workbooks_spreadsheets/`; its SHA-256 is tied to the release audit. The cell snapshot preserves workbook coordinates, merged ranges, formulas and cached results. It does not recalculate formulas or claim the historical observations are current-build facts.
+
+When the catalog grows, expose paginated filtered read endpoints, a small search index and per-weapon queries. PostgreSQL has a basic full-text index ready for that work. Do not send video, screenshots or raw spreadsheets in a catalog response.
 
 The application does not use SQLite or Cloudflare D1. Development tooling may keep local caches; those are not the application database.
 
@@ -22,7 +24,7 @@ Keep four kinds of evidence separate in that extension: displayed game values, e
 
 Migrations run transactionally and record their checksums. A PostgreSQL advisory lock serializes migrations and imports. Existing migration files cannot be changed after application. Releases cannot be overwritten. An unchanged repeated seed is a no-op and leaves the published pointer alone. Corrections create new releases. Data changes and the published pointer commit together. SQL values are parameterized; dynamically selected citation table names are fixed program constants.
 
-This seed importer accepts only the repository's reviewed catalog schema. It is not a general web crawler or arbitrary spreadsheet uploader. A larger collection pipeline should stage source-specific imports, retain extraction metadata and original references, validate into canonical entities, produce a human-readable diff, then publish a reviewed release.
+This seed importer accepts only the repository's reviewed catalog schema and its audited workbook snapshot. It is not a general web crawler or arbitrary spreadsheet uploader. A larger collection pipeline should stage source-specific imports, retain extraction metadata and original references, validate into canonical entities, produce a human-readable diff, then publish a reviewed release.
 
 ## Database deployment
 

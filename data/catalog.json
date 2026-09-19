@@ -1,9 +1,6178 @@
 {
   "schemaVersion": 1,
-  "release": "0.1.0-research-seed",
+  "release": "0.4.2-recovered-damage-profiles",
   "gameId": "wildlands",
-  "updatedAt": "2026-09-12",
-  "coverageNote": "Curated starter subset. Total game inventory and current-build performance are not yet audited.",
+  "updatedAt": "2026-09-19",
+  "coverageNote": "All 51 weapons listed by the audited Bolivia weapon-case index are cataloged. Boss rewards, Uplay/Ubisoft Connect rewards, DLC, store items, unique variants and current-build performance are not yet audited.",
+  "coverage": {
+    "boliviaWeaponCaseInventory": {
+      "auditSourceId": "weapon-cases",
+      "recordCount": 51
+    },
+    "weaponDamageSheet": {
+      "sourceId": "damage",
+      "weaponCount": 51,
+      "configurationCount": 102,
+      "damageProfileCount": 50,
+      "scope": "Bolivia weapon-case inventory"
+    },
+    "damageWorkbook": {
+      "sourceId": "damage",
+      "sheetCount": 11,
+      "cellCount": 13748,
+      "formulaCount": 2911,
+      "archiveSha256": "a0d5f397fa8df63e49eb468a04b0cd13c31aafa34b5118d3b866ba3d876966bb",
+      "snapshotSha256": "ca5533186316c9aec903af544afd6e54cf35bed8f2797f055f820490fb73a887",
+      "scope": "All worksheets, including working and calculation tabs; formulas retain cached workbook results"
+    }
+  },
+  "weaponSheetStats": [
+    {
+      "weaponId": "m40a5",
+      "sourceName": "M40A5",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "29.3\n(2.05s)",
+          "roundsPerSecond": 0.487804878,
+          "shotIntervalSeconds": 2.05,
+          "timeToKill": {
+            "tierOne": 2.05,
+            "nonTier": 2.05
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 7"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.05,
+            "nonTier": 2.05
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 4.35,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 8"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.05,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 9"
+        }
+      ]
+    },
+    {
+      "weaponId": "m1891",
+      "sourceName": "M1891",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "28.8\n(2.08s)",
+          "roundsPerSecond": 0.48,
+          "shotIntervalSeconds": 2.08,
+          "timeToKill": {
+            "tierOne": 2.08,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": 4.0,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 10"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.08,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 11"
+        }
+      ]
+    },
+    {
+      "weaponId": "srsa1",
+      "sourceName": "SRSA1",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "27.9\n(2.15s)",
+          "roundsPerSecond": 0.4651162791,
+          "shotIntervalSeconds": 2.15,
+          "timeToKill": {
+            "tierOne": 2.15,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": 10.0,
+            "large": null
+          },
+          "reloadSeconds": 4.0,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 12"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.15,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 13"
+        }
+      ]
+    },
+    {
+      "weaponId": "sr-1",
+      "sourceName": "SR1",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "27.1\n(2.22s)",
+          "roundsPerSecond": 0.4504504505,
+          "shotIntervalSeconds": 2.22,
+          "timeToKill": {
+            "tierOne": 2.22,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": 10.0,
+            "large": null
+          },
+          "reloadSeconds": 3.95,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 14"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.22,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 15"
+        }
+      ]
+    },
+    {
+      "weaponId": "l115a3",
+      "sourceName": "L115A3",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "27.9\n(2.15s)",
+          "roundsPerSecond": 0.4651162791,
+          "shotIntervalSeconds": 2.15,
+          "timeToKill": {
+            "tierOne": 2.15,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": 10.0,
+            "large": null
+          },
+          "reloadSeconds": 4.35,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 16"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.15,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 17"
+        }
+      ]
+    },
+    {
+      "weaponId": "msr",
+      "sourceName": "MSR",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "26.1\n(2.3s)",
+          "roundsPerSecond": 0.4347826087,
+          "shotIntervalSeconds": 2.3,
+          "timeToKill": {
+            "tierOne": 2.3,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": 10.0,
+            "large": null
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 18"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 2.3,
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 4.35,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 19"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "one-hit",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 20"
+        }
+      ]
+    },
+    {
+      "weaponId": "hti",
+      "sourceName": "HTI",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "25.5\n(2.35s)",
+          "roundsPerSecond": 0.4255319149,
+          "shotIntervalSeconds": 2.35,
+          "timeToKill": {
+            "tierOne": "one-hit",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 3.95,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 21"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "one-hit",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 22"
+        }
+      ]
+    },
+    {
+      "weaponId": "sr25",
+      "sourceName": "SR25",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 3.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "-",
+          "roundsPerSecond": "-",
+          "shotIntervalSeconds": "-",
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 23"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 24"
+        }
+      ]
+    },
+    {
+      "weaponId": "dragunov-svd",
+      "sourceName": "Dragunov",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 3.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "-",
+          "roundsPerSecond": "-",
+          "shotIntervalSeconds": "-",
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 25"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 3.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.55,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 26"
+        }
+      ]
+    },
+    {
+      "weaponId": "mk14",
+      "sourceName": "Mk14",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": 705.0,
+          "roundsPerSecond": 11.75,
+          "shotIntervalSeconds": 0.08510638298,
+          "timeToKill": {
+            "tierOne": 0.3404255319,
+            "nonTier": 0.170212766
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": 2.45,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 27"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2553191489,
+            "nonTier": 0.170212766
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 28"
+        }
+      ]
+    },
+    {
+      "weaponId": "g28",
+      "sourceName": "G28",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 10.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": "-",
+          "roundsPerSecond": "-",
+          "shotIntervalSeconds": "-",
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "N/A"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 29"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 9.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": null
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sniper Rifles, row 30"
+        }
+      ]
+    },
+    {
+      "weaponId": "sr3m",
+      "sourceName": "SR3M",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "rpm": 877.0,
+          "roundsPerSecond": 14.61666667,
+          "shotIntervalSeconds": 0.06841505131,
+          "timeToKill": {
+            "tierOne": 0.2052451539,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 9"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2052451539,
+            "nonTier": 0.2052451539
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 10"
+        }
+      ]
+    },
+    {
+      "weaponId": "ak-12",
+      "sourceName": "AK-12",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 844.0,
+          "roundsPerSecond": 14.06666667,
+          "shotIntervalSeconds": 0.07109004739,
+          "timeToKill": {
+            "tierOne": 0.2132701422,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 11"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1421800948,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 12"
+        }
+      ]
+    },
+    {
+      "weaponId": "aug-a3",
+      "sourceName": "AUG-A3",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 682.0,
+          "roundsPerSecond": 11.36666667,
+          "shotIntervalSeconds": 0.08797653959,
+          "timeToKill": {
+            "tierOne": 0.1759530792,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 13"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1759530792,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 14"
+        }
+      ]
+    },
+    {
+      "weaponId": "556xi",
+      "sourceName": "556xi",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 10.0
+            }
+          },
+          "rpm": 732.0,
+          "roundsPerSecond": 12.2,
+          "shotIntervalSeconds": 0.08196721311,
+          "timeToKill": {
+            "tierOne": 0.2459016393,
+            "nonTier": 0.3278688525
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 15"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2459016393,
+            "nonTier": 0.2459016393
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 16"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2459016393,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 17"
+        }
+      ]
+    },
+    {
+      "weaponId": "805-bren-a2",
+      "sourceName": "805 Bren A2",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 732.0,
+          "roundsPerSecond": 12.2,
+          "shotIntervalSeconds": 0.08196721311,
+          "timeToKill": {
+            "tierOne": 0.2459016393,
+            "nonTier": 0.2459016393
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 18"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1639344262,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 19"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1639344262,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 20"
+        }
+      ]
+    },
+    {
+      "weaponId": "g2",
+      "sourceName": "G2",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 10.0
+            }
+          },
+          "rpm": 970.0,
+          "roundsPerSecond": 16.16666667,
+          "shotIntervalSeconds": 0.0618556701,
+          "timeToKill": {
+            "tierOne": 0.1855670103,
+            "nonTier": 0.2474226804
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 21"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1855670103,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 22"
+        }
+      ]
+    },
+    {
+      "weaponId": "l85a2",
+      "sourceName": "L85A2",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 695.0,
+          "roundsPerSecond": 11.58333333,
+          "shotIntervalSeconds": 0.08633093525,
+          "timeToKill": {
+            "tierOne": 0.2589928058,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 23"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1726618705,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 24"
+        }
+      ]
+    },
+    {
+      "weaponId": "r5-rgp",
+      "sourceName": "R5",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 620.0,
+          "roundsPerSecond": 10.33333333,
+          "shotIntervalSeconds": 0.09677419355,
+          "timeToKill": {
+            "tierOne": 0.1935483871,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": 2.18,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 25"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1935483871,
+            "nonTier": 0.1935483871
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 26"
+        }
+      ]
+    },
+    {
+      "weaponId": "ak-47",
+      "sourceName": "AK-47",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 588.0,
+          "roundsPerSecond": 9.8,
+          "shotIntervalSeconds": 0.1020408163,
+          "timeToKill": {
+            "tierOne": 0.306122449,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 27"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2040816327,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 28"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2040816327,
+            "nonTier": 0.2040816327
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 29"
+        }
+      ]
+    },
+    {
+      "weaponId": "m4a1",
+      "sourceName": "M4A1",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 882.0,
+          "roundsPerSecond": 14.7,
+          "shotIntervalSeconds": 0.06802721088,
+          "timeToKill": {
+            "tierOne": 0.2040816327,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 30"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1360544218,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 31"
+        }
+      ]
+    },
+    {
+      "weaponId": "mk17",
+      "sourceName": "Mk17",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": 610.0,
+          "roundsPerSecond": 10.16666667,
+          "shotIntervalSeconds": 0.09836065574,
+          "timeToKill": {
+            "tierOne": 0.1967213115,
+            "nonTier": 0.1967213115
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 32"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1967213115,
+            "nonTier": 0.1967213115
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.95,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 33"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1967213115,
+            "nonTier": 0.1967213115
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 34"
+        }
+      ]
+    },
+    {
+      "weaponId": "acr",
+      "sourceName": "ACR",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "rpm": 780.0,
+          "roundsPerSecond": 13,
+          "shotIntervalSeconds": 0.07692307692,
+          "timeToKill": {
+            "tierOne": 0.2307692308,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": "-",
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 35"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2307692308,
+            "nonTier": 0.2307692308
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 36"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1538461538,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 37"
+        }
+      ]
+    },
+    {
+      "weaponId": "tar-21",
+      "sourceName": "TAR-21",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 832.0,
+          "roundsPerSecond": 13.86666667,
+          "shotIntervalSeconds": 0.07211538462,
+          "timeToKill": {
+            "tierOne": 0.2163461538,
+            "nonTier": 0.2163461538
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30,
+            "large": 50
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 38"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1442307692,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Assault Rifles, row 39"
+        }
+      ]
+    },
+    {
+      "weaponId": "mg121",
+      "sourceName": "MG121",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 11.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 702.0,
+          "roundsPerSecond": 11.7,
+          "shotIntervalSeconds": 0.08547008547,
+          "timeToKill": {
+            "tierOne": 0.3418803419,
+            "nonTier": 0.2564102564
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 90.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 4.95,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 7"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.3418803419,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 8"
+        }
+      ]
+    },
+    {
+      "weaponId": "stoner-lmg-a1",
+      "sourceName": "Stoner LMG A1",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "rpm": 698.0,
+          "roundsPerSecond": 11.63333333,
+          "shotIntervalSeconds": 0.08595988539,
+          "timeToKill": {
+            "tierOne": 0.2578796562,
+            "nonTier": 0.1719197708
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 100.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 4.95,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 9"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 5.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2578796562,
+            "nonTier": 0.1719197708
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 10"
+        }
+      ]
+    },
+    {
+      "weaponId": "mk-48",
+      "sourceName": "MK-48",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": 698.0,
+          "roundsPerSecond": 11.63333333,
+          "shotIntervalSeconds": 0.08595988539,
+          "timeToKill": {
+            "tierOne": 0.2578796562,
+            "nonTier": 0.1719197708
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 100.0,
+            "extended": 200.0,
+            "large": null
+          },
+          "reloadSeconds": 4.25,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 11"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2578796562,
+            "nonTier": 0.1719197708
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 12"
+        }
+      ]
+    },
+    {
+      "weaponId": "type-95",
+      "sourceName": "Type 95",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 636.0,
+          "roundsPerSecond": 10.6,
+          "shotIntervalSeconds": 0.09433962264,
+          "timeToKill": {
+            "tierOne": 0.3773584906,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 75.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 3.13,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 13"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2830188679,
+            "nonTier": 0.1886792453
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 14"
+        }
+      ]
+    },
+    {
+      "weaponId": "6p41",
+      "sourceName": "6P41",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 5.0
+            }
+          },
+          "rpm": 590.0,
+          "roundsPerSecond": 9.833333333,
+          "shotIntervalSeconds": 0.1016949153,
+          "timeToKill": {
+            "tierOne": 0.2033898305,
+            "nonTier": 0.2033898305
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 175.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 3.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 15"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 4.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2033898305,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 16"
+        }
+      ]
+    },
+    {
+      "weaponId": "mk249",
+      "sourceName": "Mk249",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 891.0,
+          "roundsPerSecond": 14.85,
+          "shotIntervalSeconds": 0.06734006734,
+          "timeToKill": {
+            "tierOne": 0.2693602694,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 150.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 3.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 17"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 10.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2693602694,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "LMGs, row 18"
+        }
+      ]
+    },
+    {
+      "weaponId": "sr-635",
+      "sourceName": "SR-635",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "rpm": 590.0,
+          "roundsPerSecond": 9.833333333,
+          "shotIntervalSeconds": 0.1016949153,
+          "timeToKill": {
+            "tierOne": 0.2033898305,
+            "nonTier": 0.2033898305
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.47,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 9"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 5.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 5.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2033898305,
+            "nonTier": 0.2033898305
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 10"
+        }
+      ]
+    },
+    {
+      "weaponId": "p90",
+      "sourceName": "P90",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 878.0,
+          "roundsPerSecond": 14.63333333,
+          "shotIntervalSeconds": 0.06833712984,
+          "timeToKill": {
+            "tierOne": 0.2050113895,
+            "nonTier": 0.2050113895
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 50.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 11"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1366742597,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 12"
+        }
+      ]
+    },
+    {
+      "weaponId": "pp19",
+      "sourceName": "PP19",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 685.0,
+          "roundsPerSecond": 11.41666667,
+          "shotIntervalSeconds": 0.08759124088,
+          "timeToKill": {
+            "tierOne": 0.2627737226,
+            "nonTier": 0.2627737226
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 64.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 13"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1751824818,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 14"
+        }
+      ]
+    },
+    {
+      "weaponId": "mp7",
+      "sourceName": "MP7",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 8.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "rpm": 923.0,
+          "roundsPerSecond": 15.38333333,
+          "shotIntervalSeconds": 0.06500541712,
+          "timeToKill": {
+            "tierOne": 0.1950162514,
+            "nonTier": 0.2600216685
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 15"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 10.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1950162514,
+            "nonTier": 0.2600216685
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 16"
+        }
+      ]
+    },
+    {
+      "weaponId": "mpx",
+      "sourceName": "MPX",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 828.0,
+          "roundsPerSecond": 13.8,
+          "shotIntervalSeconds": 0.07246376812,
+          "timeToKill": {
+            "tierOne": 0.2173913043,
+            "nonTier": 0.2173913043
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 17"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2173913043,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 18"
+        }
+      ]
+    },
+    {
+      "weaponId": "psg",
+      "sourceName": "PSG",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 8.0
+            }
+          },
+          "rpm": 780.0,
+          "roundsPerSecond": 13,
+          "shotIntervalSeconds": 0.07692307692,
+          "timeToKill": {
+            "tierOne": 0.2307692308,
+            "nonTier": 0.2307692308
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 19"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1538461538,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 20"
+        }
+      ]
+    },
+    {
+      "weaponId": "9mm-c1",
+      "sourceName": "9mm C1",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 4.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 5.0
+            }
+          },
+          "rpm": 538.0,
+          "roundsPerSecond": 8.966666667,
+          "shotIntervalSeconds": 0.1115241636,
+          "timeToKill": {
+            "tierOne": 0.2230483271,
+            "nonTier": 0.2230483271
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 34.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 21"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 4.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": null,
+              "body": null
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 5.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2230483271,
+            "nonTier": 0.2230483271
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 22"
+        }
+      ]
+    },
+    {
+      "weaponId": "9x19vsn",
+      "sourceName": "9x19VSN",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 6.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": 682.0,
+          "roundsPerSecond": 11.36666667,
+          "shotIntervalSeconds": 0.08797653959,
+          "timeToKill": {
+            "tierOne": 0.1759530792,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 2.48,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 23"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 6.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 5.0
+            },
+            "fullAuto": {
+              "head": 3.0,
+              "body": 7.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.1759530792,
+            "nonTier": "manual"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 24"
+        }
+      ]
+    },
+    {
+      "weaponId": "scorpion-evo-3",
+      "sourceName": "Scorpion EVO 3",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 8.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 10.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 12.0
+            }
+          },
+          "rpm": 1111.0,
+          "roundsPerSecond": 18.51666667,
+          "shotIntervalSeconds": 0.05400540054,
+          "timeToKill": {
+            "tierOne": 0.2160216022,
+            "nonTier": "???"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.58,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 25"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 9.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2160216022,
+            "nonTier": 0.2160216022
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 26"
+        }
+      ]
+    },
+    {
+      "weaponId": "vector-45-acp",
+      "sourceName": "Vector .45 ACP",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 8.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 9.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 12.0
+            }
+          },
+          "rpm": 1137.0,
+          "roundsPerSecond": 18.95,
+          "shotIntervalSeconds": 0.05277044855,
+          "timeToKill": {
+            "tierOne": 0.2110817942,
+            "nonTier": "???"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.67,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 27"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": 4.0,
+              "body": 9.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 8.0
+            },
+            "fullAuto": {
+              "head": 5.0,
+              "body": 10.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2110817942,
+            "nonTier": 0.2110817942
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "SMGs, row 28"
+        }
+      ]
+    },
+    {
+      "weaponId": "super-shorty",
+      "sourceName": "Super Shorty",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "one-hit",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 2.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 7"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "one-hit",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 8"
+        }
+      ]
+    },
+    {
+      "weaponId": "sasg-12",
+      "sourceName": "SASG-12",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": 1.0,
+              "body": 3.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": 1.0,
+              "body": 2.0
+            }
+          },
+          "rpm": 300.0,
+          "roundsPerSecond": 5,
+          "shotIntervalSeconds": 0.2,
+          "timeToKill": {
+            "tierOne": 0.2,
+            "nonTier": 0.2
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": 10,
+            "large": 30
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 9"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": 2.0,
+              "body": 3.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": 1.0,
+              "body": 2.0
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": 0.2,
+            "nonTier": 0.2
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 10"
+        }
+      ]
+    },
+    {
+      "weaponId": "spas-12",
+      "sourceName": "SPAS-12",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Short Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 5.0,
+            "extended": 8.0,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 11"
+        },
+        {
+          "barrel": "Standard Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 12"
+        },
+        {
+          "barrel": "Long Barrel",
+          "tierOne": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 2.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 1.0,
+              "body": 1.0
+            },
+            "fullAuto": {
+              "head": null,
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "one-hit"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": null,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": null,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Shotguns, row 13"
+        }
+      ]
+    },
+    {
+      "weaponId": "5-7-usg",
+      "sourceName": "5.7 USG",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": 5.0,
+              "body": 10.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": 30.0,
+            "large": null
+          },
+          "reloadSeconds": 1.22,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 9"
+        }
+      ]
+    },
+    {
+      "weaponId": "m1911",
+      "sourceName": "M1911",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": 5.0,
+              "body": 11.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 8.0,
+            "extended": 15.0,
+            "large": null
+          },
+          "reloadSeconds": 1.42,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 10"
+        }
+      ]
+    },
+    {
+      "weaponId": "p12",
+      "sourceName": "P12",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": 5.0,
+              "body": 10.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 12.0,
+            "extended": 20.0,
+            "large": null
+          },
+          "reloadSeconds": 1.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 11"
+        }
+      ]
+    },
+    {
+      "weaponId": "p227",
+      "sourceName": "P227",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 10.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 10.0,
+            "extended": 15.0,
+            "large": null
+          },
+          "reloadSeconds": 1.32,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 12"
+        }
+      ]
+    },
+    {
+      "weaponId": "m9",
+      "sourceName": "M9",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": 4.0,
+              "body": 9.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 3.0,
+              "body": 7.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 15.0,
+            "extended": 25.0,
+            "large": null
+          },
+          "reloadSeconds": 1.37,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 13"
+        }
+      ]
+    },
+    {
+      "weaponId": "d-50",
+      "sourceName": "D-50",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 4.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": 2.0,
+              "body": 3.0
+            },
+            "fullAuto": {
+              "head": "N/A",
+              "body": null
+            }
+          },
+          "rpm": null,
+          "roundsPerSecond": null,
+          "shotIntervalSeconds": null,
+          "timeToKill": {
+            "tierOne": "-",
+            "nonTier": "-"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 7.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 1.93,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 14"
+        }
+      ]
+    },
+    {
+      "weaponId": "smg-11",
+      "sourceName": "SMG-11",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 8.0,
+              "body": 19.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 10.0,
+              "body": 21.0
+            }
+          },
+          "rpm": 1160.0,
+          "roundsPerSecond": 19.33333333,
+          "shotIntervalSeconds": 0.05172413793,
+          "timeToKill": {
+            "tierOne": "???",
+            "nonTier": "???"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 20.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 1.97,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 16"
+        }
+      ]
+    },
+    {
+      "weaponId": "skorpion",
+      "sourceName": "Skorpion",
+      "sourceIds": ["damage"],
+      "configurations": [
+        {
+          "barrel": "Base configuration",
+          "tierOne": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 6.0,
+              "body": 14.0
+            }
+          },
+          "nonTier": {
+            "semiAuto": {
+              "head": "N/A",
+              "body": null
+            },
+            "fullAuto": {
+              "head": 7.0,
+              "body": 15.0
+            }
+          },
+          "rpm": 885.0,
+          "roundsPerSecond": 14.75,
+          "shotIntervalSeconds": 0.06779661017,
+          "timeToKill": {
+            "tierOne": "???",
+            "nonTier": "???"
+          },
+          "tierOneDamage": {
+            "semiAuto": "-",
+            "fullAuto": "-"
+          },
+          "magazine": {
+            "standard": 30.0,
+            "extended": null,
+            "large": null
+          },
+          "reloadSeconds": 2.27,
+          "aimDelay": "-",
+          "aimSensitivity": "-",
+          "sourceLocator": "Sidearms, row 17"
+        }
+      ]
+    }
+  ],
+  "damageProfiles": [
+    {
+      "weaponId": "m40a5",
+      "sourceName": "M40A5",
+      "damageByBarrel": {
+        "short": 520,
+        "standard": 570,
+        "long": 620
+      },
+      "rpm": "29.3 (2.05s)",
+      "dpsByBarrel": {
+        "short": 253.6585366,
+        "standard": 278.0487805,
+        "long": 302.4390244
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 500,
+          "damageMax": 999,
+          "hits": 2
+        },
+        "sbRegular": {
+          "damageMin": 380,
+          "damageMax": 759,
+          "hits": 2
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 3"
+    },
+    {
+      "weaponId": "m1891",
+      "sourceName": "M1891",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 640,
+        "long": 700
+      },
+      "rpm": "28.8 (2.08s)",
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 307.6923077,
+        "long": 336.5384615
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 334,
+          "damageMax": 499,
+          "hits": 3
+        },
+        "sbRegular": {
+          "damageMin": 254,
+          "damageMax": 379,
+          "hits": 3
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 4"
+    },
+    {
+      "weaponId": "srsa1",
+      "sourceName": "SRSA1",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 820,
+        "long": 900
+      },
+      "rpm": "27.9 (2.15s)",
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 381.3953488,
+        "long": 418.6046512
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 250,
+          "damageMax": 333,
+          "hits": 4
+        },
+        "sbRegular": {
+          "damageMin": 190,
+          "damageMax": 253,
+          "hits": 4
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 5"
+    },
+    {
+      "weaponId": "sr-1",
+      "sourceName": "SR1",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 900,
+        "long": 960
+      },
+      "rpm": "27.1 (2.22s)",
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 405.4054054,
+        "long": 432.4324324
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 200,
+          "damageMax": 249,
+          "hits": 5
+        },
+        "sbRegular": {
+          "damageMin": 152,
+          "damageMax": 189,
+          "hits": 5
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 6"
+    },
+    {
+      "weaponId": "l115a3",
+      "sourceName": "L115A3",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 700,
+        "long": 750
+      },
+      "rpm": "27.9 (2.15s)",
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 325.5813953,
+        "long": 348.8372093
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 167,
+          "damageMax": 199,
+          "hits": 6
+        },
+        "sbRegular": {
+          "damageMin": 127,
+          "damageMax": 151,
+          "hits": 6
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 7"
+    },
+    {
+      "weaponId": "msr",
+      "sourceName": "MSR",
+      "damageByBarrel": {
+        "short": 900,
+        "standard": 960,
+        "long": 1060
+      },
+      "rpm": "26.1 (2.3s)",
+      "dpsByBarrel": {
+        "short": 391.3043478,
+        "standard": 417.3913043,
+        "long": 460.8695652
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 143,
+          "damageMax": 166,
+          "hits": 7
+        },
+        "sbRegular": {
+          "damageMin": 109,
+          "damageMax": 126,
+          "hits": 7
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 8"
+    },
+    {
+      "weaponId": "hti",
+      "sourceName": "HTI",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 2300,
+        "long": 2500
+      },
+      "rpm": "25.5 (2.35s)",
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 978.7234043,
+        "long": 1063.829787
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 125,
+          "damageMax": 142,
+          "hits": 8
+        },
+        "sbRegular": {
+          "damageMin": 95,
+          "damageMax": 108,
+          "hits": 8
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 9"
+    },
+    {
+      "weaponId": "sr25",
+      "sourceName": "SR25",
+      "damageByBarrel": {
+        "short": 300,
+        "standard": 320,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 72,
+          "damageMax": 76,
+          "hits": 14
+        },
+        "sbRegular": {
+          "damageMin": 55,
+          "damageMax": 58,
+          "hits": 14
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 15"
+    },
+    {
+      "weaponId": "dragunov-svd",
+      "sourceName": "Dragunov",
+      "damageByBarrel": {
+        "short": 240,
+        "standard": 260,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 67,
+          "damageMax": 71,
+          "hits": 15
+        },
+        "sbRegular": {
+          "damageMin": 51,
+          "damageMax": 54,
+          "hits": 15
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 16"
+    },
+    {
+      "weaponId": "mk14",
+      "sourceName": "Mk14",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "145/115",
+        "long": "155/120"
+      },
+      "rpm": 705,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1351.25,
+        "long": 1410
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 63,
+          "damageMax": 66,
+          "hits": 16
+        },
+        "sbRegular": {
+          "damageMin": 48,
+          "damageMax": 50,
+          "hits": 16
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 17"
+    },
+    {
+      "weaponId": "g28",
+      "sourceName": "G28",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 110,
+        "long": 120
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": 59,
+          "damageMax": 62,
+          "hits": 17
+        },
+        "sbRegular": {
+          "damageMin": 45,
+          "damageMax": 47,
+          "hits": 17
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 18"
+    },
+    {
+      "weaponId": "sr3m",
+      "sourceName": "SR3M",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "165/130",
+        "long": "185/145"
+      },
+      "rpm": 877,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1900.166667,
+        "long": 2119.416667
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 23"
+    },
+    {
+      "weaponId": "ak-12",
+      "sourceName": "AK-12",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "205/165",
+        "long": "220/180"
+      },
+      "rpm": 844,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2321,
+        "long": 2532
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 24"
+    },
+    {
+      "weaponId": "aug-a3",
+      "sourceName": "AUG A3",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "215/170",
+        "long": "230/185"
+      },
+      "rpm": 682,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1932.333333,
+        "long": 2102.833333
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 25"
+    },
+    {
+      "weaponId": "556xi",
+      "sourceName": "556xi",
+      "damageByBarrel": {
+        "short": "165/125",
+        "standard": "180/145",
+        "long": "190/155"
+      },
+      "rpm": 732,
+      "dpsByBarrel": {
+        "short": 1525,
+        "standard": 1769,
+        "long": 1891
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 26"
+    },
+    {
+      "weaponId": "805-bren-a2",
+      "sourceName": "805 Bren A2",
+      "damageByBarrel": {
+        "short": "190/155",
+        "standard": "215/170",
+        "long": "230/185"
+      },
+      "rpm": 732,
+      "dpsByBarrel": {
+        "short": 1891,
+        "standard": 2074,
+        "long": 2257
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 28"
+    },
+    {
+      "weaponId": "g2",
+      "sourceName": "G2",
+      "damageByBarrel": {
+        "short": "155/120",
+        "standard": "175/135",
+        "long": null
+      },
+      "rpm": 970,
+      "dpsByBarrel": {
+        "short": 1940,
+        "standard": 2182.5,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 29"
+    },
+    {
+      "weaponId": "l85a2",
+      "sourceName": "L85A2",
+      "damageByBarrel": {
+        "short": "195/160",
+        "standard": "220/175",
+        "long": null
+      },
+      "rpm": 695,
+      "dpsByBarrel": {
+        "short": 1853.333333,
+        "standard": 2027.083333,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 30"
+    },
+    {
+      "weaponId": "ak-47",
+      "sourceName": "AK-47",
+      "damageByBarrel": {
+        "short": "200/160",
+        "standard": "225/180",
+        "long": "245/195"
+      },
+      "rpm": 588,
+      "dpsByBarrel": {
+        "short": 1568,
+        "standard": 1764,
+        "long": 1911
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 32"
+    },
+    {
+      "weaponId": "m4a1",
+      "sourceName": "M4A1",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "190/160",
+        "long": "215/170"
+      },
+      "rpm": 882,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2352,
+        "long": 2499
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 33"
+    },
+    {
+      "weaponId": "mk17",
+      "sourceName": "Mk17",
+      "damageByBarrel": {
+        "short": "240/185",
+        "standard": "260/205",
+        "long": "280/225"
+      },
+      "rpm": 610,
+      "dpsByBarrel": {
+        "short": 1880.833333,
+        "standard": 2084.166667,
+        "long": 2287.5
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 34"
+    },
+    {
+      "weaponId": "acr",
+      "sourceName": "ACR",
+      "damageByBarrel": {
+        "short": "170/140",
+        "standard": "190/155",
+        "long": "205/165"
+      },
+      "rpm": 780,
+      "dpsByBarrel": {
+        "short": 1820,
+        "standard": 2015,
+        "long": 2145
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 35"
+    },
+    {
+      "weaponId": "tar-21",
+      "sourceName": "TAR-21",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "190/155",
+        "long": "205/165"
+      },
+      "rpm": 832,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2149.333333,
+        "long": 2288
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 36"
+    },
+    {
+      "weaponId": "sr-635",
+      "sourceName": "SR-635",
+      "damageByBarrel": {
+        "short": "260/205",
+        "standard": "280/225",
+        "long": null
+      },
+      "rpm": 590,
+      "dpsByBarrel": {
+        "short": 2015.833333,
+        "standard": 2212.5,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 50"
+    },
+    {
+      "weaponId": "p90",
+      "sourceName": "P90",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "190/160",
+        "long": "215/170"
+      },
+      "rpm": 878,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2341.333333,
+        "long": 2487.666667
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 51"
+    },
+    {
+      "weaponId": "pp19",
+      "sourceName": "PP19",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "190/160",
+        "long": "215/170"
+      },
+      "rpm": 685,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1826.666667,
+        "long": 1940.833333
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 52"
+    },
+    {
+      "weaponId": "mp7",
+      "sourceName": "Mp7",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "150/120",
+        "long": "160/130"
+      },
+      "rpm": 923,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1846,
+        "long": 1999.833333
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 54"
+    },
+    {
+      "weaponId": "mpx",
+      "sourceName": "MPX",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "185/150",
+        "long": "195/160"
+      },
+      "rpm": 828,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2070,
+        "long": 2208
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 55"
+    },
+    {
+      "weaponId": "psg",
+      "sourceName": "PSG",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "190/160",
+        "long": "215/170"
+      },
+      "rpm": 780,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2080,
+        "long": 2210
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 56"
+    },
+    {
+      "weaponId": "9x19vsn",
+      "sourceName": "9x19 VSN",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "220/175",
+        "long": "240/190"
+      },
+      "rpm": 682,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1989.166667,
+        "long": 2159.666667
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 58"
+    },
+    {
+      "weaponId": "scorpion-evo-3",
+      "sourceName": "Scorpion Evo 3",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "135/105",
+        "long": "145/115"
+      },
+      "rpm": 1111,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1944.25,
+        "long": 2129.416667
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 59"
+    },
+    {
+      "weaponId": "vector-45-acp",
+      "sourceName": "Vector .45 ACP",
+      "damageByBarrel": {
+        "short": "135/105",
+        "standard": "145/115",
+        "long": null
+      },
+      "rpm": 1137,
+      "dpsByBarrel": {
+        "short": 1989.75,
+        "standard": 2179.25,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 60"
+    },
+    {
+      "weaponId": "super-shorty",
+      "sourceName": "Super Shorty",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "1000+",
+        "long": "1000+"
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 63"
+    },
+    {
+      "weaponId": "sasg-12",
+      "sourceName": "SASG-12",
+      "damageByBarrel": {
+        "short": null,
+        "standard": "500-760",
+        "long": "500-760"
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 64"
+    },
+    {
+      "weaponId": "5-7-usg",
+      "sourceName": "5.7 USG",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 100,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 72"
+    },
+    {
+      "weaponId": "m1911",
+      "sourceName": "M1911",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 95,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 73"
+    },
+    {
+      "weaponId": "p12",
+      "sourceName": "P12",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 100,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 74"
+    },
+    {
+      "weaponId": "p227",
+      "sourceName": "P227",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 105,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 75"
+    },
+    {
+      "weaponId": "d-50",
+      "sourceName": "D50",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 275,
+        "long": null
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 76"
+    },
+    {
+      "weaponId": "r5-rgp",
+      "sourceName": "R5 (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 185,
+        "long": 200
+      },
+      "rpm": 620,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1911.666667,
+        "long": 2066.666667
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 31"
+    },
+    {
+      "weaponId": "mg121",
+      "sourceName": "MG121 (FA)",
+      "damageByBarrel": {
+        "short": 95,
+        "standard": 105,
+        "long": null
+      },
+      "rpm": 702,
+      "dpsByBarrel": {
+        "short": 1111.5,
+        "standard": 1228.5,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 41"
+    },
+    {
+      "weaponId": "stoner-lmg-a1",
+      "sourceName": "Stoner (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 135,
+        "long": 150
+      },
+      "rpm": 698,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1570.5,
+        "long": 1745
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 42"
+    },
+    {
+      "weaponId": "mk-48",
+      "sourceName": "MK48 (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 135,
+        "long": 150
+      },
+      "rpm": 698,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1570.5,
+        "long": 1745
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 43"
+    },
+    {
+      "weaponId": "type-95",
+      "sourceName": "Type85 (FA)",
+      "damageByBarrel": {
+        "short": 115,
+        "standard": 125,
+        "long": null
+      },
+      "rpm": 636,
+      "dpsByBarrel": {
+        "short": 1219,
+        "standard": 1325,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 44 (source label: Type85 (FA))"
+    },
+    {
+      "weaponId": "6p41",
+      "sourceName": "6P41 (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 175,
+        "long": 185
+      },
+      "rpm": 590,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1720.833333,
+        "long": 1819.166667
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 45"
+    },
+    {
+      "weaponId": "mk249",
+      "sourceName": "Mk249 (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 100,
+        "long": 105
+      },
+      "rpm": 891,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1485,
+        "long": 1559.25
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 46"
+    },
+    {
+      "weaponId": "9mm-c1",
+      "sourceName": "9mm C1 (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 255,
+        "long": 270
+      },
+      "rpm": 538,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 2286.5,
+        "long": 2421
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 57"
+    },
+    {
+      "weaponId": "spas-12",
+      "sourceName": "SPAS",
+      "damageByBarrel": {
+        "short": "500-760",
+        "standard": "500-760",
+        "long": "500-760"
+      },
+      "rpm": null,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": null,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 66"
+    },
+    {
+      "weaponId": "smg-11",
+      "sourceName": "SMG-11 (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 53,
+        "long": null
+      },
+      "rpm": 1160,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1024.666667,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 80"
+    },
+    {
+      "weaponId": "skorpion",
+      "sourceName": "Scorpion (FA)",
+      "damageByBarrel": {
+        "short": null,
+        "standard": 75,
+        "long": null
+      },
+      "rpm": 885,
+      "dpsByBarrel": {
+        "short": null,
+        "standard": 1106.25,
+        "long": null
+      },
+      "targetBands": {
+        "unidadHeavy": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        },
+        "sbRegular": {
+          "damageMin": null,
+          "damageMax": null,
+          "hits": null
+        }
+      },
+      "sourceLocator": "WIP Damage chart, row 81"
+    }
+  ],
   "sources": [
     {
       "id": "locations",
@@ -16,8 +6185,28 @@
       "reuse": "Link and limited factual transcription; bulk reuse permission not established"
     },
     {
+      "id": "weapon-cases",
+      "title": "Weapon Cases · Guides4Gamers",
+      "url": "https://guides4gamers.com/ghost-recon-wildlands/pois/weapon-cases/",
+      "kind": "guide",
+      "era": "Historical; exact revision unknown",
+      "notes": "Audited list of 51 Bolivia weapon cases. It establishes a bounded case inventory and class names, but its page does not expose province names in the text extraction used for this release.",
+      "accessedAt": "2026-09-18",
+      "reuse": "Link and limited factual transcription; bulk reuse permission not established"
+    },
+    {
+      "id": "province-map",
+      "title": "Wildlands Map · Rogerhn",
+      "url": "https://rogerhn.github.io/projects/wildlands/",
+      "kind": "guide",
+      "era": "Historical; exact revision unknown",
+      "notes": "Interactive map used only to cross-check selected weapon-case provinces. It reports an inconsistent Dragunov province compared with the older province guide; that discrepancy remains documented.",
+      "accessedAt": "2026-09-18",
+      "reuse": "Link and limited factual transcription; bulk reuse permission not established"
+    },
+    {
       "id": "prima",
-      "title": "Weapon unlock guide \u00b7 Josh Hawkins",
+      "title": "Weapon unlock guide · Josh Hawkins",
       "url": "https://primagames.com/tips/ghost-recon-wildlands-weapon-list-how-unlock-new-guns",
       "kind": "guide",
       "era": "2017",
@@ -27,17 +6216,17 @@
     },
     {
       "id": "damage",
-      "title": "Wildlands Damage Sheet \u00b7 Tsuyara / Wildlands_Ghost",
+      "title": "Wildlands Damage Sheet · Tsuyara / Wildlands_Ghost",
       "url": "https://docs.google.com/spreadsheets/d/1w0KRBZSdb3SFBZVAncBGit3ixPSsSMWpEiOkDSlqrZw/edit",
       "kind": "community_test",
       "era": "Historical; exact build unknown",
-      "notes": "Selected sniper barrel rows transcribed. Distance, alert state, platform and full loadout are unspecified in the imported rows. Re-test on current build.",
+      "notes": "Community-built historical Wildlands damage research. The original workbook is archived in full with all 11 tabs, cached formula results, and source cell coordinates; values have not been independently retested.",
       "accessedAt": "2026-09-12",
       "reuse": "Link and limited factual transcription; bulk reuse permission not established"
     },
     {
       "id": "damage-method",
-      "title": "PvE Weapon Damage Sheet 2.0 \u00b7 Tsuyara",
+      "title": "PvE Weapon Damage Sheet 2.0 · Tsuyara",
       "url": "https://www.reddit.com/r/GhostRecon/comments/9ia12e/pve_weapon_damage_sheet_20/",
       "kind": "community_test",
       "era": "2018",
@@ -47,7 +6236,7 @@
     },
     {
       "id": "attachments-2026",
-      "title": "Attachment testing \u00b7 Mikkihiiri9",
+      "title": "Attachment testing · Mikkihiiri9",
       "url": "https://www.reddit.com/r/Wildlands/comments/1vs55qq/ghost_recon_wildlands_weapon_attachment_guide_2026/",
       "kind": "community_test",
       "era": "2026; exact build unknown",
@@ -57,7 +6246,7 @@
     },
     {
       "id": "missions",
-      "title": "Mission index \u00b7 Guides4Gamers",
+      "title": "Mission index · Guides4Gamers",
       "url": "https://guides4gamers.com/ghost-recon-wildlands/quests/",
       "kind": "guide",
       "era": "Historical; exact revision unknown",
@@ -77,7 +6266,7 @@
     },
     {
       "id": "last-rites",
-      "title": "Last Rites \u00b7 Ubisoft",
+      "title": "Last Rites · Ubisoft",
       "url": "https://www.ubisoft.com/en-us/news/ignt.62412/ghost-recon-wildlands-last-rites",
       "kind": "official",
       "era": "2026",
@@ -87,7 +6276,7 @@
     },
     {
       "id": "engine",
-      "title": "AnvilNext engine documentation \u00b7 Firejumper93",
+      "title": "AnvilNext engine documentation · Firejumper93",
       "url": "https://github.com/Firejumper93/GhostReconWildlands-AnvilNext2.0-Documentation",
       "kind": "research_lead",
       "era": "2026",
@@ -404,6 +6593,259 @@
       "variant": "Base weapon",
       "sourceIds": ["locations", "prima"],
       "aliases": []
+    },
+    {
+      "id": "r5-rgp",
+      "gameId": "wildlands",
+      "name": "R5 RGP",
+      "category": "Assault rifle",
+      "province": "Monte Puncu",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "province-map"],
+      "aliases": []
+    },
+    {
+      "id": "skorpion",
+      "gameId": "wildlands",
+      "name": "Skorpion",
+      "category": "Compact machine gun",
+      "province": "Remanzo",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "smg-11",
+      "gameId": "wildlands",
+      "name": "SMG-11",
+      "category": "Compact machine gun",
+      "province": "Pucara",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "d-50",
+      "gameId": "wildlands",
+      "name": "D-50",
+      "category": "Handgun",
+      "province": "Libertad",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "m9",
+      "gameId": "wildlands",
+      "name": "M9",
+      "category": "Handgun",
+      "province": "Villa Verde",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "locations"],
+      "aliases": []
+    },
+    {
+      "id": "p12",
+      "gameId": "wildlands",
+      "name": "P12",
+      "category": "Handgun",
+      "province": "Tabacal",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "locations"],
+      "aliases": []
+    },
+    {
+      "id": "p227",
+      "gameId": "wildlands",
+      "name": "P227",
+      "category": "Handgun",
+      "province": "Malca",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "mk249",
+      "gameId": "wildlands",
+      "name": "Mk249",
+      "category": "Light machine gun",
+      "province": "Malca",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["M249"]
+    },
+    {
+      "id": "stoner-lmg-a1",
+      "gameId": "wildlands",
+      "name": "Stoner LMG A1",
+      "category": "Light machine gun",
+      "province": "Pucara",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["KAC LMG"]
+    },
+    {
+      "id": "type-95",
+      "gameId": "wildlands",
+      "name": "Type 95",
+      "category": "Light machine gun",
+      "province": "Remanzo",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "spas-12",
+      "gameId": "wildlands",
+      "name": "SPAS-12",
+      "category": "Shotgun",
+      "province": "La Cruz",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "locations"],
+      "aliases": []
+    },
+    {
+      "id": "dragunov-svd",
+      "gameId": "wildlands",
+      "name": "Dragunov (SVD)",
+      "category": "Sniper rifle",
+      "province": "Villa Verde (Caimanes also reported)",
+      "acquisition": "Weapon case · province disputed",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "locations", "province-map"],
+      "aliases": ["Dragunov", "SVD"]
+    },
+    {
+      "id": "l115a3",
+      "gameId": "wildlands",
+      "name": "L115A3",
+      "category": "Sniper rifle",
+      "province": "Monte Puncu",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "province-map"],
+      "aliases": []
+    },
+    {
+      "id": "m1891",
+      "gameId": "wildlands",
+      "name": "M1891",
+      "category": "Sniper rifle",
+      "province": "La Cruz",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "locations"],
+      "aliases": []
+    },
+    {
+      "id": "mk14",
+      "gameId": "wildlands",
+      "name": "MK14",
+      "category": "Sniper rifle",
+      "province": "Koani",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["Mk 14"]
+    },
+    {
+      "id": "sr-1",
+      "gameId": "wildlands",
+      "name": "SR-1",
+      "category": "Sniper rifle",
+      "province": "Koani",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["SR1"]
+    },
+    {
+      "id": "srsa1",
+      "gameId": "wildlands",
+      "name": "SRSA1",
+      "category": "Sniper rifle",
+      "province": "Mojocoyo",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["SRS A1"]
+    },
+    {
+      "id": "9mm-c1",
+      "gameId": "wildlands",
+      "name": "9mm C1",
+      "category": "Submachine gun",
+      "province": "Remanzo",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "9x19vsn",
+      "gameId": "wildlands",
+      "name": "9x19VSN",
+      "category": "Submachine gun",
+      "province": "Inca Camina",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "locations"],
+      "aliases": ["9x19 VSN"]
+    },
+    {
+      "id": "pp19",
+      "gameId": "wildlands",
+      "name": "PP19",
+      "category": "Submachine gun",
+      "province": "P.N. de Agua Verde",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["PP-19"]
+    },
+    {
+      "id": "psg",
+      "gameId": "wildlands",
+      "name": "PSG",
+      "category": "Submachine gun",
+      "province": "San Mateo",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "scorpion-evo-3",
+      "gameId": "wildlands",
+      "name": "Scorpion EVO 3",
+      "category": "Submachine gun",
+      "province": "Koani",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": []
+    },
+    {
+      "id": "sr-635",
+      "gameId": "wildlands",
+      "name": "SR-635",
+      "category": "Submachine gun",
+      "province": "Ocoro",
+      "acquisition": "Weapon case",
+      "variant": "Base weapon",
+      "sourceIds": ["weapon-cases", "prima"],
+      "aliases": ["SR635"]
     }
   ],
   "attachments": [

@@ -49,6 +49,41 @@ try {
     );
     const d = JSON.parse(raw);
     validateCatalog(d);
+    const workbook = JSON.parse(
+      await readFile(
+        new URL('../data/damage-workbook.json', import.meta.url),
+        'utf8',
+      ),
+    );
+    const workbookAudit = d.coverage.damageWorkbook;
+    const workbookCellCount = workbook.sheets.reduce(
+      (sum, sheet) =>
+        sum + sheet.rows.reduce((rows, row) => rows + row.cells.length, 0),
+      0,
+    );
+    const workbookFormulaCount = workbook.sheets.reduce(
+      (sum, sheet) =>
+        sum +
+        sheet.rows.reduce(
+          (rows, row) => rows + row.cells.filter((cell) => cell.formula).length,
+          0,
+        ),
+      0,
+    );
+    if (
+      workbook.sha256 !== workbookAudit.archiveSha256 ||
+      workbook.sheetCount !== workbookAudit.sheetCount ||
+      workbook.cellCount !== workbookAudit.cellCount ||
+      workbook.formulaCount !== workbookAudit.formulaCount ||
+      workbookCellCount !== workbookAudit.cellCount ||
+      workbookFormulaCount !== workbookAudit.formulaCount
+    )
+      throw new Error(
+        'Invalid catalog: full workbook snapshot does not match its audit',
+      );
+    const workbookDigest = hash(JSON.stringify(workbook));
+    if (workbookDigest !== workbookAudit.snapshotSha256)
+      throw new Error('Invalid catalog: full workbook snapshot hash mismatch');
     const digest = hash(JSON.stringify(d));
     const existing = await client.query(
       'SELECT content_sha256 FROM catalog_releases WHERE id=$1',
@@ -62,6 +97,14 @@ try {
       console.log(
         `Release ${d.release} already imported; published pointer unchanged.`,
       );
+      const archivedWorkbook = await client.query(
+        'SELECT content_sha256 FROM damage_workbooks WHERE release_id=$1',
+        [d.release],
+      );
+      if (archivedWorkbook.rows[0]?.content_sha256 !== workbookDigest)
+        throw new Error(
+          'Invalid catalog: published damage workbook snapshot mismatch',
+        );
     } else {
       await client.query(
         'INSERT INTO catalog_releases (id,game_id,schema_version,content_sha256,snapshot) VALUES ($1,$2,$3,$4,$5)',
@@ -94,6 +137,47 @@ try {
             JSON.stringify(w),
           ],
         );
+      for (const weapon of d.weaponSheetStats)
+        for (const [index, config] of weapon.configurations.entries())
+          await client.query(
+            `INSERT INTO weapon_sheet_configs
+              (release_id,weapon_id,config_index,barrel,tier_one,non_tier,rpm,rounds_per_second,shot_interval_seconds,time_to_kill,tier_one_damage,magazine,reload_seconds,aim_delay,aim_sensitivity,source_locator)
+             VALUES ($1,$2,$3,$4,$5::jsonb,$6::jsonb,$7::jsonb,$8::jsonb,$9::jsonb,$10::jsonb,$11::jsonb,$12::jsonb,$13::jsonb,$14::jsonb,$15::jsonb,$16)`,
+            [
+              d.release,
+              weapon.weaponId,
+              index + 1,
+              config.barrel,
+              JSON.stringify(config.tierOne),
+              JSON.stringify(config.nonTier),
+              JSON.stringify(config.rpm),
+              JSON.stringify(config.roundsPerSecond),
+              JSON.stringify(config.shotIntervalSeconds),
+              JSON.stringify(config.timeToKill),
+              JSON.stringify(config.tierOneDamage),
+              JSON.stringify(config.magazine),
+              JSON.stringify(config.reloadSeconds),
+              JSON.stringify(config.aimDelay),
+              JSON.stringify(config.aimSensitivity),
+              config.sourceLocator,
+            ],
+          );
+      for (const profile of d.damageProfiles)
+        await client.query(
+          `INSERT INTO weapon_damage_profiles
+            (release_id,weapon_id,source_name,damage_by_barrel,rpm,dps_by_barrel,target_bands,source_locator)
+           VALUES ($1,$2,$3,$4::jsonb,$5::jsonb,$6::jsonb,$7::jsonb,$8)`,
+          [
+            d.release,
+            profile.weaponId,
+            profile.sourceName,
+            JSON.stringify(profile.damageByBarrel),
+            JSON.stringify(profile.rpm),
+            JSON.stringify(profile.dpsByBarrel),
+            JSON.stringify(profile.targetBands),
+            profile.sourceLocator,
+          ],
+        );
       for (const a of d.attachments)
         await client.query(
           'INSERT INTO attachments VALUES ($1,$2,$3,$4,$5,$6)',
@@ -122,8 +206,6 @@ try {
           mode,
           evidence,
           sourceLocator,
-          sourceIds,
-          gameId,
           ...conditions
         } = m;
         await client.query(
@@ -200,6 +282,10 @@ try {
       await client.query(
         'INSERT INTO published_catalogs (game_id,release_id) VALUES ($1,$2) ON CONFLICT (game_id) DO UPDATE SET release_id=EXCLUDED.release_id,published_at=now()',
         [d.gameId, d.release],
+      );
+      await client.query(
+        'INSERT INTO damage_workbooks (release_id,archive_sha256,content_sha256,snapshot) VALUES ($1,$2,$3,$4)',
+        [d.release, workbook.sha256, workbookDigest, JSON.stringify(workbook)],
       );
       console.log(`Imported and published ${d.release}`);
     }
