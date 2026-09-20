@@ -26,6 +26,21 @@ Use the same target class, health state, armor, hit zone, distance, alert state,
 
 Plan at least ten usable trials per controlled comparison initially, retaining all individual observations. This is a starting collection target, not a statistical guarantee. Increase trials when variability or borderline differences require it.
 
+## Replacing derived bands
+
+The application may display an asterisked damage interval when the historical
+workbook records body hits but not a direct damage row. That interval is a
+mathematical bound against the workbook's 1,000-HP reference target, not a new
+trial. Do not copy the midpoint into the catalog as measured damage.
+
+To replace a derived band, capture the exact build and configuration, establish
+the target's health/model, preserve the individual hit results, and document
+the calculation or direct extraction that produces the replacement value. If
+the new experiment uses a different target or health model, retain it as a
+separate observation instead of treating it as a correction. DPS based only on
+RPM is theoretical until recoil, burst control, misses, and target movement are
+represented by a separately defined field-performance measure.
+
 ## Acceptance and revalidation
 
 Store operator, evidence file/link, time range, conditions, trial count and uncertainty. Mark a result community-reported until a documented repeat supports it. Preserve conflicting trials and alternative findings. A patch changes applicability; never silently rewrite an older observation as current. Situation recommendations must reference applicable experiments and explain their limits.

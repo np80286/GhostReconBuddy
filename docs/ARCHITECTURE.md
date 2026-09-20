@@ -2,7 +2,20 @@
 
 ## Current implementation
 
-React and TypeScript render a compact read-only reference using Vinext and accessible UI primitives. A bundled source-backed snapshot opens without infrastructure. The page checks the read API once on mount; no polling or hidden write endpoints are present. PostgreSQL stores both normalized research tables and an immutable JSON representation of the same release. One transaction imports both and switches the published release pointer. Readers query the published snapshot, so partially imported rows cannot leak into the page.
+React and TypeScript render a compact read-only reference using Vinext and
+accessible UI primitives. The primary weapon workspace derives its rows from
+the catalog's weapon identities, archived class-tab configurations, and direct
+damage profiles. A separate Sources ledger groups direct evidence, references,
+and research leads while retaining contributor credit, usage notes, access
+dates, and original links. Field Wiki explains the interpretation rules inside
+the product.
+
+A bundled source-backed snapshot opens without infrastructure. The page checks
+the read API once on mount; no polling or hidden write endpoints are present.
+PostgreSQL stores both normalized research tables and an immutable JSON
+representation of the same release. One transaction imports both and switches
+the published release pointer. Readers query the published snapshot, so
+partially imported rows cannot leak into the page.
 
 The catalog API returns the curated release. The full damage workbook is stored in a separate immutable PostgreSQL sidecar row and is requested only when the Damage Lab opens. Static builds dynamically load its compact cell snapshot as a separate chunk. The original XLSX remains in `resources/workbooks_spreadsheets/`; its SHA-256 is tied to the release audit. The cell snapshot preserves workbook coordinates, merged ranges, formulas and cached results. It does not recalculate formulas or claim the historical observations are current-build facts.
 
@@ -19,6 +32,14 @@ Weapons, attachments, compatibility, measurements, missions, apparel and general
 Current source links attach to records, with exact row locators for observations. Field-level assertions, weapon variant ancestry, full loadout fingerprints, attachment exclusions, mission prerequisites, availability history and multiple conflicting observations are the next model extension. Those features are designed priorities, not already implemented functionality.
 
 Keep four kinds of evidence separate in that extension: displayed game values, empirical observations, extracted internal values and subjective claims. Derived calculations must link to their inputs and formula. Public catalog counts should always derive from imported records, with known scope.
+
+Release `0.4.8-derived-damage-bands` implements the first narrow derived
+calculation at the presentation layer. If a direct damage profile is absent but
+a numeric body-hit result exists, the UI bounds per-shot damage using the
+workbook's 1,000-HP reference. Numeric RPM permits a perfect-cadence DPS band.
+Direct workbook damage values always win. The derived result carries an
+asterisk in dense rows and full explanatory labeling in the dossier; it is not
+written into `weapon_damage_profiles` as if it were observed evidence.
 
 ## Import safety
 
@@ -53,6 +74,11 @@ These commands are instructions, not executed verification. Use a fresh database
 
 ## Publication status
 
-The repository is source-ready for public collaboration. Production build output, hosting configuration and deployment remain environment-specific. Dependency updates from the original scaffold address reported advisories; compatibility must be checked with the provided command before publication. PostgreSQL connectivity must also be tested in the target runtime before switching a hosted app from its snapshot to the live database.
+The repository publishes the bundled catalog to GitHub Pages from `main`. The
+static site does not require or expose PostgreSQL credentials. PostgreSQL
+remains an optional local or self-hosted path for immutable release storage and
+server-backed reads. Run `npm run check` before publication; it validates the
+catalog/workbook relationship, executes guardrail tests, typechecks, lints, and
+builds the production bundle.
 
 The dependency installation after upgrading the affected framework/runtime packages reported zero known vulnerabilities on September 12, 2026. This is a dependency advisory result, not a production build or security review.
