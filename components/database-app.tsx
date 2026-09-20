@@ -92,6 +92,8 @@ const sourceContributions: Record<string, string> = {
   damage: 'Hit counts, RPM, reload, magazines, damage, and DPS workbook data',
   'damage-method': 'Testing-method context and historical caveats',
   'darkdally-steam': 'Attribution trail for Darkdally’s scale-testing work',
+  'siim-numeric-data':
+    'Independent APC damage tests, detection distances, and ballistic ranking',
   'attachments-2026': 'Attachment behavior and current community retesting',
   'ghostrecon-wiki':
     'Weapon identities, classes, variants, and appearance context',
@@ -207,6 +209,59 @@ type WeaponDecisionRow = {
   reload: string | number | null;
   magazine: string | number | null;
 };
+
+type HitModeStats = {
+  semiAuto: { body: string | number | null };
+  fullAuto: { body: string | number | null };
+};
+
+type DerivedBand = {
+  minimum: number;
+  maximum: number | null;
+  label: string;
+};
+
+function bodyHitsForMode(stats: HitModeStats | undefined) {
+  const semiAutoBody = stats?.semiAuto.body;
+  return semiAutoBody !== null &&
+    semiAutoBody !== undefined &&
+    semiAutoBody !== 'N/A' &&
+    semiAutoBody !== '-'
+    ? semiAutoBody
+    : (stats?.fullAuto.body ?? null);
+}
+
+function derivedDamageBand(
+  bodyHits: string | number | null,
+): DerivedBand | null {
+  if (
+    typeof bodyHits !== 'number' ||
+    !Number.isInteger(bodyHits) ||
+    bodyHits < 1
+  )
+    return null;
+
+  const minimum = Math.ceil(1000 / bodyHits);
+  if (bodyHits === 1) return { minimum, maximum: null, label: `≥${minimum}*` };
+
+  const maximum = Math.ceil(1000 / (bodyHits - 1)) - 1;
+  return {
+    minimum,
+    maximum,
+    label: `${minimum}–${maximum}*`,
+  };
+}
+
+function derivedDpsBand(
+  damageBand: DerivedBand | null,
+  rpm: string | number | null,
+) {
+  if (!damageBand || typeof rpm !== 'number') return null;
+  const minimum = Math.round((damageBand.minimum * rpm) / 60);
+  if (damageBand.maximum === null) return `≥${minimum}*`;
+  const maximum = Math.round((damageBand.maximum * rpm) / 60);
+  return `${minimum}–${maximum}*`;
+}
 
 function sortableValue(value: string | number | null) {
   if (value === null || value === '-' || value === 'N/A') return null;
@@ -1141,6 +1196,9 @@ function WeaponSheetPanel({
     (configuration) => configuration.barrel === 'Standard Barrel',
   );
   const configuration = standard ?? stats.configurations[0];
+  const referenceBodyHits = bodyHitsForMode(configuration.nonTier);
+  const damageBand = derivedDamageBand(referenceBodyHits);
+  const dpsBand = derivedDpsBand(damageBand, configuration.rpm);
 
   return (
     <section className="field-sheet" aria-label="Historical weapon performance">
@@ -1209,10 +1267,37 @@ function WeaponSheetPanel({
         </div>
       )}
       {!profile && (
-        <p className="damage-profile-missing">
-          No standard damage or DPS row is present for this weapon; the test
-          configuration remains available above.
-        </p>
+        <div className="damage-profile derived-profile">
+          <div className="damage-profile-heading">
+            <div>
+              <span className="eyebrow">DERIVED DAMAGE BAND</span>
+              <strong>Calculated from recorded body hits</strong>
+            </div>
+            <span>1,000-HP reference model</span>
+          </div>
+          {damageBand ? (
+            <div
+              className="damage-profile-grid"
+              style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}
+            >
+              <div>
+                <span>Damage per shot</span>
+                <strong>{damageBand.label}</strong>
+                <small>{referenceBodyHits} body hits</small>
+              </div>
+              <div>
+                <span>Theoretical DPS</span>
+                <strong>{dpsBand ?? 'RPM not recorded'}</strong>
+                <small>Perfect cadence; recoil and misses excluded</small>
+              </div>
+            </div>
+          ) : (
+            <p className="damage-profile-missing">
+              No damage row or numeric body-hit result is available for this
+              weapon.
+            </p>
+          )}
+        </div>
       )}
       <div className="field-sheet-specs">
         <div>
@@ -1342,9 +1427,9 @@ function WeaponDossier({
     semiAutoBody !== undefined &&
     semiAutoBody !== 'N/A' &&
     semiAutoBody !== '-';
-  const bodyHitsValue = hasSemiAutoBody
-    ? semiAutoBody
-    : (modeStats?.fullAuto.body ?? null);
+  const bodyHitsValue = bodyHitsForMode(modeStats);
+  const damageBand = derivedDamageBand(bodyHitsValue);
+  const measuredDamage = profile?.damageByBarrel[barrelKey] ?? null;
   const reload =
     typeof configuration?.reloadSeconds === 'number'
       ? configuration.reloadSeconds
@@ -1404,9 +1489,11 @@ function WeaponDossier({
           <strong>{hasSemiAutoBody ? 'Semi-auto' : 'Full-auto'}</strong>
         </div>
         <div className="key-metric">
-          <span>Damage</span>
+          <span>
+            {measuredDamage === null ? 'Damage band · derived' : 'Damage'}
+          </span>
           <strong>
-            {shownValue(profile?.damageByBarrel[barrelKey] ?? null)}
+            {shownValue(measuredDamage ?? damageBand?.label ?? null)}
           </strong>
         </div>
         <div className="key-metric">
@@ -1591,14 +1678,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
           ? configuration.tierOne
           : configuration.nonTier
         : undefined;
-      const semiAutoBody = modeStats?.semiAuto.body;
-      const bodyHits =
-        semiAutoBody !== null &&
-        semiAutoBody !== undefined &&
-        semiAutoBody !== 'N/A' &&
-        semiAutoBody !== '-'
-          ? semiAutoBody
-          : (modeStats?.fullAuto.body ?? null);
+      const bodyHits = bodyHitsForMode(modeStats);
       const magazines = configuration
         ? (stats?.configurations
             .flatMap((item) => [
@@ -1616,12 +1696,18 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
               .map((item) => item.reloadSeconds)
               .find((value): value is number => typeof value === 'number') ??
             null);
+      const rpm = configuration?.rpm ?? profile?.rpm ?? null;
+      const measuredDamage = profile?.damageByBarrel[barrelKey] ?? null;
+      const damageBand = derivedDamageBand(bodyHits);
+      const damage = measuredDamage ?? damageBand?.label ?? null;
+      const measuredDps = profile?.dpsByBarrel[barrelKey] ?? null;
+      const dps = measuredDps ?? derivedDpsBand(damageBand, rpm);
       return {
         weapon,
         ttk: bodyHits,
-        damage: profile?.damageByBarrel[barrelKey] ?? null,
-        rpm: configuration?.rpm ?? profile?.rpm ?? null,
-        dps: profile?.dpsByBarrel.standard ?? null,
+        damage,
+        rpm,
+        dps,
         reload,
         magazine: magazines.length ? Math.max(...magazines) : null,
       };
@@ -1884,6 +1970,9 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
             <div className="armory-resultbar">
               <span aria-live="polite">
                 <strong>{weaponRows.length}</strong> weapons · {mode}
+              </span>
+              <span className="derived-legend">
+                * Derived from body hits against the 1,000-HP reference
               </span>
               <button className="text-button" onClick={clearFilters}>
                 Clear filters
@@ -2492,12 +2581,19 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   attribution trail to Darkdally’s scale-testing work. The app
                   keeps those as separate links because contribution lineage
                   matters and indirect credit should not be flattened into one
-                  author claim.
+                  author claim. Siim’s independent 117-weapon field guide is
+                  also retained as a separate test methodology and qualitative
+                  cross-check.
                 </p>
               </div>
               <div className="lineage-links">
                 <SourceLinks
-                  ids={['damage', 'damage-method', 'darkdally-steam']}
+                  ids={[
+                    'damage',
+                    'damage-method',
+                    'darkdally-steam',
+                    'siim-numeric-data',
+                  ]}
                   catalog={catalog}
                 />
               </div>
@@ -2648,6 +2744,11 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   <li>
                     Blank cells stay “Not recorded”; they are not guessed from
                     the in-game bar.
+                  </li>
+                  <li>
+                    When numeric body hits exist, a clearly labeled damage band
+                    is derived from the workbook’s 1,000-HP reference target; it
+                    is never presented as a direct measurement.
                   </li>
                   <li>
                     Historical workbook values are labeled as historical,

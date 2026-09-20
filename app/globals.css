@@ -477,6 +477,12 @@ p {
 .damage-profile {
   border-bottom: 1px solid var(--border);
 }
+.derived-profile .damage-profile-heading {
+  background: #24251c;
+}
+.derived-profile .damage-profile-grid > div {
+  background: #1b211b;
+}
 .damage-profile-heading {
   display: flex;
   align-items: center;
@@ -1302,6 +1308,13 @@ footer {
   color: var(--muted-foreground);
   background: #151b18;
   font-size: 12px;
+}
+.armory-resultbar {
+  flex-wrap: wrap;
+}
+.derived-legend {
+  margin-left: auto;
+  font-size: 10px;
 }
 .armory-resultbar strong,
 .selection-footer strong {

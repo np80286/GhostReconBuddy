@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "release": "0.4.7-source-credits",
+  "release": "0.4.8-derived-damage-bands",
   "gameId": "wildlands",
-  "updatedAt": "2026-09-19",
+  "updatedAt": "2026-09-20",
   "coverageNote": "All 51 weapons listed by the audited Bolivia weapon-case index are cataloged, plus all additional weapon records found in the archived workbook. Workbook-only records retain explicit provenance and may have incomplete performance or location data.",
   "coverage": {
     "boliviaWeaponCaseInventory": {
@@ -6444,6 +6444,16 @@
       "notes": "Community reference crediting Darkdally’s complete Wildlands scale tests and linking the historical weapon-damage workbook lineage. Used as provenance context; values remain marked with the workbook’s own uncertainty.",
       "accessedAt": "2026-09-20",
       "reuse": "Link and limited factual attribution; bulk reuse permission not established"
+    },
+    {
+      "id": "siim-numeric-data",
+      "title": "Numeric weapon and game data · Siim",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=1607297504",
+      "kind": "community_test",
+      "era": "2018–2019; historical build",
+      "notes": "Independent field tests covering 117 weapons, APC damage, sound-detection distances, and bullet-drop rankings. The author documents offline testing with maxed skills and medals, warns that the in-game stat bars are unreliable, and separately credits Darkdally’s scale tests.",
+      "accessedAt": "2026-09-20",
+      "reuse": "Link, attribution, and limited methodological summary; bulk reuse permission not established"
     },
     {
       "id": "ghostrecon-wiki",
