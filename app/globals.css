@@ -150,14 +150,14 @@
 .workspace {
   max-width: 1640px;
   margin: auto;
-  padding: 24px 32px 40px;
+  padding: 18px 24px 32px;
 }
 .topline {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   align-items: flex-start;
-  margin: 28px 0 22px;
+  margin: 20px 0 16px;
 }
 h1 {
   font-size: 30px;
@@ -221,11 +221,11 @@ p {
   border-bottom: 1px solid var(--border);
   width: 100%;
   border-radius: 0;
-  gap: 22px;
+  gap: 16px;
 }
 .main-tabs [data-slot='tabs-trigger'] {
   flex: none;
-  padding: 12px 2px;
+  padding: 10px 2px;
   border-radius: 0;
   font-size: 14px;
   height: auto;
@@ -413,6 +413,15 @@ p {
   color: var(--muted-foreground);
   font-size: 13px;
 }
+.field-sheet-method-note {
+  margin: 0;
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--border);
+  color: #d6b66e;
+  background: #20241b;
+  font-size: 11px;
+  line-height: 1.4;
+}
 .field-sheet-heading .field {
   flex: none;
 }
@@ -445,7 +454,9 @@ p {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.07em;
+  line-height: 1.2;
   text-transform: uppercase;
+  white-space: normal;
 }
 .field-matrix tbody th {
   width: 130px;
@@ -673,13 +684,13 @@ p {
 .source-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
+  gap: 10px;
 }
 .source-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 20px;
+  padding: 14px;
 }
 .source-card p {
   margin: 12px 0;
@@ -691,17 +702,252 @@ p {
   font-size: 14px;
   text-decoration: underline;
 }
+.sources-hero {
+  margin-bottom: 12px;
+}
+.provenance-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.provenance-strip > div {
+  position: relative;
+  padding: 13px 14px;
+  min-width: 0;
+}
+.provenance-strip > div + div {
+  border-left: 1px solid var(--border);
+}
+.provenance-strip span,
+.source-entry-use span {
+  display: block;
+  color: var(--primary);
+  font:
+    11px ui-monospace,
+    monospace;
+  letter-spacing: 0.1em;
+}
+.provenance-strip strong,
+.provenance-strip small {
+  display: block;
+}
+.provenance-strip strong {
+  margin-top: 4px;
+  font-size: 14px;
+}
+.provenance-strip small {
+  margin-top: 3px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.lineage-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.45fr);
+  gap: 18px;
+  align-items: center;
+  border: 1px solid #66512f;
+  background: #24231b;
+  border-radius: 6px;
+  padding: 15px 16px;
+  margin-bottom: 18px;
+}
+.lineage-card h2 {
+  margin: 5px 0 6px;
+}
+.lineage-card p {
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.lineage-links {
+  border-left: 1px solid #66512f;
+  padding-left: 18px;
+}
+.source-groups {
+  display: grid;
+  gap: 20px;
+}
+.source-group-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.source-group-heading h2 {
+  margin-bottom: 3px;
+}
+.source-group-heading p {
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+.source-ledger {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.source-entry {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.45fr) minmax(220px, 0.8fr) 180px;
+  gap: 16px;
+  align-items: center;
+  background: var(--card);
+  padding: 12px 14px;
+}
+.source-entry + .source-entry {
+  border-top: 1px solid var(--border);
+}
+.source-entry-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.source-entry-title h3 {
+  margin: 0;
+}
+.source-entry-main p {
+  margin-top: 6px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.source-entry-use {
+  border-left: 1px solid var(--border);
+  padding-left: 16px;
+}
+.source-entry-use strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.source-entry-meta {
+  display: grid;
+  gap: 3px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.source-entry-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  color: var(--primary);
+  font-size: 12px;
+  text-decoration: underline;
+}
+.source-entry-meta svg {
+  width: 13px;
+}
+.wiki-hero {
+  margin-bottom: 8px;
+}
+.wiki-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.wiki-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 6px;
+  padding: 16px;
+}
+.wiki-card h2 {
+  margin: 8px 0 12px;
+  font-size: 21px;
+}
+.wiki-card p {
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.wiki-card p + p {
+  margin-top: 12px;
+}
+.wiki-definitions {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+.wiki-definitions div {
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.wiki-definitions dt {
+  font-weight: 700;
+  color: var(--foreground);
+}
+.wiki-definitions dd {
+  margin: 4px 0 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.wiki-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.wiki-list li + li {
+  margin-top: 8px;
+}
+.wiki-section {
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.wiki-credit-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.wiki-credit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 13px 15px;
+  color: var(--foreground);
+  text-decoration: none;
+}
+.wiki-credit:hover {
+  border-color: var(--primary);
+}
+.wiki-credit strong,
+.wiki-credit small {
+  display: block;
+}
+.wiki-credit small {
+  margin-top: 4px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.wiki-credit svg {
+  width: 16px;
+  color: var(--primary);
+  flex: 0 0 auto;
+}
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 20px 0;
+  gap: 10px;
+  margin: 16px 0;
 }
 .stat {
   border: 1px solid var(--border);
   background: var(--card);
   border-radius: 5px;
-  padding: 18px;
+  padding: 14px;
 }
 .stat strong {
   display: block;
@@ -755,6 +1001,24 @@ footer {
   border: 0;
 }
 @media (max-width: 1099px) {
+  .provenance-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .provenance-strip > div:nth-child(3) {
+    border-left: 0;
+  }
+  .provenance-strip > div:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+  .source-entry {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.65fr);
+  }
+  .source-entry-meta {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
   .context-aside {
     margin-top: 18px;
     display: grid;
@@ -785,6 +1049,30 @@ footer {
   }
   .stat-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .wiki-grid {
+    grid-template-columns: 1fr;
+  }
+  .provenance-strip,
+  .lineage-card,
+  .source-entry {
+    grid-template-columns: 1fr;
+  }
+  .provenance-strip > div + div,
+  .provenance-strip > div:nth-child(3) {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .lineage-links,
+  .source-entry-use {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding: 10px 0 0;
+  }
+  .source-entry-meta {
+    grid-column: auto;
+    display: grid;
+    gap: 3px;
   }
   .context-aside {
     display: block;
@@ -1038,8 +1326,8 @@ footer {
 .shortlist-row {
   display: grid;
   grid-template-columns: 38px minmax(178px, 1fr) repeat(
-      4,
-      minmax(68px, 0.52fr)
+      6,
+      minmax(62px, 0.48fr)
     ) 62px;
   align-items: stretch;
 }
@@ -1174,6 +1462,10 @@ footer {
 }
 .metric-magazine {
   --metric-color: #80bd83;
+}
+.metric-rpm strong,
+.metric-dps strong {
+  color: #d4c3e8;
 }
 .compare-check {
   display: flex;
@@ -1579,6 +1871,10 @@ footer {
     padding: 17px 7px 3px;
     border-left: 0;
     border-top: 1px solid #303a34;
+  }
+  .shortlist-metric.metric-rpm,
+  .shortlist-metric.metric-dps {
+    display: none;
   }
   .metric-wash {
     height: 4px;

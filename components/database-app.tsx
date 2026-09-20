@@ -6,7 +6,6 @@ import {
   Search,
   Info,
   ArrowUpRight,
-  Database,
   Layers,
   Map as MapIcon,
   BookOpen,
@@ -85,6 +84,34 @@ type LabSortKey =
 
 type WeaponSortKey = 'name' | 'ttk' | 'damage' | 'reload' | 'magazine';
 
+const sourceContributions: Record<string, string> = {
+  locations: 'Province and weapon-location cross-checks',
+  'weapon-cases': 'Audited 51-case Bolivia weapon inventory',
+  'province-map': 'Selected province and case-location cross-checks',
+  prima: 'Unlock routes and weapon-case cross-checks',
+  damage: 'Hit counts, RPM, reload, magazines, damage, and DPS workbook data',
+  'damage-method': 'Testing-method context and historical caveats',
+  'darkdally-steam': 'Attribution trail for Darkdally’s scale-testing work',
+  'attachments-2026': 'Attachment behavior and current community retesting',
+  'ghostrecon-wiki':
+    'Weapon identities, classes, variants, and appearance context',
+  'imfdb-wildlands': 'Real-world firearm identity and naming cross-checks',
+  'prima-official-pdf': 'Archival guide and weapon-stat comparison lead',
+  missions: 'Mission names, provinces, and campaign indexing',
+  bulletdrop: 'Ballistics and bullet-drop research lead',
+  'last-rites': 'Official confirmation of current Wildlands content changes',
+  engine: 'Potential game-data extraction research',
+};
+
+function sourceContribution(source: Catalog['sources'][number]) {
+  return (
+    sourceContributions[source.id] ??
+    (source.kind === 'research_lead'
+      ? 'Research lead; no values imported yet'
+      : 'Reference and factual cross-check')
+  );
+}
+
 type OperatorPreset = {
   id: string;
   label: string;
@@ -118,7 +145,7 @@ const operatorPresets: OperatorPreset[] = [
     id: 'assault',
     label: 'Assault / general purpose',
     shortLabel: 'Assault',
-    description: 'Fastest recorded kill time among rifles.',
+    description: 'Lowest recorded body-hit count among rifles.',
     categories: ['Assault rifle'],
     sort: 'ttk',
     direction: 'asc',
@@ -175,6 +202,8 @@ type WeaponDecisionRow = {
   weapon: Weapon;
   ttk: string | number | null;
   damage: string | number | null;
+  rpm: string | number | null;
+  dps: string | number | null;
   reload: string | number | null;
   magazine: string | number | null;
 };
@@ -1014,7 +1043,7 @@ function weaponSortableValue(value: string | number | null) {
 }
 
 const decisionMetricMeta = {
-  ttk: { label: 'Kill time', unit: 's', lowerIsBetter: true },
+  ttk: { label: 'Body hits', unit: '', lowerIsBetter: true },
   damage: { label: 'Damage', unit: '', lowerIsBetter: false },
   reload: { label: 'Reload', unit: 's', lowerIsBetter: true },
   magazine: { label: 'Magazine', unit: 'rds', lowerIsBetter: false },
@@ -1118,19 +1147,24 @@ function WeaponSheetPanel({
       <div className="field-sheet-heading">
         <div>
           <span className="eyebrow">ARCHIVED FIELD TEST / COMMUNITY DATA</span>
-          <h3>Tier One comparison</h3>
-          <p>Standard configuration · shots to kill · source-era test</p>
+          <h3>Shots to kill · reference model</h3>
+          <p>Standard configuration · source-era workbook test</p>
         </div>
       </div>
+      <p className="field-sheet-method-note">
+        Semi-auto and full-auto rows are workbook hit-count models. Full-auto
+        assumes uninterrupted firing cadence; recoil, burst control, misses,
+        attachments, and target movement are not modeled.
+      </p>
       <div className="field-matrix-wrap">
         <table className="field-matrix">
           <thead>
             <tr>
-              <th>Mode</th>
-              <th>Semi · head</th>
-              <th>Semi · body</th>
-              <th>Full · head</th>
-              <th>Full · body</th>
+              <th>Enemy model</th>
+              <th>Semi-auto · head hits</th>
+              <th>Semi-auto · body hits</th>
+              <th>Full-auto · head hits · theoretical</th>
+              <th>Full-auto · body hits · theoretical</th>
             </tr>
           </thead>
           <tbody>
@@ -1234,7 +1268,7 @@ function WeaponSheetPanel({
           <strong>{shownValue(configuration.aimSensitivity)}</strong>
         </div>
         <div>
-          <span>T1 damage / semi-full</span>
+          <span>T1 damage / semi-auto · full-auto</span>
           <strong>
             {[
               configuration.tierOneDamage.semiAuto,
@@ -1277,7 +1311,11 @@ function WeaponDossier({
   onClose: () => void;
 }) {
   const compatibility = catalog.compatibility.filter(
-    (item) => item.weaponId === weapon.id,
+    (item) =>
+      item.weaponId === weapon.id &&
+      catalog.attachments.find(
+        (attachment) => attachment.id === item.attachmentId,
+      )?.slot !== 'Barrel',
   );
   const stats = catalog.weaponSheetStats.find(
     (entry) => entry.weaponId === weapon.id,
@@ -1299,13 +1337,14 @@ function WeaponDossier({
       : configuration.nonTier
     : undefined;
   const semiAutoBody = modeStats?.semiAuto.body;
-  const hasSemiAutoBody = semiAutoBody !== null && semiAutoBody !== undefined;
-  const bodyHits = hasSemiAutoBody ? semiAutoBody : modeStats?.fullAuto.body;
-  const ttk = configuration
-    ? mode === 'Tier One'
-      ? configuration.timeToKill.tierOne
-      : configuration.timeToKill.nonTier
-    : null;
+  const hasSemiAutoBody =
+    semiAutoBody !== null &&
+    semiAutoBody !== undefined &&
+    semiAutoBody !== 'N/A' &&
+    semiAutoBody !== '-';
+  const bodyHitsValue = hasSemiAutoBody
+    ? semiAutoBody
+    : (modeStats?.fullAuto.body ?? null);
   const reload =
     typeof configuration?.reloadSeconds === 'number'
       ? configuration.reloadSeconds
@@ -1357,12 +1396,12 @@ function WeaponDossier({
       </p>
       <div className="dossier-key-metrics">
         <div className="key-metric primary">
-          <span>Kill time ↓</span>
-          <strong>{shownWithUnit(ttk ?? null, 's')}</strong>
+          <span>Body hits ↓</span>
+          <strong>{shownValue(bodyHitsValue ?? null)}</strong>
         </div>
         <div className="key-metric">
-          <span>Body hits · {hasSemiAutoBody ? 'semi' : 'full'}</span>
-          <strong>{shownValue(bodyHits ?? null)}</strong>
+          <span>Measured mode</span>
+          <strong>{hasSemiAutoBody ? 'Semi-auto' : 'Full-auto'}</strong>
         </div>
         <div className="key-metric">
           <span>Damage</span>
@@ -1390,7 +1429,8 @@ function WeaponDossier({
             <h3>Technical record, attachments &amp; sources</h3>
           </div>
           <span className="dossier-record-note">
-            Blank workbook cells remain “Not recorded”.
+            Blank workbook cells remain “Not recorded”. Range is not recorded in
+            this source.
           </span>
         </div>
         {stats ? (
@@ -1546,11 +1586,19 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
         | 'short'
         | 'standard'
         | 'long';
-      const ttk = configuration
+      const modeStats = configuration
         ? mode === 'Tier One'
-          ? configuration.timeToKill.tierOne
-          : configuration.timeToKill.nonTier
-        : null;
+          ? configuration.tierOne
+          : configuration.nonTier
+        : undefined;
+      const semiAutoBody = modeStats?.semiAuto.body;
+      const bodyHits =
+        semiAutoBody !== null &&
+        semiAutoBody !== undefined &&
+        semiAutoBody !== 'N/A' &&
+        semiAutoBody !== '-'
+          ? semiAutoBody
+          : (modeStats?.fullAuto.body ?? null);
       const magazines = configuration
         ? (stats?.configurations
             .flatMap((item) => [
@@ -1570,8 +1618,10 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
             null);
       return {
         weapon,
-        ttk,
+        ttk: bodyHits,
         damage: profile?.damageByBarrel[barrelKey] ?? null,
+        rpm: configuration?.rpm ?? profile?.rpm ?? null,
+        dps: profile?.dpsByBarrel.standard ?? null,
         reload,
         magazine: magazines.length ? Math.max(...magazines) : null,
       };
@@ -1599,13 +1649,38 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
   const measuredCount = new Set(
     catalog.weaponSheetStats.map((entry) => entry.weaponId),
   ).size;
-  const sheetConfigurationCount = catalog.weaponSheetStats.reduce(
-    (count, entry) => count + entry.configurations.length,
-    0,
-  );
   const caseCount = catalog.weapons.filter((weapon) =>
     weapon.acquisition.startsWith('Weapon case'),
   ).length;
+  const sourceGroups = [
+    {
+      id: 'evidence',
+      title: 'Direct evidence & community testing',
+      description:
+        'Sources that contributed measurements, imported records, or test-method context.',
+      sources: catalog.sources.filter((source) =>
+        ['community_test', 'extracted', 'game_capture'].includes(source.kind),
+      ),
+    },
+    {
+      id: 'references',
+      title: 'Reference & identity cross-checks',
+      description:
+        'Guides and official pages used to verify names, classes, locations, unlocks, and historical context.',
+      sources: catalog.sources.filter((source) =>
+        ['guide', 'official'].includes(source.kind),
+      ),
+    },
+    {
+      id: 'leads',
+      title: 'Research leads',
+      description:
+        'Promising resources kept visible for future extraction or controlled retesting; no silent imports.',
+      sources: catalog.sources.filter(
+        (source) => source.kind === 'research_lead',
+      ),
+    },
+  ];
   function toggleWeapon(id: string) {
     setSelected((previous) =>
       previous.includes(id)
@@ -1682,7 +1757,11 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
             </TabsTrigger>
             <TabsTrigger value="sources">
               <BookOpen />
-              Sources & coverage
+              Sources
+            </TabsTrigger>
+            <TabsTrigger value="wiki">
+              <Info />
+              Field Wiki
             </TabsTrigger>
             <TabsTrigger value="damage-lab">
               <FileSpreadsheet />
@@ -1719,7 +1798,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                 className={weaponSort === 'ttk' ? 'active' : ''}
                 onClick={() => chooseWeaponSort('ttk', 'asc')}
               >
-                Fastest kill <small>lowest TTK</small>
+                Fewest hits <small>lowest body-hit count</small>
               </button>
               <button
                 className={weaponSort === 'damage' ? 'active' : ''}
@@ -1836,7 +1915,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                       : ''}
                   </button>
                   <button onClick={() => toggleWeaponSort('ttk')}>
-                    TTK{' '}
+                    Hits{' '}
                     {weaponSort === 'ttk'
                       ? weaponSortDirection === 'asc'
                         ? '↑'
@@ -1851,6 +1930,8 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                         : '↓'
                       : ''}
                   </button>
+                  <span>RPM</span>
+                  <span>DPS</span>
                   <button onClick={() => toggleWeaponSort('reload')}>
                     Reload{' '}
                     {weaponSort === 'reload'
@@ -1892,7 +1973,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                     </button>
                     <span
                       className="shortlist-metric metric-ttk"
-                      data-label="TTK"
+                      data-label="Hits"
                     >
                       <span
                         className="metric-wash"
@@ -1918,7 +1999,6 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                         aria-hidden="true"
                       />
                       <strong>{decisionShownValue(row.ttk)}</strong>
-                      {typeof row.ttk === 'number' && <small>s</small>}
                     </span>
                     <span
                       className="shortlist-metric metric-damage"
@@ -1948,6 +2028,18 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                         aria-hidden="true"
                       />
                       <strong>{decisionShownValue(row.damage)}</strong>
+                    </span>
+                    <span
+                      className="shortlist-metric metric-rpm"
+                      data-label="RPM"
+                    >
+                      <strong>{decisionShownValue(row.rpm)}</strong>
+                    </span>
+                    <span
+                      className="shortlist-metric metric-dps"
+                      data-label="DPS"
+                    >
+                      <strong>{decisionShownValue(row.dps)}</strong>
                     </span>
                     <span
                       className="shortlist-metric metric-reload"
@@ -2352,67 +2444,274 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
             </Note>
           </TabsContent>
           <TabsContent value="sources">
-            <div className="topline">
+            <div className="topline sources-hero">
               <div>
-                <h1>A database you can question.</h1>
+                <span className="eyebrow">PROVENANCE / CREDITS / LINKS</span>
+                <h1>Sources</h1>
                 <p className="muted">
-                  Every imported record points to its evidence. Coverage is
-                  counted, not assumed.
+                  Who did the work, where it originated, and exactly what this
+                  app used from it.
                 </p>
               </div>
               <span className="pill neutral">
-                <Database size={13} />
-                {storage}
+                <BookOpen size={13} />
+                {catalog.sources.length} linked resources
               </span>
             </div>
-            <div className="stat-grid">
-              <div className="stat">
-                <span>Bolivia weapon cases</span>
-                <strong>{caseCount}</strong>
-                <span>Base-map cases; not all game weapons</span>
+
+            <section className="provenance-strip" aria-label="Data lineage">
+              <div>
+                <span>01</span>
+                <strong>Community work</strong>
+                <small>Testing, guides, captures, and research</small>
               </div>
-              <div className="stat">
-                <span>Reported compatible pairs</span>
-                <strong>{catalog.compatibility.length}</strong>
-                <span>Barrel observations only</span>
+              <div>
+                <span>02</span>
+                <strong>Original publication</strong>
+                <small>Linked intact with contributor credit</small>
               </div>
-              <div className="stat">
-                <span>Damage sheet configurations</span>
-                <strong>{sheetConfigurationCount}</strong>
-                <span>{measuredCount} weapons · six class tabs</span>
+              <div>
+                <span>03</span>
+                <strong>Preserved evidence</strong>
+                <small>Workbook tabs, rows, notes, and uncertainty</small>
               </div>
-              <div className="stat">
-                <span>Current-build retests</span>
-                <strong>0</strong>
-                <span>Independent validation pending</span>
+              <div>
+                <span>04</span>
+                <strong>Normalized record</strong>
+                <small>Source ID and locator retained in the app</small>
               </div>
-            </div>
-            <Note>
-              {catalog.coverageNote} Current gaps include the full attachment
-              matrix, unique and store variants, all mission chains, apparel,
-              ballistics, and controlled current-build tests.
-            </Note>
-            <div className="source-list">
-              {catalog.sources.map((s) => (
-                <article className="source-card" key={s.id}>
-                  <div className="split-line">
-                    <span
-                      className={`pill ${s.kind === 'research_lead' ? 'warning' : 'neutral'}`}
-                    >
-                      {s.kind.replaceAll('_', ' ')}
-                    </span>
-                    <span className="row-meta">{s.era}</span>
+            </section>
+
+            <article className="lineage-card">
+              <div>
+                <span className="eyebrow">FEATURED LINEAGE</span>
+                <h2>Historical Wildlands damage research</h2>
+                <p>
+                  The imported workbook is credited to Tsuyara /
+                  Wildlands_Ghost. A Steam community thread preserves the
+                  attribution trail to Darkdally’s scale-testing work. The app
+                  keeps those as separate links because contribution lineage
+                  matters and indirect credit should not be flattened into one
+                  author claim.
+                </p>
+              </div>
+              <div className="lineage-links">
+                <SourceLinks
+                  ids={['damage', 'damage-method', 'darkdally-steam']}
+                  catalog={catalog}
+                />
+              </div>
+            </article>
+
+            <div className="source-groups">
+              {sourceGroups.map((group) => (
+                <section className="source-group" key={group.id}>
+                  <div className="source-group-heading">
+                    <div>
+                      <h2>{group.title}</h2>
+                      <p>{group.description}</p>
+                    </div>
+                    <span className="pill neutral">{group.sources.length}</span>
                   </div>
-                  <h3 className="mt-4">{s.title}</h3>
-                  <p>{s.notes}</p>
-                  <a href={s.url} target="_blank" rel="noreferrer">
-                    Open original source{' '}
-                    <ArrowUpRight className="inline size-3" />
-                  </a>
-                  <div className="row-meta mt-3">Accessed {s.accessedAt}</div>
-                </article>
+                  <div className="source-ledger">
+                    {group.sources.map((source) => (
+                      <article className="source-entry" key={source.id}>
+                        <div className="source-entry-main">
+                          <div className="source-entry-title">
+                            <span
+                              className={`pill ${source.kind === 'research_lead' ? 'warning' : 'neutral'}`}
+                            >
+                              {source.kind.replaceAll('_', ' ')}
+                            </span>
+                            <h3>{source.title}</h3>
+                          </div>
+                          <p>{source.notes}</p>
+                        </div>
+                        <div className="source-entry-use">
+                          <span>USED FOR</span>
+                          <strong>{sourceContribution(source)}</strong>
+                        </div>
+                        <div className="source-entry-meta">
+                          <span>{source.era}</span>
+                          <span>Accessed {source.accessedAt}</span>
+                          <a href={source.url} target="_blank" rel="noreferrer">
+                            Open source <ArrowUpRight aria-hidden="true" />
+                          </a>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
               ))}
             </div>
+
+            <Note>
+              We link and credit the original work, import only the fields we
+              can trace, preserve uncertainty markers, and keep research leads
+              separate from evidence already used by the app.
+            </Note>
+          </TabsContent>
+          <TabsContent value="wiki">
+            <div className="topline wiki-hero">
+              <div>
+                <span className="eyebrow">FIELD WIKI / OPERATING NOTES</span>
+                <h1>How this index works</h1>
+                <p className="muted">
+                  A compact field guide to the data, the tests, and the people
+                  whose work makes this armory useful.
+                </p>
+              </div>
+              <span className="pill warning">Evidence first</span>
+            </div>
+
+            <div className="stat-grid">
+              <div className="stat">
+                <span>Cataloged weapons</span>
+                <strong>{catalog.weapons.length}</strong>
+                <span>Case inventory plus workbook records</span>
+              </div>
+              <div className="stat">
+                <span>Measured weapon records</span>
+                <strong>{measuredCount}</strong>
+                <span>Archived source-sheet configurations</span>
+              </div>
+              <div className="stat">
+                <span>Weapon-case baseline</span>
+                <strong>{caseCount}</strong>
+                <span>Audited Bolivia case entries</span>
+              </div>
+              <div className="stat">
+                <span>Evidence sources</span>
+                <strong>{catalog.sources.length}</strong>
+                <span>Guides, tests, references, and leads</span>
+              </div>
+            </div>
+
+            <div className="wiki-grid">
+              <article className="wiki-card">
+                <span className="eyebrow">01 / Mission brief</span>
+                <h2>Pick a weapon for the job</h2>
+                <p>
+                  The Weapons view is built for a quick loadout decision: pick a
+                  priority, filter a class, scan the compact metrics, then open
+                  a dossier when the tradeoff matters.
+                </p>
+                <p>
+                  Standard configuration is the baseline. Attachment-specific
+                  comparisons belong in the Damage Lab and future build views,
+                  so the primary list stays readable on a phone.
+                </p>
+              </article>
+              <article className="wiki-card">
+                <span className="eyebrow">02 / Metric legend</span>
+                <h2>What the numbers mean</h2>
+                <dl className="wiki-definitions">
+                  <div>
+                    <dt>Hits</dt>
+                    <dd>
+                      Semi-auto body hits for the selected enemy model.
+                      Full-auto is the fallback when semi-auto is unavailable.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Damage</dt>
+                    <dd>
+                      Source damage value or range for the standard barrel. A
+                      “?” or “+” stays visible because it is part of the source
+                      evidence.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>RPM / DPS</dt>
+                    <dd>
+                      Workbook cadence and calculated damage-per-second where a
+                      numeric source value exists.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Reload / Mag</dt>
+                    <dd>
+                      Measured reload seconds and the largest recorded magazine
+                      across the source configurations.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+              <article className="wiki-card">
+                <span className="eyebrow">03 / Evidence rules</span>
+                <h2>How we avoid fake precision</h2>
+                <ul className="wiki-list">
+                  <li>
+                    Every imported record keeps a source ID and a source
+                    locator.
+                  </li>
+                  <li>
+                    Blank cells stay “Not recorded”; they are not guessed from
+                    the in-game bar.
+                  </li>
+                  <li>
+                    Historical workbook values are labeled as historical,
+                    theoretical, or uncertain when applicable.
+                  </li>
+                  <li>
+                    Case inventory and workbook-only variants are intentionally
+                    separated.
+                  </li>
+                </ul>
+              </article>
+              <article className="wiki-card">
+                <span className="eyebrow">04 / Test context</span>
+                <h2>Semi-auto vs full-auto</h2>
+                <p>
+                  The archived sheet reports both modes, but full-auto is a
+                  cadence model—not a promise of field performance. Recoil,
+                  burst control, misses, target movement, attachments, and range
+                  falloff can change the result.
+                </p>
+                <p className="muted">
+                  Use the values to compare a test condition, not to erase your
+                  trigger-control experience.
+                </p>
+              </article>
+            </div>
+
+            <section className="wiki-section">
+              <div className="section-heading">
+                <div>
+                  <span className="eyebrow">CREDITS / RESEARCH TRAIL</span>
+                  <h2>People and resources behind the index</h2>
+                </div>
+                <span className="row-meta">
+                  See Sources for the full ledger
+                </span>
+              </div>
+              <div className="wiki-credit-list">
+                {catalog.sources.map((source) => (
+                  <a
+                    className="wiki-credit"
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={source.id}
+                  >
+                    <span>
+                      <strong>{source.title}</strong>
+                      <small>
+                        {source.kind.replaceAll('_', ' ')} · {source.era}
+                      </small>
+                    </span>
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <Note>
+              This is a living research index, not an official Ubisoft data
+              source. If a value conflicts with your in-game test, keep the test
+              context and report the discrepancy rather than silently
+              overwriting the evidence trail.
+            </Note>
           </TabsContent>
           <TabsContent value="damage-lab">
             <DamageLab
