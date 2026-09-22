@@ -105,6 +105,35 @@ const sourceContributions: Record<string, string> = {
   engine: 'Potential game-data extraction research',
 };
 
+type WeaponEffectProfile = {
+  vehicleRating: string;
+  vehicleNote: string;
+  areaRating: string;
+  areaNote: string;
+  sourceIds: string[];
+};
+
+const weaponEffectProfiles: Record<string, WeaponEffectProfile> = {
+  hti: {
+    vehicleRating: 'Very high',
+    vehicleNote:
+      'Historical tests report exceptional anti-vehicle performance. Vehicle Damage skills, suppressor state, and hit placement can change the result.',
+    areaRating: 'Not confirmed',
+    areaNote:
+      'No blast-radius measurement is recorded. Treat it as anti-materiel impact, not a grenade.',
+    sourceIds: ['siim-numeric-data', 'darkdally-steam'],
+  },
+  'desert-tech-hti-bdc': {
+    vehicleRating: 'Exceptional',
+    vehicleNote:
+      'Community tests report one-shot vehicle and helicopter kills in applicable setups. This behavior is separate from infantry damage.',
+    areaRating: 'Explosive-like impact',
+    areaNote:
+      'References describe seemingly explosive rounds, but no measured area-of-effect radius is established.',
+    sourceIds: ['ghostrecon-wiki', 'siim-numeric-data', 'darkdally-steam'],
+  },
+};
+
 function sourceContribution(source: Catalog['sources'][number]) {
   return (
     sourceContributions[source.id] ??
@@ -1098,8 +1127,8 @@ function weaponSortableValue(value: string | number | null) {
 }
 
 const decisionMetricMeta = {
-  ttk: { label: 'Body hits', unit: '', lowerIsBetter: true },
-  damage: { label: 'Damage', unit: '', lowerIsBetter: false },
+  ttk: { label: 'Body shots to kill', unit: '', lowerIsBetter: true },
+  damage: { label: 'Infantry damage', unit: '', lowerIsBetter: false },
   reload: { label: 'Reload', unit: 's', lowerIsBetter: true },
   magazine: { label: 'Magazine', unit: 'rds', lowerIsBetter: false },
 } satisfies Record<
@@ -1430,6 +1459,8 @@ function WeaponDossier({
   const bodyHitsValue = bodyHitsForMode(modeStats);
   const damageBand = derivedDamageBand(bodyHitsValue);
   const measuredDamage = profile?.damageByBarrel[barrelKey] ?? null;
+  const effectProfile = weaponEffectProfiles[weapon.id];
+  const infantryDamage = measuredDamage ?? damageBand?.label ?? null;
   const reload =
     typeof configuration?.reloadSeconds === 'number'
       ? configuration.reloadSeconds
@@ -1477,24 +1508,24 @@ function WeaponDossier({
         </div>
       </div>
       <p className="dossier-context-line">
-        {mode} · Unidad Heavy · historical community test
+        Infantry reference · {mode} · Unidad Heavy · historical community test
       </p>
       <div className="dossier-key-metrics">
         <div className="key-metric primary">
-          <span>Body hits ↓</span>
+          <span>Body STK ↓</span>
           <strong>{shownValue(bodyHitsValue ?? null)}</strong>
         </div>
         <div className="key-metric">
-          <span>Measured mode</span>
+          <span>Fire-mode model</span>
           <strong>{hasSemiAutoBody ? 'Semi-auto' : 'Full-auto'}</strong>
         </div>
         <div className="key-metric">
           <span>
-            {measuredDamage === null ? 'Damage band · derived' : 'Damage'}
+            {measuredDamage === null
+              ? 'Infantry damage · derived'
+              : 'Infantry damage'}
           </span>
-          <strong>
-            {shownValue(measuredDamage ?? damageBand?.label ?? null)}
-          </strong>
+          <strong>{shownValue(infantryDamage)}</strong>
         </div>
         <div className="key-metric">
           <span>Reload ↓</span>
@@ -1509,6 +1540,50 @@ function WeaponDossier({
           </strong>
         </div>
       </div>
+      <section className="target-effects" aria-label="Target effect breakdown">
+        <div className="target-effects-heading">
+          <div>
+            <span className="eyebrow">TARGET EFFECTS / SEPARATE MODELS</span>
+            <h3>What this weapon does to different targets</h3>
+          </div>
+          <span>Do not infer vehicle power from infantry damage.</span>
+        </div>
+        <div className="target-effects-grid">
+          <article className="effect-card personnel">
+            <span>Personnel</span>
+            <strong>
+              {typeof bodyHitsValue === 'number'
+                ? `${bodyHitsValue} body ${bodyHitsValue === 1 ? 'shot' : 'shots'} to kill`
+                : 'Not recorded'}
+            </strong>
+            <p>
+              {infantryDamage === null
+                ? 'No direct or derived infantry-damage value is available.'
+                : `${shownValue(infantryDamage)} ${measuredDamage === null ? 'damage band derived from the 1,000-HP reference.' : 'direct workbook damage value.'}`}
+            </p>
+          </article>
+          <article className="effect-card vehicle">
+            <span>Vehicles</span>
+            <strong>
+              {effectProfile?.vehicleRating ?? 'Not separately recorded'}
+            </strong>
+            <p>
+              {effectProfile?.vehicleNote ??
+                'Infantry damage and body STK do not establish vehicle damage.'}
+            </p>
+          </article>
+          <article className="effect-card area">
+            <span>Blast / area effect</span>
+            <strong>
+              {effectProfile?.areaRating ?? 'No evidence recorded'}
+            </strong>
+            <p>
+              {effectProfile?.areaNote ??
+                'Do not assume explosive splash damage from a high damage value.'}
+            </p>
+          </article>
+        </div>
+      </section>
       <section className="dossier-technical">
         <div className="dossier-technical-heading">
           <div>
@@ -1546,7 +1621,11 @@ function WeaponDossier({
           <section>
             <h3>Sources</h3>
             <SourceLinks
-              ids={['damage', ...weapon.sourceIds]}
+              ids={[
+                'damage',
+                ...weapon.sourceIds,
+                ...(effectProfile?.sourceIds ?? []),
+              ]}
               catalog={catalog}
             />
           </section>
@@ -1884,13 +1963,13 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                 className={weaponSort === 'ttk' ? 'active' : ''}
                 onClick={() => chooseWeaponSort('ttk', 'asc')}
               >
-                Fewest hits <small>lowest body-hit count</small>
+                Fewest body shots <small>lowest recorded body STK</small>
               </button>
               <button
                 className={weaponSort === 'damage' ? 'active' : ''}
                 onClick={() => chooseWeaponSort('damage', 'desc')}
               >
-                Most damage <small>highest value</small>
+                Infantry damage <small>highest recorded value</small>
               </button>
               <button
                 className={weaponSort === 'reload' ? 'active' : ''}
@@ -2004,7 +2083,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                       : ''}
                   </button>
                   <button onClick={() => toggleWeaponSort('ttk')}>
-                    Hits{' '}
+                    Body STK{' '}
                     {weaponSort === 'ttk'
                       ? weaponSortDirection === 'asc'
                         ? '↑'
@@ -2012,15 +2091,15 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                       : ''}
                   </button>
                   <button onClick={() => toggleWeaponSort('damage')}>
-                    Damage{' '}
+                    Inf. damage{' '}
                     {weaponSort === 'damage'
                       ? weaponSortDirection === 'asc'
                         ? '↑'
                         : '↓'
                       : ''}
                   </button>
-                  <span>RPM</span>
-                  <span>DPS</span>
+                  <span>Cyclic RPM</span>
+                  <span>Ideal DPS</span>
                   <button onClick={() => toggleWeaponSort('reload')}>
                     Reload{' '}
                     {weaponSort === 'reload'
@@ -2062,7 +2141,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                     </button>
                     <span
                       className="shortlist-metric metric-ttk"
-                      data-label="Hits"
+                      data-label="Body STK"
                     >
                       <span
                         className="metric-wash"
@@ -2091,7 +2170,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                     </span>
                     <span
                       className="shortlist-metric metric-damage"
-                      data-label="Damage"
+                      data-label="Infantry damage"
                     >
                       <span
                         className="metric-wash"
@@ -2120,13 +2199,13 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                     </span>
                     <span
                       className="shortlist-metric metric-rpm"
-                      data-label="RPM"
+                      data-label="Cyclic RPM"
                     >
                       <strong>{decisionShownValue(row.rpm)}</strong>
                     </span>
                     <span
                       className="shortlist-metric metric-dps"
-                      data-label="DPS"
+                      data-label="Ideal DPS"
                     >
                       <strong>{decisionShownValue(row.dps)}</strong>
                     </span>
