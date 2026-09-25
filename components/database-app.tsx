@@ -1,6 +1,7 @@
 'use client';
 
 import { type CSSProperties, useEffect, useState } from 'react';
+import Image from 'next/image';
 import {
   Crosshair,
   Search,
@@ -40,6 +41,7 @@ import {
   findMeasurement,
   type Catalog,
   type CatalogResult,
+  type RealWorldWeapon,
   type WeaponDamageProfile,
   type Weapon,
   type WeaponSheetStats,
@@ -1407,6 +1409,94 @@ function WeaponSheetPanel({
   );
 }
 
+function RealWorldWeaponThumbnail({ weapon }: { weapon: RealWorldWeapon }) {
+  const [failed, setFailed] = useState(false);
+  if (failed || !weapon.thumbnailUrl || !weapon.imagePageUrl) {
+    return <div className="real-world-reference-image-placeholder" aria-hidden="true">No sourced image</div>;
+  }
+  return (
+    <a
+      className="real-world-thumbnail"
+      href={weapon.imagePageUrl}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`View ${weapon.name} photo source`}
+    >
+      <Image
+        src={weapon.thumbnailUrl}
+        alt={weapon.name}
+        width={320}
+        height={180}
+        loading="lazy"
+        onError={() => setFailed(true)}
+      />
+    </a>
+  );
+}
+
+function RealWorldReferenceCard({
+  weapon,
+  catalog,
+  active,
+  onOpenWildlandsWeapon,
+}: {
+  weapon: RealWorldWeapon;
+  catalog: Catalog;
+  active: boolean;
+  onOpenWildlandsWeapon: (id: string) => void;
+}) {
+  const wildlandsWeapon = catalog.weapons.find(
+    (item) => item.id === weapon.wildlandsWeaponId,
+  );
+  const stats = catalog.weaponSheetStats.find(
+    (item) => item.weaponId === weapon.wildlandsWeaponId,
+  );
+  const profile = catalog.damageProfiles.find(
+    (item) => item.weaponId === weapon.wildlandsWeaponId,
+  );
+  const configuration =
+    stats?.configurations.find((item) => item.barrel === 'Standard Barrel') ??
+    stats?.configurations[0];
+  const bodyHits = configuration ? bodyHitsForMode(configuration.nonTier) : null;
+  const damage = profile?.damageByBarrel.standard ?? derivedDamageBand(bodyHits)?.label ?? null;
+  const magazine = configuration
+    ? Math.max(
+        ...[configuration.magazine.standard, configuration.magazine.extended, configuration.magazine.large].filter(
+          (value): value is number => typeof value === 'number',
+        ),
+      )
+    : null;
+  return (
+    <article className="real-world-reference-card" data-active={active}>
+      <RealWorldWeaponThumbnail weapon={weapon} />
+      <div>
+        <span className="eyebrow">CONFIRMED DIRECT MATCH · CALIBER {weapon.caliber}</span>
+        <h3>{wildlandsWeapon?.name} ↔ {weapon.name}</h3>
+        <p>{weapon.notes}</p>
+        <dl className="real-world-reference-specs">
+          <div><dt>Manufacturer</dt><dd>{weapon.manufacturer}</dd></div>
+          <div><dt>Caliber</dt><dd>{weapon.caliber}</dd></div>
+          <div><dt>Weapon class</dt><dd>{weapon.weaponClass}</dd></div>
+        </dl>
+        <div className="real-world-game-metrics" aria-label={`${wildlandsWeapon?.name} archived game metrics`}>
+          <span>Wildlands metrics</span>
+          <strong>{shownValue(bodyHits)} body STK</strong>
+          <strong>{shownValue(damage)} damage</strong>
+          <strong>{shownWithUnit(configuration?.rpm ?? null, 'RPM')}</strong>
+          <strong>{magazine === null || magazine === -Infinity ? 'Mag not recorded' : `${magazine}-round mag`}</strong>
+        </div>
+        <div className="real-world-links">
+          <button className="text-button" onClick={() => onOpenWildlandsWeapon(weapon.wildlandsWeaponId)}>
+            Open {wildlandsWeapon?.name} dossier
+          </button>
+          <a href={weapon.referenceUrl} target="_blank" rel="noreferrer">Learn more: {weapon.referenceLabel} ↗</a>
+          <a href={weapon.imagePageUrl} target="_blank" rel="noreferrer">Photo credit ↗</a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function WeaponDossier({
   weapon,
   catalog,
@@ -1415,6 +1505,7 @@ function WeaponDossier({
   mode,
   onCompare,
   onClose,
+  onOpenRealWorldReference,
 }: {
   weapon: Weapon;
   catalog: Catalog;
@@ -1423,6 +1514,7 @@ function WeaponDossier({
   mode: string;
   onCompare: () => void;
   onClose: () => void;
+  onOpenRealWorldReference: (id: string) => void;
 }) {
   const compatibility = catalog.compatibility.filter(
     (item) =>
@@ -1480,6 +1572,9 @@ function WeaponDossier({
     ? Math.max(...recordedMagazines)
     : null;
   const canCompare = selected.length < 3 || selected.includes(weapon.id);
+  const realWorldReference = catalog.realWorldWeapons.find(
+    (reference) => reference.wildlandsWeaponId === weapon.id,
+  );
 
   return (
     <article className="weapon-dossier" aria-label={`${weapon.name} details`}>
@@ -1511,6 +1606,16 @@ function WeaponDossier({
         Infantry reference · {mode} · Unidad Heavy · historical community test
       </p>
       <div className="dossier-key-metrics">
+        {realWorldReference && (
+          <button
+            className="key-metric caliber-reference"
+            onClick={() => onOpenRealWorldReference(realWorldReference.id)}
+            title="Open the sourced real-world caliber reference"
+          >
+            <span>Real-world caliber ↗</span>
+            <strong>{realWorldReference.caliber}</strong>
+          </button>
+        )}
         <div className="key-metric primary">
           <span>Body STK ↓</span>
           <strong>{shownValue(bodyHitsValue ?? null)}</strong>
@@ -1601,6 +1706,15 @@ function WeaponDossier({
           <p className="muted">No matching row in the imported damage sheet.</p>
         )}
         <div className="dossier-support">
+          {realWorldReference && (
+            <section>
+              <h3>Real-world reference</h3>
+              <p className="muted small">Confirmed direct model match: {realWorldReference.name}.</p>
+              <button className="text-button" onClick={() => onOpenRealWorldReference(realWorldReference.id)}>
+                Open reference wiki
+              </button>
+            </section>
+          )}
           <section>
             <h3>Attachments</h3>
             {compatibility.length ? (
@@ -1658,6 +1772,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
   const [attachmentQuery, setAttachmentQuery] = useState('');
   const [missionQuery, setMissionQuery] = useState('');
   const [showSpoilers, setShowSpoilers] = useState(false);
+  const [realWorldReferenceId, setRealWorldReferenceId] = useState<string | null>(null);
   const [damageWorkbook, setDamageWorkbook] = useState<DamageWorkbook | null>(
     null,
   );
@@ -2024,7 +2139,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   <Search aria-hidden="true" />
                   <Input
                     id="weapon-search"
-                    placeholder="Try M4A1, SR-25 or Montuyoc…"
+                    placeholder="Try M4A1, SR25 or Montuyoc…"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                   />
@@ -2295,6 +2410,10 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                     mode={mode}
                     onCompare={() => toggleWeapon(detailId)}
                     onClose={() => setDetailId(null)}
+                    onOpenRealWorldReference={(id) => {
+                      setRealWorldReferenceId(id);
+                      setTab('wiki');
+                    }}
                   />
                 ) : weaponSort === 'name' ? (
                   <div className="detail-placeholder">
@@ -2729,15 +2848,38 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
           <TabsContent value="wiki">
             <div className="topline wiki-hero">
               <div>
-                <span className="eyebrow">FIELD WIKI / OPERATING NOTES</span>
-                <h1>How this index works</h1>
+                <span className="eyebrow">FIELD WIKI / REAL-WORLD REFERENCE</span>
+                <h1>Wildlands weapons with confirmed real-world matches</h1>
                 <p className="muted">
-                  A compact field guide to the data, the tests, and the people
-                  whose work makes this armory useful.
+                  This list is intentionally narrow: it includes only weapons
+                  represented directly in Wildlands. Similar platforms, family
+                  relatives, and absent firearms are not listed as matches.
                 </p>
               </div>
-              <span className="pill warning">Evidence first</span>
+              <span className="pill warning">Direct matches only</span>
             </div>
+
+            <section className="real-world-reference-wiki" aria-label="Confirmed real-world weapon references">
+              {catalog.realWorldWeapons.map((weapon) => (
+                <RealWorldReferenceCard
+                  key={weapon.id}
+                  weapon={weapon}
+                  catalog={catalog}
+                  active={realWorldReferenceId === weapon.id}
+                  onOpenWildlandsWeapon={(id) => {
+                    setDetailId(id);
+                    setTab('weapons');
+                  }}
+                />
+              ))}
+            </section>
+
+            <Note>
+              The M110 SASS, AN-94, and other weapons that are not represented
+              directly in Wildlands are deliberately excluded from this wiki.
+              A shared manufacturer, caliber, role, or weapon family is not an
+              exact in-game match.
+            </Note>
 
             <div className="stat-grid">
               <div className="stat">

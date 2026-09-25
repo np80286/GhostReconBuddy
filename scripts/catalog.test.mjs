@@ -13,6 +13,24 @@ const changed = (edit) => {
 void test('curated starter release is valid', () => {
   assert.equal(validateCatalog(seed), seed);
 });
+void test('real-world firearm reference wiki contains only direct Wildlands matches', () => {
+  const mappings = new Map(seed.realWorldWeapons.map((weapon) => [weapon.id, weapon]));
+  assert.deepEqual([...mappings.keys()], ['m4a1-carbine', 'sr-25']);
+  assert.ok([...mappings.values()].every((weapon) => weapon.relationship === 'DIRECT'));
+  assert.equal(mappings.get('m4a1-carbine')?.wildlandsWeaponId, 'm4a1');
+  assert.equal(mappings.get('sr-25')?.wildlandsWeaponId, 'sr25');
+});
+void test('the real-world reference wiki rejects non-direct relationships', () => {
+  assert.throws(
+    () =>
+      validateCatalog(
+        changed((d) => {
+          d.realWorldWeapons[0].relationship = 'FAMILY';
+        }),
+      ),
+    /invalid real-world weapon mapping/,
+  );
+});
 void test('cross-game weapon records cannot enter Wildlands', () => {
   assert.throws(
     () =>

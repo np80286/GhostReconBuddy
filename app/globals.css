@@ -1297,6 +1297,216 @@ footer {
 .armory-controls .search {
   min-width: 240px;
 }
+.real-world-match {
+  margin: 0;
+  padding: 18px;
+  border: 1px solid #667647;
+  border-top: 0;
+  background: #17201b;
+}
+.real-world-match-layout {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px;
+}
+.real-world-thumbnail {
+  display: block;
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid #455143;
+  border-radius: 4px;
+  background: #101512;
+}
+.real-world-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.real-world-match-content {
+  min-width: 0;
+}
+.real-world-match-heading,
+.real-world-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+.real-world-match-heading h2 {
+  margin: 5px 0 0;
+  font-size: 22px;
+}
+.relationship {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid #697955;
+  border-radius: 999px;
+  color: #dce7c2;
+  background: #293525;
+  font: 11px ui-monospace, monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.relationship-not_present {
+  border-color: #715252;
+  color: #e2b8b8;
+  background: #342424;
+}
+.relationship-family,
+.relationship-analog {
+  border-color: #606c7d;
+  color: #c5d0dc;
+  background: #222c35;
+}
+.real-world-normalization,
+.real-world-why {
+  margin: 12px 0 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.real-world-normalization {
+  color: #d4ddb9;
+}
+.real-world-why strong {
+  color: var(--foreground);
+}
+.real-world-specs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 14px 0 0;
+  background: var(--border);
+}
+.real-world-specs > div {
+  min-width: 0;
+  padding: 10px 11px;
+  background: #121916;
+}
+.real-world-specs dt {
+  color: var(--muted-foreground);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.real-world-specs dd {
+  margin: 4px 0 0;
+  color: var(--foreground);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.real-world-footer {
+  align-items: center;
+  margin-top: 13px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.real-world-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 12px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.real-world-links > a,
+.real-world-links .source-link {
+  color: #bdcfa4;
+  text-decoration: underline;
+}
+.real-world-links > div {
+  display: contents;
+}
+.real-world-reference-wiki {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0;
+}
+.real-world-reference-card {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-left: 3px solid #697955;
+  border-radius: 6px;
+  background: var(--card);
+}
+
+.real-world-reference-image-placeholder {
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  padding: 0.75rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.5rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.real-world-game-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+  margin-top: 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+}
+
+.real-world-game-metrics span {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.real-world-game-metrics strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.key-metric.caliber-reference {
+  text-align: left;
+  cursor: pointer;
+}
+
+.key-metric.caliber-reference:hover {
+  border-color: var(--primary);
+}
+.real-world-reference-card[data-active='true'] {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px #dcea9a33;
+}
+.real-world-reference-card .real-world-thumbnail {
+  width: 100%;
+}
+.real-world-reference-card h3 {
+  margin: 5px 0 8px;
+  font-size: 20px;
+}
+.real-world-reference-card p {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.real-world-reference-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 13px 0;
+}
+.real-world-reference-specs dt {
+  color: var(--muted-foreground);
+  font-size: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.real-world-reference-specs dd {
+  margin: 2px 0 0;
+  font-size: 13px;
+}
 .armory-resultbar,
 .selection-footer {
   display: flex;
@@ -1821,6 +2031,9 @@ footer {
   .coverage-summary {
     display: none;
   }
+  .real-world-specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .compact-dossier-heading {
     align-items: center;
     flex-direction: row;
@@ -1867,6 +2080,36 @@ footer {
     max-width: 760px;
     margin: auto;
     padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 520px) {
+  .real-world-match {
+    padding: 14px;
+  }
+  .real-world-match-layout {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .real-world-thumbnail,
+  .real-world-thumbnail img {
+    aspect-ratio: 1 / 1;
+  }
+  .real-world-match-heading,
+  .real-world-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .real-world-specs {
+    grid-template-columns: 1fr;
+  }
+  .real-world-reference-card {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  .real-world-reference-card h3 {
+    font-size: 16px;
   }
 }
 

@@ -29,6 +29,7 @@ export type Weapon = Catalog['weapons'][number];
 export type Measurement = Catalog['measurements'][number];
 export type WeaponSheetStats = Catalog['weaponSheetStats'][number];
 export type WeaponDamageProfile = Catalog['damageProfiles'][number];
+export type RealWorldWeapon = Catalog['realWorldWeapons'][number];
 export type CatalogResult = {
   catalog: Catalog;
   storage: 'snapshot' | 'postgres';
@@ -57,6 +58,7 @@ export function filterWeapons(
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 }
+
 export function findMeasurement(
   catalog: Catalog,
   weaponId: string,

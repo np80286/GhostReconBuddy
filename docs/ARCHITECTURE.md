@@ -31,6 +31,14 @@ Weapons, attachments, compatibility, measurements, missions, apparel and general
 
 Current source links attach to records, with exact row locators for observations. Field-level assertions, weapon variant ancestry, full loadout fingerprints, attachment exclusions, mission prerequisites, availability history and multiple conflicting observations are the next model extension. Those features are designed priorities, not already implemented functionality.
 
+Release `0.6.0-direct-real-world-reference-wiki` adds a separate
+`realWorldWeapons` catalog layer for confirmed direct Wildlands matches. It
+deliberately does not add non-Wildlands firearms to the `weapons` table: each
+entry retains real-world identity fields, aliases, a primary reference URL, and
+an attributed thumbnail. The validator accepts only DIRECT records and requires
+an actual Wildlands weapon target. Family relatives, analogous weapons, and
+absent firearms are excluded rather than presented as in-game matches.
+
 Keep four kinds of evidence separate in that extension: displayed game values, empirical observations, extracted internal values and subjective claims. Derived calculations must link to their inputs and formula. Public catalog counts should always derive from imported records, with known scope.
 
 Release `0.4.8-derived-damage-bands` implements the first narrow derived
