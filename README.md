@@ -25,10 +25,10 @@ been independently measured on the current build.
 - A compact weapon decision workspace with search, class/mode filters,
   task-oriented ranking, visual comparisons, dossiers, and three-weapon
   comparison.
-- A Field Wiki reference for confirmed direct Wildlands-to-real-world weapon
-  matches only. It currently documents M4A1 and SR25, with an attributed
-  thumbnail and primary reference link; absent weapons and family-only matches
-  are intentionally excluded.
+- A Field Wiki reference for 27 confirmed direct Wildlands-to-real-world weapon
+  matches. Each entry links to its evidence source and identifies its real-world
+  caliber alongside the archived Wildlands metrics; absent weapons and
+  family-only matches are intentionally excluded.
 - Six Itacua mission entries with optional spoiler summaries.
 - A Sources provenance ledger with direct links, contributor credit, stated
   usage, access dates, and separate evidence/reference/research-lead groups.
@@ -90,9 +90,10 @@ Manual checks:
    at 200% zoom and a 390-pixel-wide viewport.
 10. Repeat after database setup; the footer should show PostgreSQL. Stop
     PostgreSQL and reload to confirm the explicit bundled-snapshot warning.
-11. Open Field Wiki and confirm it contains only M4A1 and SR25 as confirmed
-    real-world matches. Open either dossier from Weapons and confirm its
-    Real-world reference link returns to the matching wiki entry.
+11. Open Field Wiki and confirm it contains 27 confirmed direct real-world
+    matches. Open a dossier from Weapons and confirm its real-world caliber
+    link returns to the matching wiki entry and the archived metrics remain
+    clearly separated from the caliber classification.
 
 ## PostgreSQL setup
 
