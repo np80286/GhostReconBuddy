@@ -5,6 +5,9 @@ A source-backed Ghost Recon Wildlands reference focused on weapon configuration 
 This is a working research index, not a claim that every Wildlands value has
 been independently measured on the current build.
 
+For the app-wide product profile, evidence vocabulary, visual tokens, and UI
+consistency rules, see [`docs/PRODUCT-AND-DESIGN-SYSTEM.md`](docs/PRODUCT-AND-DESIGN-SYSTEM.md).
+
 ## Included in the current research release
 
 - 182 Wildlands weapons and variants from the complete archived workbook
@@ -29,6 +32,9 @@ been independently measured on the current build.
   matches. Each entry links to its evidence source and identifies its real-world
   caliber alongside the archived Wildlands metrics; absent weapons and
   family-only matches are intentionally excluded.
+- An Info / Experiments page with internet-sourced weapon observations, the
+  current catalog signal, confidence status, and a concrete test plan. These
+  records remain hypotheses or partial matches until controlled evidence exists.
 - Six Itacua mission entries with optional spoiler summaries.
 - A Sources provenance ledger with direct links, contributor credit, stated
   usage, access dates, and separate evidence/reference/research-lead groups.
@@ -94,6 +100,8 @@ Manual checks:
     matches. Open a dossier from Weapons and confirm its real-world caliber
     link returns to the matching wiki entry and the archived metrics remain
     clearly separated from the caliber classification.
+12. Open Info / Experiments. Search for a weapon, open it from a claim card,
+    and confirm supported, partial, and needs-test statuses remain distinct.
 
 ## PostgreSQL setup
 

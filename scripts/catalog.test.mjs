@@ -15,8 +15,13 @@ void test('curated starter release is valid', () => {
 });
 void test('real-world firearm reference wiki contains only direct Wildlands matches', () => {
   const mappings = new Map(seed.realWorldWeapons.map((weapon) => [weapon.id, weapon]));
-  assert.deepEqual([...mappings.keys()], ['m4a1-carbine', 'sr-25']);
+  assert.equal(mappings.size, 27);
   assert.ok([...mappings.values()].every((weapon) => weapon.relationship === 'DIRECT'));
+  assert.ok(
+    [...mappings.values()].every((weapon) =>
+      seed.weapons.some((gameWeapon) => gameWeapon.id === weapon.wildlandsWeaponId),
+    ),
+  );
   assert.equal(mappings.get('m4a1-carbine')?.wildlandsWeaponId, 'm4a1');
   assert.equal(mappings.get('sr-25')?.wildlandsWeaponId, 'sr25');
 });

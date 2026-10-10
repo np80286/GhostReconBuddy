@@ -30,6 +30,7 @@ export type Measurement = Catalog['measurements'][number];
 export type WeaponSheetStats = Catalog['weaponSheetStats'][number];
 export type WeaponDamageProfile = Catalog['damageProfiles'][number];
 export type RealWorldWeapon = Catalog['realWorldWeapons'][number];
+export type WeaponExperiment = Catalog['experiments'][number];
 export type CatalogResult = {
   catalog: Catalog;
   storage: 'snapshot' | 'postgres';

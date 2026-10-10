@@ -42,6 +42,7 @@ import {
   type Catalog,
   type CatalogResult,
   type RealWorldWeapon,
+  type WeaponExperiment,
   type WeaponDamageProfile,
   type Weapon,
   type WeaponSheetStats,
@@ -201,6 +202,14 @@ const operatorPresets: OperatorPreset[] = [
     sort: 'magazine',
     direction: 'desc',
   },
+];
+
+const weaponSortOptions: { value: WeaponSortKey; label: string }[] = [
+  { value: 'ttk', label: 'Fewest body shots' },
+  { value: 'damage', label: 'Infantry damage' },
+  { value: 'reload', label: 'Reload time' },
+  { value: 'magazine', label: 'Magazine capacity' },
+  { value: 'name', label: 'Weapon name' },
 ];
 
 type LabRow = {
@@ -1434,6 +1443,103 @@ function RealWorldWeaponThumbnail({ weapon }: { weapon: RealWorldWeapon }) {
   );
 }
 
+function experimentStatusLabel(status: WeaponExperiment['status']) {
+  return status === 'supported'
+    ? 'Supported by current data'
+    : status === 'partially_supported'
+      ? 'Partially supported'
+      : 'Needs controlled test';
+}
+
+function ExperimentPanel({
+  catalog,
+  query,
+  onQueryChange,
+  onOpenWeapon,
+}: {
+  catalog: Catalog;
+  query: string;
+  onQueryChange: (value: string) => void;
+  onOpenWeapon: (id: string) => void;
+}) {
+  const normalizedQuery = query.trim().toLowerCase();
+  const experiments = catalog.experiments.filter((experiment) => {
+    const weaponNames = experiment.weaponIds
+      .map((id) => catalog.weapons.find((weapon) => weapon.id === id)?.name ?? id)
+      .join(' ');
+    return `${weaponNames} ${experiment.metric} ${experiment.summary} ${experiment.catalogSignal}`
+      .toLowerCase()
+      .includes(normalizedQuery);
+  });
+  return (
+    <>
+      <div className="topline experiments-hero">
+        <div>
+          <span className="eyebrow">INFO / EXPERIMENTS</span>
+          <h1>Claims worth testing</h1>
+          <p className="muted">
+            Internet reports stay visible beside the evidence they agree with,
+            the gaps we still need to measure, and a concrete next test.
+          </p>
+        </div>
+        <span className="pill warning">{catalog.experiments.length} open records</span>
+      </div>
+      <div className="filters experiments-filter">
+        <div className="field search">
+          <label htmlFor="experiment-search">Search weapons or claims</label>
+          <div className="searchbox">
+            <Search aria-hidden="true" />
+            <Input
+              id="experiment-search"
+              value={query}
+              onChange={(event) => onQueryChange(event.target.value)}
+              placeholder="Mk17, recoil, penetration…"
+            />
+          </div>
+        </div>
+      </div>
+      <Note>
+        A supported record means the archived snapshot points in the same
+        direction. It does not turn a community post into a controlled current
+        build measurement.
+      </Note>
+      <section className="experiment-grid" aria-label="Weapon information and experiments">
+        {experiments.map((experiment) => (
+          <article className="experiment-card" key={experiment.id}>
+            <div className="experiment-card-heading">
+              <span className={`pill ${experiment.status === 'needs_test' ? 'warning' : 'neutral'}`}>
+                {experimentStatusLabel(experiment.status)}
+              </span>
+              <span className="eyebrow">{experiment.metric}</span>
+            </div>
+            <div className="experiment-weapons">
+              {experiment.weaponIds.map((id) => {
+                const weapon = catalog.weapons.find((item) => item.id === id);
+                return weapon ? (
+                  <button className="text-button" key={id} onClick={() => onOpenWeapon(id)}>
+                    {weapon.name}
+                  </button>
+                ) : null;
+              })}
+            </div>
+            <p>{experiment.summary}</p>
+            <div className="experiment-detail">
+              <span>Current catalog signal</span>
+              <p>{experiment.catalogSignal}</p>
+            </div>
+            <div className="experiment-detail">
+              <span>Suggested test</span>
+              <p>{experiment.testPlan}</p>
+            </div>
+            <SourceLinks ids={experiment.sourceIds} catalog={catalog} />
+          </article>
+        ))}
+        {!experiments.length && <NoResults />}
+      </section>
+    </>
+  );
+}
+
 function RealWorldReferenceCard({
   weapon,
   catalog,
@@ -1575,6 +1681,9 @@ function WeaponDossier({
   const realWorldReference = catalog.realWorldWeapons.find(
     (reference) => reference.wildlandsWeaponId === weapon.id,
   );
+  const experiments = catalog.experiments.filter((experiment) =>
+    experiment.weaponIds.includes(weapon.id),
+  );
 
   return (
     <article className="weapon-dossier" aria-label={`${weapon.name} details`}>
@@ -1715,6 +1824,25 @@ function WeaponDossier({
               </button>
             </section>
           )}
+          {experiments.length > 0 && (
+            <section className="dossier-experiments">
+              <h3>Info / experiments</h3>
+              <p className="muted small">
+                Internet observations connected to this weapon. They are
+                hypotheses or partial matches until the stated test is run.
+              </p>
+              {experiments.map((experiment) => (
+                <article className="dossier-experiment" key={experiment.id}>
+                  <span className={`pill ${experiment.status === 'needs_test' ? 'warning' : 'neutral'}`}>
+                    {experimentStatusLabel(experiment.status)}
+                  </span>
+                  <strong>{experiment.metric}</strong>
+                  <p>{experiment.summary}</p>
+                  <SourceLinks ids={experiment.sourceIds} catalog={catalog} />
+                </article>
+              ))}
+            </section>
+          )}
           <section>
             <h3>Attachments</h3>
             {compatibility.length ? (
@@ -1772,6 +1900,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
   const [attachmentQuery, setAttachmentQuery] = useState('');
   const [missionQuery, setMissionQuery] = useState('');
   const [showSpoilers, setShowSpoilers] = useState(false);
+  const [experimentQuery, setExperimentQuery] = useState('');
   const [realWorldReferenceId, setRealWorldReferenceId] = useState<string | null>(null);
   const [damageWorkbook, setDamageWorkbook] = useState<DamageWorkbook | null>(
     null,
@@ -1974,10 +2103,18 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
     setQuery('');
     setCategory('All classes');
     setOperatorPresetId('all');
+    setWeaponSort('ttk');
+    setWeaponSortDirection('asc');
   }
-  function chooseWeaponSort(key: WeaponSortKey, direction: 'asc' | 'desc') {
-    setWeaponSort(key);
-    setWeaponSortDirection(direction);
+  function chooseWeaponSort(value: string) {
+    const option = weaponSortOptions.find((item) => item.label === value);
+    if (!option) return;
+    setWeaponSort(option.value);
+    setWeaponSortDirection(
+      option.value === 'damage' || option.value === 'magazine'
+        ? 'desc'
+        : 'asc',
+    );
   }
   function chooseOperatorPreset(preset: OperatorPreset) {
     setOperatorPresetId(preset.id);
@@ -2043,6 +2180,10 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
               <Info />
               Field Wiki
             </TabsTrigger>
+            <TabsTrigger value="experiments">
+              <Activity />
+              Info / Experiments <span className="mono">{catalog.experiments.length}</span>
+            </TabsTrigger>
             <TabsTrigger value="damage-lab">
               <FileSpreadsheet />
               Damage Lab <span className="mono">11</span>
@@ -2058,10 +2199,10 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
             <div className="armory-heading">
               <div>
                 <span className="eyebrow">WEAPON DECISION WORKSPACE</span>
-                <h1>What matters for this loadout?</h1>
+                <h1>Choose a weapon for the mission</h1>
                 <p className="muted">
-                  Pick a priority, narrow the field, then open a weapon to see
-                  why it ranks there.
+                  Choose a mission profile, then search and compare the archived
+                  weapon results.
                 </p>
               </div>
               <div className="coverage-summary">
@@ -2070,51 +2211,15 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
               </div>
             </div>
             <div
-              className="priority-panel"
-              aria-label="Choose what matters most"
-            >
-              <span className="priority-label">Rank by</span>
-              <button
-                className={weaponSort === 'ttk' ? 'active' : ''}
-                onClick={() => chooseWeaponSort('ttk', 'asc')}
-              >
-                Fewest body shots <small>lowest recorded body STK</small>
-              </button>
-              <button
-                className={weaponSort === 'damage' ? 'active' : ''}
-                onClick={() => chooseWeaponSort('damage', 'desc')}
-              >
-                Infantry damage <small>highest recorded value</small>
-              </button>
-              <button
-                className={weaponSort === 'reload' ? 'active' : ''}
-                onClick={() => chooseWeaponSort('reload', 'asc')}
-              >
-                Quick reload <small>shortest time</small>
-              </button>
-              <button
-                className={weaponSort === 'magazine' ? 'active' : ''}
-                onClick={() => chooseWeaponSort('magazine', 'desc')}
-              >
-                Largest magazine <small>most rounds</small>
-              </button>
-              <button
-                className={weaponSort === 'name' ? 'active' : ''}
-                onClick={() => chooseWeaponSort('name', 'asc')}
-              >
-                Browse A–Z <small>all weapons</small>
-              </button>
-            </div>
-            <div
               className="operator-panel"
               aria-label="Choose a mission profile"
             >
               <div className="operator-panel-heading">
                 <div>
-                  <span className="priority-label">Mission profile</span>
+                  <span className="operator-section-label">Mission profile</span>
                   <strong>{operatorPreset.label}</strong>
+                  <small>{operatorPreset.description}</small>
                 </div>
-                <small>{operatorPreset.description}</small>
               </div>
               <div className="operator-preset-list">
                 {operatorPresets.map((preset) => (
@@ -2127,9 +2232,20 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   </button>
                 ))}
               </div>
+              <div className="operator-order">
+                <Picker
+                  label="Order weapons by"
+                  value={
+                    weaponSortOptions.find((option) => option.value === weaponSort)
+                      ?.label ?? weaponSortOptions[0].label
+                  }
+                  options={weaponSortOptions.map((option) => option.label)}
+                  onChange={chooseWeaponSort}
+                />
+              </div>
               <span className="operator-evidence">
-                Preset uses archived damage, reload and magazine measurements;
-                verify the test context before treating it as a field verdict.
+                Uses archived measurements. Treat the order as a comparison aid,
+                not a field verdict.
               </span>
             </div>
             <div className="armory-controls">
@@ -2185,7 +2301,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
               )}
               <section
                 className="weapon-shortlist"
-                aria-label="Ranked weapon shortlist"
+                aria-label="Weapon results"
               >
                 <div className="shortlist-head">
                   <span>#</span>
@@ -3034,6 +3150,17 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
               context and report the discrepancy rather than silently
               overwriting the evidence trail.
             </Note>
+          </TabsContent>
+          <TabsContent value="experiments">
+            <ExperimentPanel
+              catalog={catalog}
+              query={experimentQuery}
+              onQueryChange={setExperimentQuery}
+              onOpenWeapon={(id) => {
+                setDetailId(id);
+                setTab('weapons');
+              }}
+            />
           </TabsContent>
           <TabsContent value="damage-lab">
             <DamageLab

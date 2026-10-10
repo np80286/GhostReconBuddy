@@ -6539,6 +6539,16 @@
       "reuse": "Link and limited factual cross-check; bulk reuse permission not established"
     },
     {
+      "id": "reddit-best-weapon",
+      "title": "Best weapon discussion · r/Wildlands",
+      "url": "https://www.reddit.com/r/Wildlands/comments/1wy4hcd/best_weapon/",
+      "kind": "research_lead",
+      "era": "2026; community discussion",
+      "notes": "Recent player discussion containing weapon rankings and testable claims about TTK, RPM, range, penetration, recoil, magazine size, sound and vehicle use. Claims remain hypotheses unless they match an archived measurement.",
+      "accessedAt": "2026-10-10",
+      "reuse": "Link and limited factual attribution; no community claim is imported as a measured value"
+    },
+    {
       "id": "prima-official-pdf",
       "title": "Prima Official Guide · Wildlands weapon stats reference",
       "url": "https://epics.top/uploads/dl/Prima_Official_Game_Guide.pdf",
@@ -8134,6 +8144,140 @@
       "sourceIds": ["attachments-2026"],
       "status": "reported",
       "scope": "General community claim; not verified for every compatible weapon"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "exp-mk17-hti-high-damage",
+      "gameId": "wildlands",
+      "weaponIds": ["mk17", "hti"],
+      "metric": "High damage / lethality",
+      "summary": "Players report using the Mk17 and HTI because they feel unusually powerful.",
+      "catalogSignal": "Mk17 has recorded 260/205 standard damage; HTI has a recorded 2,300 standard damage value. These are different weapon classes and are not directly comparable.",
+      "status": "partially_supported",
+      "testPlan": "Repeat controlled body, head, vehicle and alert-state trials by weapon class and record build, distance and target.",
+      "sourceIds": ["reddit-best-weapon"]
+    },
+    {
+      "id": "exp-lvoa-bad-news-ttk",
+      "gameId": "wildlands",
+      "weaponIds": ["lvoa-c-bad-news"],
+      "metric": "Time to kill",
+      "summary": "LVOA-C Bad News is reported to have the best TTK among the listed assault rifles.",
+      "catalogSignal": "The archived sheet records a 0.145 second Tier One TTK value, but the Ritmo comparison row is incomplete and contains an invalid workbook result.",
+      "status": "partially_supported",
+      "testPlan": "Retest LVOA-C Bad News and Ritmo with the same target, mode, barrel and fire-control assumptions.",
+      "sourceIds": ["reddit-best-weapon", "damage"]
+    },
+    {
+      "id": "exp-mk17-ttk-rank",
+      "gameId": "wildlands",
+      "weaponIds": ["mk17"],
+      "metric": "Time to kill",
+      "summary": "Mk17 is reported as the second-best assault-rifle TTK option.",
+      "catalogSignal": "Mk17 records 0.197 seconds in the archived Tier One model; HK416, LVOA-C Bad News and 805 BREN rows are faster in the current snapshot.",
+      "status": "needs_test",
+      "testPlan": "Reconcile the Reddit ranking with the source sheet’s target, barrel and mode definitions before ranking it.",
+      "sourceIds": ["reddit-best-weapon", "damage"]
+    },
+    {
+      "id": "exp-g2-highest-ar-rpm",
+      "gameId": "wildlands",
+      "weaponIds": ["g2"],
+      "metric": "Assault-rifle RPM",
+      "summary": "G2 is reported to have the highest assault-rifle RPM.",
+      "catalogSignal": "G2 records 970 RPM with the short barrel, above the next current assault-rifle record of 882 RPM for M4A1.",
+      "status": "supported",
+      "testPlan": "Confirm the RPM definition and barrel configuration in a controlled firing test.",
+      "sourceIds": ["reddit-best-weapon", "damage"]
+    },
+    {
+      "id": "exp-vector-highest-smg-rpm",
+      "gameId": "wildlands",
+      "weaponIds": ["vector-45-acp"],
+      "metric": "SMG RPM",
+      "summary": "Vector is reported to have the highest SMG RPM.",
+      "catalogSignal": "Vector records 1,137 RPM with the short barrel, above Scorpion EVO 3 at 1,111 RPM in the current SMG rows.",
+      "status": "supported",
+      "testPlan": "Repeat cadence trials with the same magazine, mode and measurement window.",
+      "sourceIds": ["reddit-best-weapon", "damage"]
+    },
+    {
+      "id": "exp-pp19-largest-smg-mag",
+      "gameId": "wildlands",
+      "weaponIds": ["pp19"],
+      "metric": "Magazine capacity",
+      "summary": "PP19 is reported to have the largest SMG magazine.",
+      "catalogSignal": "The current sheet records a 64-round PP19 magazine, the largest among the cataloged SMG configurations.",
+      "status": "supported",
+      "testPlan": "Check the full weapon inventory for DLC or variant magazines before treating this as a complete ranking.",
+      "sourceIds": ["reddit-best-weapon", "damage"]
+    },
+    {
+      "id": "exp-aug-range-drop",
+      "gameId": "wildlands",
+      "weaponIds": ["aug-a3"],
+      "metric": "Range / bullet drop",
+      "summary": "AUG is reported to have the longest range or lowest bullet drop among the listed assault rifles.",
+      "catalogSignal": "Range and bullet-drop measurements are not present in the current catalog.",
+      "status": "needs_test",
+      "testPlan": "Fire identical rounds at fixed distances with the same optic, barrel, suppressor, skills and target; record drop in centimeters or mils.",
+      "sourceIds": ["reddit-best-weapon"]
+    },
+    {
+      "id": "exp-556xi-penetration",
+      "gameId": "wildlands",
+      "weaponIds": ["556xi"],
+      "metric": "Penetration",
+      "summary": "556xi is reported to have the best penetration.",
+      "catalogSignal": "Penetration is not measured in the current catalog.",
+      "status": "needs_test",
+      "testPlan": "Use a fixed set of cover materials and distances, then record pass-through, damage and hit confirmation for each weapon.",
+      "sourceIds": ["reddit-best-weapon"]
+    },
+    {
+      "id": "exp-ar-recoil-control",
+      "gameId": "wildlands",
+      "weaponIds": ["acr", "tar-21", "l85a2"],
+      "metric": "Recoil control",
+      "summary": "ACR, TAR-21 and L85A2 are reported to have especially good recoil control.",
+      "catalogSignal": "Recoil traces are not stored in the current catalog; the current records only show RPM, hits, damage, reload and magazine values.",
+      "status": "needs_test",
+      "testPlan": "Capture repeated full-magazine vertical and horizontal spread traces with identical attachments and sensitivity.",
+      "sourceIds": ["reddit-best-weapon"]
+    },
+    {
+      "id": "exp-p90-penetration",
+      "gameId": "wildlands",
+      "weaponIds": ["p90"],
+      "metric": "Penetration",
+      "summary": "P90 is reported to have the best SMG penetration.",
+      "catalogSignal": "Penetration is not measured in the current catalog.",
+      "status": "needs_test",
+      "testPlan": "Repeat the same cover and range protocol used for the 556xi penetration experiment.",
+      "sourceIds": ["reddit-best-weapon"]
+    },
+    {
+      "id": "exp-sr25-jungle-bfg",
+      "gameId": "wildlands",
+      "weaponIds": ["sr25", "bfg-50a"],
+      "metric": "AMR power / vehicle damage",
+      "summary": "SR25 Jungle is reported to outperform BFG-50A for some vehicle and follow-up-shot situations.",
+      "catalogSignal": "The catalog contains base SR25 and BFG-50A records, but does not model SR25 Jungle as a separate weapon or store vehicle trials for this comparison.",
+      "status": "needs_test",
+      "testPlan": "Add SR25 Jungle as a separately identified variant only after recording vehicle, range, magazine and reload trials.",
+      "sourceIds": ["reddit-best-weapon"]
+    },
+    {
+      "id": "exp-mp5-quietness",
+      "gameId": "wildlands",
+      "weaponIds": ["mp5"],
+      "metric": "Detection distance",
+      "summary": "MP5 is reported as one of the quietest weapons.",
+      "catalogSignal": "The current catalog does not assign weapon-specific sound or detection distances to the MP5.",
+      "status": "needs_test",
+      "testPlan": "Measure detection distance by alert state, suppressor, weapon class and enemy position with repeat trials.",
+      "sourceIds": ["reddit-best-weapon"]
     }
   ],
   "missions": [
