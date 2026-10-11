@@ -2316,9 +2316,19 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
           if (!response.ok) throw new Error('Damage archive unavailable');
           const result = (await response.json()) as DamageWorkbookResult;
           setDamageWorkbook(result.workbook);
+        } else if (process.env.NEXT_PUBLIC_BASE_PATH) {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_PATH}/damage-workbook.json`,
+          );
+          if (!response.ok) throw new Error('Damage archive unavailable');
+          setDamageWorkbook((await response.json()) as DamageWorkbook);
         } else {
-          const result = await import('@/data/damage-workbook.json');
-          setDamageWorkbook(result.default as DamageWorkbook);
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/api/damage-workbook`,
+          );
+          if (!response.ok) throw new Error('Damage archive unavailable');
+          const result = (await response.json()) as DamageWorkbookResult;
+          setDamageWorkbook(result.workbook);
         }
       } catch (error) {
         if (!(error instanceof Error && error.name === 'AbortError'))

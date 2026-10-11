@@ -17,7 +17,7 @@ representation of the same release. One transaction imports both and switches
 the published release pointer. Readers query the published snapshot, so
 partially imported rows cannot leak into the page.
 
-The catalog API returns the curated release. The full damage workbook is stored in a separate immutable PostgreSQL sidecar row and is requested only when the Damage Lab opens. Static builds dynamically load its compact cell snapshot as a separate chunk. The original XLSX remains in `resources/workbooks_spreadsheets/`; its SHA-256 is tied to the release audit. The cell snapshot preserves workbook coordinates, merged ranges, formulas and cached results. It does not recalculate formulas or claim the historical observations are current-build facts.
+The catalog API returns the curated release. The full damage workbook is stored in a separate immutable PostgreSQL sidecar row and is requested only when the Damage Lab opens. Static builds publish its compact cell snapshot as a standalone JSON asset and fetch it on demand, keeping the archive out of the JavaScript module graph. The original XLSX remains in `resources/workbooks_spreadsheets/`; its SHA-256 is tied to the release audit. The cell snapshot preserves workbook coordinates, merged ranges, formulas and cached results. It does not recalculate formulas or claim the historical observations are current-build facts.
 
 When the catalog grows, expose paginated filtered read endpoints, a small search index and per-weapon queries. PostgreSQL has a basic full-text index ready for that work. Do not send video, screenshots or raw spreadsheets in a catalog response.
 

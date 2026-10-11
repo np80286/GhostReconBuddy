@@ -11,6 +11,8 @@ await cp(`${source}/GhostReconBuddy/_next`, `${output}/_next`, {
 });
 await cp(`${source}/GhostReconBuddy/favicon.svg`, `${output}/favicon.svg`);
 await cp(`${source}/404.html`, `${output}/404.html`);
+await cp('data/damage-workbook.json', `${output}/damage-workbook.json`);
 
 // GitHub Pages serves this directory at /GhostReconBuddy/.
-// Vinext already emitted asset URLs with that base path.
+// Vinext already emitted asset URLs with that base path. Keep the archived
+// workbook as on-demand JSON data instead of adding it to a JavaScript chunk.
