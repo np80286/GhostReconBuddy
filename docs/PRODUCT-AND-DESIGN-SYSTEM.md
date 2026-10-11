@@ -14,6 +14,10 @@ The app's primary promise is clarity about what is known and how it is known. Ke
 - **Research leads and hypotheses:** useful claims from community discussion or the internet that remain unverified; make uncertainty visible and suggest a way to test them.
 - **Unknowns:** missing values remain unknown. Do not silently convert missing information into zero, incompatibility, or a definitive conclusion.
 
+For weapon TTK, keep calculated ideal values separate from archived or current-build measured timing. Calculate ideal body TTK only when the matching fire-mode body STK and recorded cyclic RPM are both available, using `(STK - 1) * 60 / RPM`; label its consecutive-hit assumption and keep semi-auto and full-auto inputs distinct.
+
+Experiment records use explicit research states (`RESEARCH_LEAD`, `NEEDS_TEST`, `TESTING`, `PARTIAL`, `SUPPORTED`, `CONFLICTING`, `NOT_REPRODUCED`, `REJECTED`, `CURRENT_BUILD_VERIFIED`), a separate priority, per-source evidence type/confidence, and a test-context record. Empty result/context slots mean no result has been entered in that experiment record; linked historical data may still exist.
+
 Real-world references belong in the Field Wiki only when a Wildlands item has a defensible direct match. Do not add absent firearms or merely analogous weapons as if they were in-game. Link references to attributable sources and keep real-world classifications separate from in-game performance metrics.
 
 ## Application map

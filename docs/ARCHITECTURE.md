@@ -39,6 +39,16 @@ an attributed thumbnail. The validator accepts only DIRECT records and requires
 an actual Wildlands weapon target. Family relatives, analogous weapons, and
 absent firearms are excluded rather than presented as in-game matches.
 
+Release `0.7.0-ideal-ttk-research-backlog` adds presentation-only calculated
+ideal semi-auto body TTK where body STK and recorded RPM are both available.
+Release `0.8.0-structured-research-lab` keeps separate ideal semi-auto and
+full-auto values, preserves archived workbook TTK as a separate field, and
+leaves missing inputs unknown. It also adds the per-weapon completeness report,
+normalized experiment statuses, per-source evidence type/confidence, test
+context/result slots, and priority/status filters. Five priority research
+records remain proposed tests, not imported gameplay conclusions; source links,
+plans, and blank test contexts stay in the catalog snapshot until trials occur.
+
 Keep four kinds of evidence separate in that extension: displayed game values, empirical observations, extracted internal values and subjective claims. Derived calculations must link to their inputs and formula. Public catalog counts should always derive from imported records, with known scope.
 
 Release `0.4.8-derived-damage-bands` implements the first narrow derived

@@ -227,6 +227,11 @@ p {
   background: color-mix(in srgb, var(--field-brass) 12%, var(--card));
   border-color: color-mix(in srgb, var(--field-brass) 36%, var(--border));
 }
+.pill.success {
+  color: var(--field-sage-bright);
+  background: color-mix(in srgb, var(--field-sage) 12%, var(--card));
+  border-color: color-mix(in srgb, var(--field-sage) 42%, var(--border));
+}
 .main-tabs [data-slot='tabs-list'] {
   height: auto;
   padding: 0;
@@ -1498,6 +1503,51 @@ footer {
 .experiments-filter {
   margin: 18px 0 0;
 }
+.research-gap-report {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+}
+.research-gap-report > summary,
+.experiment-context > summary {
+  color: var(--foreground);
+  cursor: pointer;
+  font-weight: 600;
+}
+.research-gap-report > p {
+  margin: 10px 0;
+}
+.gap-metric-list,
+.experiment-evidence-confidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+.gap-table-frame {
+  overflow: auto;
+  max-height: 480px;
+}
+.research-gap-table {
+  min-width: 800px;
+}
+.research-gap-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.experiment-context {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--secondary) 70%, var(--card));
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.experiment-context p {
+  margin: 8px 0 0;
+}
 .experiment-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1515,9 +1565,23 @@ footer {
 }
 .experiment-card-heading {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 10px;
+}
+.experiment-card-heading .eyebrow {
+  margin-left: auto;
+  text-align: right;
+}
+.priority-critical {
+  border-color: color-mix(in srgb, var(--field-marine) 55%, var(--border));
+  color: var(--field-marine);
+}
+.experiment-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 .experiment-weapons {
   display: flex;
@@ -1622,7 +1686,7 @@ footer {
 .shortlist-row {
   display: grid;
   grid-template-columns: 38px minmax(178px, 1fr) repeat(
-      6,
+      7,
       minmax(62px, 0.48fr)
     ) 62px;
   align-items: stretch;
@@ -1749,6 +1813,9 @@ footer {
 }
 .metric-ttk {
   --metric-color: #edb653;
+}
+.metric-ideal-ttk {
+  --metric-color: var(--field-sand);
 }
 .metric-damage {
   --metric-color: #df795f;

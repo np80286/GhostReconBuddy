@@ -27,14 +27,20 @@ consistency rules, see [`docs/PRODUCT-AND-DESIGN-SYSTEM.md`](docs/PRODUCT-AND-DE
   older community tests have incomplete conditions.
 - A compact weapon decision workspace with search, class/mode filters,
   task-oriented ranking, visual comparisons, dossiers, and three-weapon
-  comparison.
+  comparison, plus calculated ideal semi-auto body TTK when archived STK and
+  RPM are both recorded.
 - A Field Wiki reference for 27 confirmed direct Wildlands-to-real-world weapon
   matches. Each entry links to its evidence source and identifies its real-world
   caliber alongside the archived Wildlands metrics; absent weapons and
   family-only matches are intentionally excluded.
 - An Info / Experiments page with internet-sourced weapon observations, the
   current catalog signal, confidence status, and a concrete test plan. These
-  records remain hypotheses or partial matches until controlled evidence exists.
+  records remain hypotheses or partial matches until controlled evidence exists;
+  structured status, per-source type/confidence, test-context and result slots,
+  priority and status filters. Five CRITICAL-priority plans cover fire-mode
+  damage, successive-hit timing, calculated versus archived TTK, infantry
+  distance, and weapon-upgrade scaling. The page also generates a per-weapon
+  completeness report from the catalog.
 - Six Itacua mission entries with optional spoiler summaries.
 - A Sources provenance ledger with direct links, contributor credit, stated
   usage, access dates, and separate evidence/reference/research-lead groups.
@@ -43,10 +49,13 @@ consistency rules, see [`docs/PRODUCT-AND-DESIGN-SYSTEM.md`](docs/PRODUCT-AND-DE
 - PostgreSQL schema, transactional migrations/imports, immutable catalog releases, source references, and a read API.
 
 Unknown data stays unknown. Missing compatibility never means incompatible.
-Derived bands are calculations, not direct measurements, and carry an asterisk
-in compact tables. All performance observations in this seed are historical
-community reports with incomplete conditions. No current-build measurement or
-per-attachment stat calculator is claimed.
+Derived bands and calculated ideal TTK are calculations, not direct measurements.
+Ideal body TTK uses (STK − 1) × 60 ÷ recorded RPM and assumes consecutive body
+hits, with the first shot at time zero. Semi-auto and full-auto inputs stay
+separate; missing STK or RPM stays unknown. Archived workbook TTK stays separate.
+All performance observations in this seed are historical community reports
+with incomplete conditions. No current-build measurement or per-attachment stat
+calculator is claimed.
 
 ## Start locally
 
@@ -67,7 +76,7 @@ npm run check
 
 This validates catalog and workbook archive integrity, runs the data guardrail
 tests, checks types, runs lint, and builds the production bundle. Run it before
-publishing release `0.6.0-direct-real-world-reference-wiki`.
+publishing release `0.8.0-structured-research-lab`.
 
 ## Free public deployment
 
@@ -81,8 +90,9 @@ Manual checks:
    `2450–3263*` theoretical DPS, 588 RPM, and a 20-round magazine.
 2. Open that weapon and confirm the dossier explicitly labels the damage and
    DPS as derived from the 1,000-HP reference rather than measured values.
-3. Switch between fewest hits, damage, reload, magazine, and A–Z ranking;
-   lower-is-better metrics must not render backward bars.
+3. Switch between body STK, calculated ideal body TTK, damage, reload, magazine,
+   and A–Z ranking; lower-is-better metrics must not render backward bars.
+   Confirm missing RPM leaves ideal TTK unrecorded.
 4. Compare M40A5, MSR, and G28. Switch mode; missing values must remain “Not
    recorded,” never zero.
 5. Open Sources. Confirm all resources retain contributor credit, stated use,
@@ -101,7 +111,13 @@ Manual checks:
     link returns to the matching wiki entry and the archived metrics remain
     clearly separated from the caliber classification.
 12. Open Info / Experiments. Search for a weapon, open it from a claim card,
-    and confirm supported, partial, and needs-test statuses remain distinct.
+    and filter across supported, partial, and needs-test statuses and priority.
+13. Expand the generated completeness report. Confirm each weapon shows its
+    missing structured fields and linked experiment count.
+14. In Info / Experiments, confirm the five CRITICAL records show their source
+    types/confidence, empty context/result state, and reproducible plans.
+15. In Damage Lab, compare archived full-auto TTK with its matching calculated
+    full-auto value and delta; semi-auto calculations must remain separate.
 
 ## PostgreSQL setup
 

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "release": "0.6.0-direct-real-world-reference-wiki",
+  "release": "0.8.0-structured-research-lab",
   "gameId": "wildlands",
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-10-11",
   "coverageNote": "All 51 weapons listed by the audited Bolivia weapon-case index are cataloged, plus all additional weapon records found in the archived workbook. Workbook-only records retain explicit provenance and may have incomplete performance or location data.",
   "coverage": {
     "boliviaWeaponCaseInventory": {
@@ -8147,138 +8147,746 @@
     }
   ],
   "experiments": [
-    {
-      "id": "exp-mk17-hti-high-damage",
-      "gameId": "wildlands",
-      "weaponIds": ["mk17", "hti"],
-      "metric": "High damage / lethality",
-      "summary": "Players report using the Mk17 and HTI because they feel unusually powerful.",
-      "catalogSignal": "Mk17 has recorded 260/205 standard damage; HTI has a recorded 2,300 standard damage value. These are different weapon classes and are not directly comparable.",
-      "status": "partially_supported",
-      "testPlan": "Repeat controlled body, head, vehicle and alert-state trials by weapon class and record build, distance and target.",
-      "sourceIds": ["reddit-best-weapon"]
+{
+    "id": "exp-mk17-hti-high-damage",
+    "gameId": "wildlands",
+    "weaponIds": ["mk17", "hti"],
+    "metric": "High damage / lethality",
+    "summary": "Players report using the Mk17 and HTI because they feel unusually powerful.",
+    "catalogSignal": "Mk17 has recorded 260/205 standard damage; HTI has a recorded 2,300 standard damage value. These are different weapon classes and are not directly comparable.",
+    "status": "PARTIAL",
+    "testPlan": "Repeat controlled body, head, vehicle and alert-state trials by weapon class and record build, distance and target.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "LOW",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-lvoa-bad-news-ttk",
-      "gameId": "wildlands",
-      "weaponIds": ["lvoa-c-bad-news"],
-      "metric": "Time to kill",
-      "summary": "LVOA-C Bad News is reported to have the best TTK among the listed assault rifles.",
-      "catalogSignal": "The archived sheet records a 0.145 second Tier One TTK value, but the Ritmo comparison row is incomplete and contains an invalid workbook result.",
-      "status": "partially_supported",
-      "testPlan": "Retest LVOA-C Bad News and Ritmo with the same target, mode, barrel and fire-control assumptions.",
-      "sourceIds": ["reddit-best-weapon", "damage"]
+    "result": null
+  },
+{
+    "id": "exp-lvoa-bad-news-ttk",
+    "gameId": "wildlands",
+    "weaponIds": ["lvoa-c-bad-news"],
+    "metric": "Time to kill",
+    "summary": "LVOA-C Bad News is reported to have the best TTK among the listed assault rifles.",
+    "catalogSignal": "The archived sheet records a 0.145 second Tier One TTK value, but the Ritmo comparison row is incomplete and contains an invalid workbook result.",
+    "status": "PARTIAL",
+    "testPlan": "Retest LVOA-C Bad News and Ritmo with the same target, mode, barrel and fire-control assumptions.",
+    "sourceIds": ["reddit-best-weapon", "damage"],
+    "priority": "LOW",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      },
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-mk17-ttk-rank",
-      "gameId": "wildlands",
-      "weaponIds": ["mk17"],
-      "metric": "Time to kill",
-      "summary": "Mk17 is reported as the second-best assault-rifle TTK option.",
-      "catalogSignal": "Mk17 records 0.197 seconds in the archived Tier One model; HK416, LVOA-C Bad News and 805 BREN rows are faster in the current snapshot.",
-      "status": "needs_test",
-      "testPlan": "Reconcile the Reddit ranking with the source sheet’s target, barrel and mode definitions before ranking it.",
-      "sourceIds": ["reddit-best-weapon", "damage"]
+    "result": null
+  },
+{
+    "id": "exp-mk17-ttk-rank",
+    "gameId": "wildlands",
+    "weaponIds": ["mk17"],
+    "metric": "Time to kill",
+    "summary": "Mk17 is reported as the second-best assault-rifle TTK option.",
+    "catalogSignal": "Mk17 records 0.197 seconds in the archived Tier One model; HK416, LVOA-C Bad News and 805 BREN rows are faster in the current snapshot.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Reconcile the Reddit ranking with the source sheet’s target, barrel and mode definitions before ranking it.",
+    "sourceIds": ["reddit-best-weapon", "damage"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      },
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-g2-highest-ar-rpm",
-      "gameId": "wildlands",
-      "weaponIds": ["g2"],
-      "metric": "Assault-rifle RPM",
-      "summary": "G2 is reported to have the highest assault-rifle RPM.",
-      "catalogSignal": "G2 records 970 RPM with the short barrel, above the next current assault-rifle record of 882 RPM for M4A1.",
-      "status": "supported",
-      "testPlan": "Confirm the RPM definition and barrel configuration in a controlled firing test.",
-      "sourceIds": ["reddit-best-weapon", "damage"]
+    "result": null
+  },
+{
+    "id": "exp-g2-highest-ar-rpm",
+    "gameId": "wildlands",
+    "weaponIds": ["g2"],
+    "metric": "Assault-rifle RPM",
+    "summary": "G2 is reported to have the highest assault-rifle RPM.",
+    "catalogSignal": "G2 records 970 RPM with the short barrel, above the next current assault-rifle record of 882 RPM for M4A1.",
+    "status": "SUPPORTED",
+    "testPlan": "Confirm the RPM definition and barrel configuration in a controlled firing test.",
+    "sourceIds": ["reddit-best-weapon", "damage"],
+    "priority": "LOW",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      },
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-vector-highest-smg-rpm",
-      "gameId": "wildlands",
-      "weaponIds": ["vector-45-acp"],
-      "metric": "SMG RPM",
-      "summary": "Vector is reported to have the highest SMG RPM.",
-      "catalogSignal": "Vector records 1,137 RPM with the short barrel, above Scorpion EVO 3 at 1,111 RPM in the current SMG rows.",
-      "status": "supported",
-      "testPlan": "Repeat cadence trials with the same magazine, mode and measurement window.",
-      "sourceIds": ["reddit-best-weapon", "damage"]
+    "result": null
+  },
+{
+    "id": "exp-vector-highest-smg-rpm",
+    "gameId": "wildlands",
+    "weaponIds": ["vector-45-acp"],
+    "metric": "SMG RPM",
+    "summary": "Vector is reported to have the highest SMG RPM.",
+    "catalogSignal": "Vector records 1,137 RPM with the short barrel, above Scorpion EVO 3 at 1,111 RPM in the current SMG rows.",
+    "status": "SUPPORTED",
+    "testPlan": "Repeat cadence trials with the same magazine, mode and measurement window.",
+    "sourceIds": ["reddit-best-weapon", "damage"],
+    "priority": "LOW",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      },
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-pp19-largest-smg-mag",
-      "gameId": "wildlands",
-      "weaponIds": ["pp19"],
-      "metric": "Magazine capacity",
-      "summary": "PP19 is reported to have the largest SMG magazine.",
-      "catalogSignal": "The current sheet records a 64-round PP19 magazine, the largest among the cataloged SMG configurations.",
-      "status": "supported",
-      "testPlan": "Check the full weapon inventory for DLC or variant magazines before treating this as a complete ranking.",
-      "sourceIds": ["reddit-best-weapon", "damage"]
+    "result": null
+  },
+{
+    "id": "exp-pp19-largest-smg-mag",
+    "gameId": "wildlands",
+    "weaponIds": ["pp19"],
+    "metric": "Magazine capacity",
+    "summary": "PP19 is reported to have the largest SMG magazine.",
+    "catalogSignal": "The current sheet records a 64-round PP19 magazine, the largest among the cataloged SMG configurations.",
+    "status": "SUPPORTED",
+    "testPlan": "Check the full weapon inventory for DLC or variant magazines before treating this as a complete ranking.",
+    "sourceIds": ["reddit-best-weapon", "damage"],
+    "priority": "LOW",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      },
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-aug-range-drop",
-      "gameId": "wildlands",
-      "weaponIds": ["aug-a3"],
-      "metric": "Range / bullet drop",
-      "summary": "AUG is reported to have the longest range or lowest bullet drop among the listed assault rifles.",
-      "catalogSignal": "Range and bullet-drop measurements are not present in the current catalog.",
-      "status": "needs_test",
-      "testPlan": "Fire identical rounds at fixed distances with the same optic, barrel, suppressor, skills and target; record drop in centimeters or mils.",
-      "sourceIds": ["reddit-best-weapon"]
+    "result": null
+  },
+{
+    "id": "exp-aug-range-drop",
+    "gameId": "wildlands",
+    "weaponIds": ["aug-a3"],
+    "metric": "Range / bullet drop",
+    "summary": "AUG is reported to have the longest range or lowest bullet drop among the listed assault rifles.",
+    "catalogSignal": "Range and bullet-drop measurements are not present in the current catalog.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Fire identical rounds at fixed distances with the same optic, barrel, suppressor, skills and target; record drop in centimeters or mils.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-556xi-penetration",
-      "gameId": "wildlands",
-      "weaponIds": ["556xi"],
-      "metric": "Penetration",
-      "summary": "556xi is reported to have the best penetration.",
-      "catalogSignal": "Penetration is not measured in the current catalog.",
-      "status": "needs_test",
-      "testPlan": "Use a fixed set of cover materials and distances, then record pass-through, damage and hit confirmation for each weapon.",
-      "sourceIds": ["reddit-best-weapon"]
+    "result": null
+  },
+{
+    "id": "exp-556xi-penetration",
+    "gameId": "wildlands",
+    "weaponIds": ["556xi"],
+    "metric": "Penetration",
+    "summary": "556xi is reported to have the best penetration.",
+    "catalogSignal": "Penetration is not measured in the current catalog.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Use a fixed set of cover materials and distances, then record pass-through, damage and hit confirmation for each weapon.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-ar-recoil-control",
-      "gameId": "wildlands",
-      "weaponIds": ["acr", "tar-21", "l85a2"],
-      "metric": "Recoil control",
-      "summary": "ACR, TAR-21 and L85A2 are reported to have especially good recoil control.",
-      "catalogSignal": "Recoil traces are not stored in the current catalog; the current records only show RPM, hits, damage, reload and magazine values.",
-      "status": "needs_test",
-      "testPlan": "Capture repeated full-magazine vertical and horizontal spread traces with identical attachments and sensitivity.",
-      "sourceIds": ["reddit-best-weapon"]
+    "result": null
+  },
+{
+    "id": "exp-ar-recoil-control",
+    "gameId": "wildlands",
+    "weaponIds": ["acr", "tar-21", "l85a2"],
+    "metric": "Recoil control",
+    "summary": "ACR, TAR-21 and L85A2 are reported to have especially good recoil control.",
+    "catalogSignal": "Recoil traces are not stored in the current catalog; the current records only show RPM, hits, damage, reload and magazine values.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Capture repeated full-magazine vertical and horizontal spread traces with identical attachments and sensitivity.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-p90-penetration",
-      "gameId": "wildlands",
-      "weaponIds": ["p90"],
-      "metric": "Penetration",
-      "summary": "P90 is reported to have the best SMG penetration.",
-      "catalogSignal": "Penetration is not measured in the current catalog.",
-      "status": "needs_test",
-      "testPlan": "Repeat the same cover and range protocol used for the 556xi penetration experiment.",
-      "sourceIds": ["reddit-best-weapon"]
+    "result": null
+  },
+{
+    "id": "exp-p90-penetration",
+    "gameId": "wildlands",
+    "weaponIds": ["p90"],
+    "metric": "Penetration",
+    "summary": "P90 is reported to have the best SMG penetration.",
+    "catalogSignal": "Penetration is not measured in the current catalog.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Repeat the same cover and range protocol used for the 556xi penetration experiment.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-sr25-jungle-bfg",
-      "gameId": "wildlands",
-      "weaponIds": ["sr25", "bfg-50a"],
-      "metric": "AMR power / vehicle damage",
-      "summary": "SR25 Jungle is reported to outperform BFG-50A for some vehicle and follow-up-shot situations.",
-      "catalogSignal": "The catalog contains base SR25 and BFG-50A records, but does not model SR25 Jungle as a separate weapon or store vehicle trials for this comparison.",
-      "status": "needs_test",
-      "testPlan": "Add SR25 Jungle as a separately identified variant only after recording vehicle, range, magazine and reload trials.",
-      "sourceIds": ["reddit-best-weapon"]
+    "result": null
+  },
+{
+    "id": "exp-sr25-jungle-bfg",
+    "gameId": "wildlands",
+    "weaponIds": ["sr25", "bfg-50a"],
+    "metric": "AMR power / vehicle damage",
+    "summary": "SR25 Jungle is reported to outperform BFG-50A for some vehicle and follow-up-shot situations.",
+    "catalogSignal": "The catalog contains base SR25 and BFG-50A records, but does not model SR25 Jungle as a separate weapon or store vehicle trials for this comparison.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Add SR25 Jungle as a separately identified variant only after recording vehicle, range, magazine and reload trials.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
     },
-    {
-      "id": "exp-mp5-quietness",
-      "gameId": "wildlands",
-      "weaponIds": ["mp5"],
-      "metric": "Detection distance",
-      "summary": "MP5 is reported as one of the quietest weapons.",
-      "catalogSignal": "The current catalog does not assign weapon-specific sound or detection distances to the MP5.",
-      "status": "needs_test",
-      "testPlan": "Measure detection distance by alert state, suppressor, weapon class and enemy position with repeat trials.",
-      "sourceIds": ["reddit-best-weapon"]
-    }
+    "result": null
+  },
+{
+    "id": "exp-mp5-quietness",
+    "gameId": "wildlands",
+    "weaponIds": ["mp5"],
+    "metric": "Detection distance",
+    "summary": "MP5 is reported as one of the quietest weapons.",
+    "catalogSignal": "The current catalog does not assign weapon-specific sound or detection distances to the MP5.",
+    "status": "NEEDS_TEST",
+    "testPlan": "Measure detection distance by alert state, suppressor, weapon class and enemy position with repeat trials.",
+    "sourceIds": ["reddit-best-weapon"],
+    "priority": "MEDIUM",
+    "badges": [],
+    "evidenceSources": [
+      {
+        "sourceId": "reddit-best-weapon",
+        "type": "COMMUNITY_CLAIM",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
+    },
+    "result": null
+  },
+{
+    "id": "exp-semi-full-auto-damage",
+    "gameId": "wildlands",
+    "weaponIds": ["m4a1", "tar-21", "acr", "ak-12", "mk17"],
+    "metric": "Semi-auto vs full-auto damage",
+    "summary": "Archived PvE profiles preserve separate semi-auto and full-auto hit or damage observations for some weapons.",
+    "catalogSignal": "Existing workbook rows contain mode-specific observations, but this does not establish whether semi-auto consistently deals more damage or whether the result varies by weapon, Tier Mode, or upgrade level.",
+    "status": "NEEDS_TEST",
+    "priority": "CRITICAL",
+    "badges": ["COUNTERINTUITIVE", "CONTEXT_DEPENDENT", "HISTORICAL_ONLY"],
+    "whyItMatters": "A single weapon damage or TTK value can hide fire-mode-specific results.",
+    "testPlan": "Test each candidate with Tier Mode off. Hold weapon level, target class, body region, range, alert state, skills, medals, and attachments constant. Record semi-auto and full-auto STK and damage bands separately; repeat in burst mode only where available.",
+    "sourceIds": ["damage", "damage-method"],
+    "evidenceSources": [
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      },
+      {
+        "sourceId": "damage-method",
+        "type": "ARCHIVED_TEST",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
+    },
+    "result": null
+  },
+{
+    "id": "exp-successive-hit-damage",
+    "gameId": "wildlands",
+    "weaponIds": ["m4a1", "tar-21", "acr", "ak-12", "mk17"],
+    "metric": "Successive-hit timing effect",
+    "summary": "Historical testing suggests rapidly landed consecutive rounds may reduce required body hits compared with widely spaced shots.",
+    "catalogSignal": "The mechanism is unresolved. Current data does not distinguish a timing-window effect from combat-state changes or other test variation.",
+    "status": "NEEDS_TEST",
+    "priority": "CRITICAL",
+    "badges": ["HIDDEN_MECHANIC", "CONTEXT_DEPENDENT", "HISTORICAL_ONLY"],
+    "whyItMatters": "If shot spacing changes STK, cadence assumptions directly affect damage and TTK comparisons.",
+    "testPlan": "With one weapon and fixed target, body region, range, and combat state, compare slow semi-auto, maximum-rate semi-auto, and full-auto. Record shot timestamps, total rounds to kill, trials, and any state changes.",
+    "sourceIds": ["damage", "damage-method"],
+    "evidenceSources": [
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      },
+      {
+        "sourceId": "damage-method",
+        "type": "ARCHIVED_TEST",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
+    },
+    "result": null
+  },
+{
+    "id": "exp-calculated-vs-measured-ttk",
+    "gameId": "wildlands",
+    "weaponIds": ["lvoa-c-bad-news", "mk17", "g2"],
+    "metric": "Calculated vs measured TTK",
+    "summary": "Ideal TTK calculated from body STK and cyclic RPM may differ from archived or newly timed kills.",
+    "catalogSignal": "The archived workbook has TTK observations and separate STK/RPM inputs, but the source rows retain historical context limitations.",
+    "status": "NEEDS_TEST",
+    "priority": "CRITICAL",
+    "badges": ["COUNTERINTUITIVE", "HISTORICAL_ONLY"],
+    "whyItMatters": "Differences can expose cadence, damage-state, or measurement effects hidden by ideal calculations.",
+    "testPlan": "For configurations with recorded body STK and RPM, calculate (STK − 1) × 60 ÷ RPM. Time repeated kills under matching weapon, mode, barrel, target, body region, and combat state; retain each observed trial and compare it with the calculated value.",
+    "sourceIds": ["damage", "damage-method"],
+    "evidenceSources": [
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      },
+      {
+        "sourceId": "damage-method",
+        "type": "ARCHIVED_TEST",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
+    },
+    "result": null
+  },
+{
+    "id": "exp-infantry-damage-distance",
+    "gameId": "wildlands",
+    "weaponIds": ["5-7-usg", "mp5", "m4a1", "hti"],
+    "metric": "Infantry damage over distance",
+    "summary": "Community reports conflict on whether range changes infantry damage or STK, with possible weapon-class exceptions.",
+    "catalogSignal": "The catalog has no controlled infantry damage-by-distance series. No generic falloff curve is established.",
+    "status": "NEEDS_TEST",
+    "priority": "CRITICAL",
+    "badges": ["TARGET_SPECIFIC", "CONTEXT_DEPENDENT"],
+    "whyItMatters": "A distance curve cannot safely be applied across infantry, vehicles, and destructible objects.",
+    "testPlan": "Test a pistol, SMG, assault rifle, and sniper rifle at 25, 50, 100, 200, 300, and 400 m. Keep target class, body region, alert state, difficulty, weapon level, and attachments fixed; record STK or damage at each range.",
+    "sourceIds": ["damage-method", "siim-numeric-data"],
+    "evidenceSources": [
+      {
+        "sourceId": "damage-method",
+        "type": "ARCHIVED_TEST",
+        "confidence": "LOW"
+      },
+      {
+        "sourceId": "siim-numeric-data",
+        "type": "COMMUNITY_TEST",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
+    },
+    "result": null
+  },
+{
+    "id": "exp-weapon-level-scaling",
+    "gameId": "wildlands",
+    "weaponIds": ["sr25", "hti", "bfg-50a"],
+    "metric": "Weapon upgrade scaling by target system",
+    "summary": "Historical reports disagree about whether Level 1 to Level 30 upgrades change infantry and vehicle damage consistently.",
+    "catalogSignal": "Current catalog data does not isolate weapon upgrade level from Tier Mode, player skills, medals, or target type.",
+    "status": "NEEDS_TEST",
+    "priority": "CRITICAL",
+    "badges": ["TARGET_SPECIFIC", "CONTEXT_DEPENDENT", "HISTORICAL_ONLY"],
+    "whyItMatters": "One universal upgrade multiplier could misstate performance across infantry and vehicle targets.",
+    "testPlan": "Compare weapon levels 1 and 30 separately against infantry, APC/armored vehicle, light vehicle, helicopter, and destructible object targets. Hold Tier Mode, skills, medals, loadout, range, and target context constant and record STK or hit counts.",
+    "sourceIds": ["damage", "siim-numeric-data", "damage-method"],
+    "evidenceSources": [
+      {
+        "sourceId": "damage",
+        "type": "ARCHIVED_TEST",
+        "confidence": "MEDIUM"
+      },
+      {
+        "sourceId": "siim-numeric-data",
+        "type": "COMMUNITY_TEST",
+        "confidence": "MEDIUM"
+      },
+      {
+        "sourceId": "damage-method",
+        "type": "ARCHIVED_TEST",
+        "confidence": "LOW"
+      }
+    ],
+    "testContext": {
+      "platform": null,
+      "gameVersion": null,
+      "weaponUpgradeLevel": null,
+      "tierMode": null,
+      "tierLevel": null,
+      "difficulty": null,
+      "skills": null,
+      "medals": null,
+      "attachments": null,
+      "fireMode": null,
+      "targetFaction": null,
+      "targetClass": null,
+      "bodyRegion": null,
+      "alertState": null,
+      "rangeMeters": null,
+      "targetType": null,
+      "trialCount": null
+    },
+    "result": null
+  }
   ],
   "missions": [
     {

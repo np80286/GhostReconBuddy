@@ -26,6 +26,18 @@ Use the same target class, health state, armor, hit zone, distance, alert state,
 
 Plan at least ten usable trials per controlled comparison initially, retaining all individual observations. This is a starting collection target, not a statistical guarantee. Increase trials when variability or borderline differences require it.
 
+## First controlled comparisons
+
+The Info / Experiments catalog contains the first five CRITICAL plans:
+
+1. **Semi-auto vs full-auto damage:** compare mode-specific STK/damage under the same non-Tier setup and target conditions.
+2. **Successive-hit timing:** compare slow semi-auto, maximum-rate semi-auto, and full-auto while retaining shot timestamps and any combat-state transition.
+3. **Calculated vs archived/measured TTK:** calculate from matching fire-mode STK and RPM, then record every timed kill separately. Do not compare across modes or unmatched target contexts.
+4. **Infantry damage vs distance:** record pistol, SMG, AR, and sniper observations at 25, 50, 100, 200, 300, and 400 m.
+5. **Weapon Level 1 vs 30:** keep infantry, armored vehicle/APC, light vehicle, helicopter, and destructible-object results in separate target-system records.
+
+These are plans only. Each experiment's catalog record provides empty context fields for platform, build, weapon level, Tier Mode/tier, difficulty, skills, medals, attachments, fire mode, target faction/class, body region, alert state, range, target type and trial count. Leave unknown fields empty. Store raw trials and evidence links with the experiment result; do not replace historical claims or inferred values with an unreviewed summary.
+
 ## Replacing derived bands
 
 The application may display an asterisked damage interval when the historical

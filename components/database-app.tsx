@@ -49,6 +49,7 @@ import {
   type DamageWorkbook,
   type DamageWorkbookResult,
 } from '@/lib/catalog';
+import { buildResearchGapReport, researchStatuses } from '@/lib/research';
 
 function columnName(column: number) {
   let value = column;
@@ -76,6 +77,12 @@ type LabSortKey =
   | 'nonTierBody'
   | 'tierTtk'
   | 'nonTierTtk'
+  | 'tierIdealTtk'
+  | 'nonTierIdealTtk'
+  | 'tierFullAutoIdealTtk'
+  | 'nonTierFullAutoIdealTtk'
+  | 'tierFullAutoTtkDelta'
+  | 'nonTierFullAutoTtkDelta'
   | 'reload'
   | 'magStandard'
   | 'magExtended'
@@ -85,7 +92,13 @@ type LabSortKey =
   | 'tierDamageSemi'
   | 'tierDamageFull';
 
-type WeaponSortKey = 'name' | 'ttk' | 'damage' | 'reload' | 'magazine';
+type WeaponSortKey =
+  | 'name'
+  | 'ttk'
+  | 'idealTtk'
+  | 'damage'
+  | 'reload'
+  | 'magazine';
 
 const sourceContributions: Record<string, string> = {
   locations: 'Province and weapon-location cross-checks',
@@ -206,6 +219,7 @@ const operatorPresets: OperatorPreset[] = [
 
 const weaponSortOptions: { value: WeaponSortKey; label: string }[] = [
   { value: 'ttk', label: 'Fewest body shots' },
+  { value: 'idealTtk', label: 'Calculated ideal body TTK' },
   { value: 'damage', label: 'Infantry damage' },
   { value: 'reload', label: 'Reload time' },
   { value: 'magazine', label: 'Magazine capacity' },
@@ -229,6 +243,12 @@ type LabRow = {
   nonTierBody: string | number | null;
   tierTtk: string | number | null;
   nonTierTtk: string | number | null;
+  tierIdealTtk: number | null;
+  nonTierIdealTtk: number | null;
+  tierFullAutoIdealTtk: number | null;
+  nonTierFullAutoIdealTtk: number | null;
+  tierFullAutoTtkDelta: number | null;
+  nonTierFullAutoTtkDelta: number | null;
   reload: string | number | null;
   magStandard: string | number | null;
   magExtended: string | number | null;
@@ -243,6 +263,7 @@ type LabRow = {
 type WeaponDecisionRow = {
   weapon: Weapon;
   ttk: string | number | null;
+  idealTtk: number | null;
   damage: string | number | null;
   rpm: string | number | null;
   dps: string | number | null;
@@ -254,6 +275,53 @@ type HitModeStats = {
   semiAuto: { body: string | number | null };
   fullAuto: { body: string | number | null };
 };
+
+function numericRpm(value: string | number | null | undefined) {
+  if (typeof value === 'number')
+    return Number.isFinite(value) && value > 0 ? value : null;
+  if (typeof value !== 'string') return null;
+  const match = value.trim().match(/^(\d+(?:\.\d+)?)(?:\s|$)/);
+  if (!match) return null;
+  const rpm = Number(match[1]);
+  return Number.isFinite(rpm) && rpm > 0 ? rpm : null;
+}
+
+function calculatedIdealBodyTtk(
+  bodyHits: string | number | null | undefined,
+  rpmValue: string | number | null | undefined,
+) {
+  const rpm = numericRpm(rpmValue);
+  if (
+    typeof bodyHits !== 'number' ||
+    !Number.isInteger(bodyHits) ||
+    bodyHits < 1 ||
+    rpm === null
+  )
+    return null;
+  return ((bodyHits - 1) * 60) / rpm;
+}
+
+function formatSeconds(value: number | null) {
+  return value === null ? 'Not recorded' : `${value.toFixed(3)} s`;
+}
+
+function numericSeconds(value: string | number | null) {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value !== 'string' || !/^\s*\d+(?:\.\d+)?(?:\s|$)/.test(value))
+    return null;
+  const seconds = Number.parseFloat(value);
+  return Number.isFinite(seconds) ? seconds : null;
+}
+
+function archiveIdealTtkDelta(
+  archivedValue: string | number | null,
+  idealValue: number | null,
+) {
+  const archivedSeconds = numericSeconds(archivedValue);
+  return archivedSeconds === null || idealValue === null
+    ? null
+    : archivedSeconds - idealValue;
+}
 
 type DerivedBand = {
   minimum: number;
@@ -328,6 +396,10 @@ function compareLabValues(
 
 function labShownValue(value: string | number | null) {
   return value === null ? '—' : shownValue(value);
+}
+
+function labShownSeconds(value: number | null) {
+  return value === null ? '—' : value.toFixed(3);
 }
 
 function SortableLabHead({
@@ -434,6 +506,36 @@ function DamageLab({
         nonTierBody: configuration.nonTier.semiAuto.body,
         tierTtk: configuration.timeToKill.tierOne,
         nonTierTtk: configuration.timeToKill.nonTier,
+        tierIdealTtk: calculatedIdealBodyTtk(
+          configuration.tierOne.semiAuto.body,
+          configuration.rpm,
+        ),
+        nonTierIdealTtk: calculatedIdealBodyTtk(
+          configuration.nonTier.semiAuto.body,
+          configuration.rpm,
+        ),
+        tierFullAutoIdealTtk: calculatedIdealBodyTtk(
+          configuration.tierOne.fullAuto.body,
+          configuration.rpm,
+        ),
+        nonTierFullAutoIdealTtk: calculatedIdealBodyTtk(
+          configuration.nonTier.fullAuto.body,
+          configuration.rpm,
+        ),
+        tierFullAutoTtkDelta: archiveIdealTtkDelta(
+          configuration.timeToKill.tierOne,
+          calculatedIdealBodyTtk(
+            configuration.tierOne.fullAuto.body,
+            configuration.rpm,
+          ),
+        ),
+        nonTierFullAutoTtkDelta: archiveIdealTtkDelta(
+          configuration.timeToKill.nonTier,
+          calculatedIdealBodyTtk(
+            configuration.nonTier.fullAuto.body,
+            configuration.rpm,
+          ),
+        ),
         reload: configuration.reloadSeconds,
         magStandard: configuration.magazine.standard,
         magExtended: configuration.magazine.extended,
@@ -536,6 +638,15 @@ function DamageLab({
         <strong>Enemy health reference:</strong> the workbook uses 1,000 HP for
         Unidad Heavy and 760 HP for SB Regular enemies. Its hit-count bands are
         derived from those baselines; they are test context, not weapon stats.
+      </Note>
+      <Note>
+        <strong>TTK columns:</strong> archived TTK preserves the workbook value.
+        Ideal semi-auto and full-auto TTK are calculated separately from their
+        matching body-hit columns using (STK − 1) × 60 ÷ recorded RPM. Each
+        assumes consecutive body hits, with the first shot at time zero. Missing
+        STK or RPM stays blank. Full-auto archive-minus-ideal deltas appear only
+        when all matching inputs are numeric; they compare historical source
+        values and do not establish current-build measured TTK.
       </Note>
 
       <fieldset className="lab-view-switch">
@@ -675,7 +786,7 @@ function DamageLab({
                     Non-tier · hits
                   </th>
                   <SortableLabHead
-                    label="T1 TTK · s"
+                    label="T1 archived full-auto TTK · s"
                     sortKey="tierTtk"
                     activeKey={sortKey}
                     direction={sortDirection}
@@ -683,8 +794,56 @@ function DamageLab({
                     rowSpan={2}
                   />
                   <SortableLabHead
-                    label="NT TTK · s"
+                    label="NT archived full-auto TTK · s"
                     sortKey="nonTierTtk"
+                    activeKey={sortKey}
+                    direction={sortDirection}
+                    onSort={updateSort}
+                    rowSpan={2}
+                  />
+                  <SortableLabHead
+                    label="T1 ideal semi TTK · s"
+                    sortKey="tierIdealTtk"
+                    activeKey={sortKey}
+                    direction={sortDirection}
+                    onSort={updateSort}
+                    rowSpan={2}
+                  />
+                  <SortableLabHead
+                    label="NT ideal semi TTK · s"
+                    sortKey="nonTierIdealTtk"
+                    activeKey={sortKey}
+                    direction={sortDirection}
+                    onSort={updateSort}
+                    rowSpan={2}
+                  />
+                  <SortableLabHead
+                    label="T1 ideal full-auto TTK · s"
+                    sortKey="tierFullAutoIdealTtk"
+                    activeKey={sortKey}
+                    direction={sortDirection}
+                    onSort={updateSort}
+                    rowSpan={2}
+                  />
+                  <SortableLabHead
+                    label="NT ideal full-auto TTK · s"
+                    sortKey="nonTierFullAutoIdealTtk"
+                    activeKey={sortKey}
+                    direction={sortDirection}
+                    onSort={updateSort}
+                    rowSpan={2}
+                  />
+                  <SortableLabHead
+                    label="T1 full-auto archive − ideal · s"
+                    sortKey="tierFullAutoTtkDelta"
+                    activeKey={sortKey}
+                    direction={sortDirection}
+                    onSort={updateSort}
+                    rowSpan={2}
+                  />
+                  <SortableLabHead
+                    label="NT full-auto archive − ideal · s"
+                    sortKey="nonTierFullAutoTtkDelta"
                     activeKey={sortKey}
                     direction={sortDirection}
                     onSort={updateSort}
@@ -814,6 +973,12 @@ function DamageLab({
                     <td>{labShownValue(row.nonTierBody)}</td>
                     <td>{labShownValue(row.tierTtk)}</td>
                     <td>{labShownValue(row.nonTierTtk)}</td>
+                    <td>{labShownSeconds(row.tierIdealTtk)}</td>
+                    <td>{labShownSeconds(row.nonTierIdealTtk)}</td>
+                    <td>{labShownSeconds(row.tierFullAutoIdealTtk)}</td>
+                    <td>{labShownSeconds(row.nonTierFullAutoIdealTtk)}</td>
+                    <td>{labShownSeconds(row.tierFullAutoTtkDelta)}</td>
+                    <td>{labShownSeconds(row.nonTierFullAutoTtkDelta)}</td>
                     <td>{labShownValue(row.reload)}</td>
                     <td>{labShownValue(row.magStandard)}</td>
                     <td>{labShownValue(row.magExtended)}</td>
@@ -1139,6 +1304,11 @@ function weaponSortableValue(value: string | number | null) {
 
 const decisionMetricMeta = {
   ttk: { label: 'Body shots to kill', unit: '', lowerIsBetter: true },
+  idealTtk: {
+    label: 'Calculated ideal body TTK',
+    unit: 's',
+    lowerIsBetter: true,
+  },
   damage: { label: 'Infantry damage', unit: '', lowerIsBetter: false },
   reload: { label: 'Reload', unit: 's', lowerIsBetter: true },
   magazine: { label: 'Magazine', unit: 'rds', lowerIsBetter: false },
@@ -1213,7 +1383,9 @@ function WeaponRankChart({
               />
             </span>
             <strong>
-              {decisionShownValue(row[metric])}
+              {metric === 'idealTtk' && row.idealTtk !== null
+                ? row.idealTtk.toFixed(3)
+                : decisionShownValue(row[metric])}
               {typeof row[metric] === 'number' && meta.unit
                 ? ` ${meta.unit}`
                 : ''}
@@ -1367,6 +1539,56 @@ function WeaponSheetPanel({
           </strong>
         </div>
         <div>
+          <span>Calculated ideal full-auto body TTK · T1</span>
+          <strong>
+            {formatSeconds(
+              calculatedIdealBodyTtk(
+                configuration.tierOne.fullAuto.body,
+                configuration.rpm,
+              ),
+            )}
+          </strong>
+        </div>
+        <div>
+          <span>Calculated ideal full-auto body TTK · non-tier</span>
+          <strong>
+            {formatSeconds(
+              calculatedIdealBodyTtk(
+                configuration.nonTier.fullAuto.body,
+                configuration.rpm,
+              ),
+            )}
+          </strong>
+        </div>
+        <div>
+          <span>Archived TTK − ideal · T1 full-auto</span>
+          <strong>
+            {formatSeconds(
+              archiveIdealTtkDelta(
+                configuration.timeToKill.tierOne,
+                calculatedIdealBodyTtk(
+                  configuration.tierOne.fullAuto.body,
+                  configuration.rpm,
+                ),
+              ),
+            )}
+          </strong>
+        </div>
+        <div>
+          <span>Archived TTK − ideal · non-tier full-auto</span>
+          <strong>
+            {formatSeconds(
+              archiveIdealTtkDelta(
+                configuration.timeToKill.nonTier,
+                calculatedIdealBodyTtk(
+                  configuration.nonTier.fullAuto.body,
+                  configuration.rpm,
+                ),
+              ),
+            )}
+          </strong>
+        </div>
+        <div>
           <span>Magazine · std / ext / large</span>
           <strong>
             {[
@@ -1444,33 +1666,71 @@ function RealWorldWeaponThumbnail({ weapon }: { weapon: RealWorldWeapon }) {
 }
 
 function experimentStatusLabel(status: WeaponExperiment['status']) {
-  return status === 'supported'
-    ? 'Supported by current data'
-    : status === 'partially_supported'
-      ? 'Partially supported'
-      : 'Needs controlled test';
+  const labels: Record<string, string> = {
+    RESEARCH_LEAD: 'Research lead',
+    NEEDS_TEST: 'Needs test',
+    TESTING: 'Testing',
+    PARTIAL: 'Partial evidence',
+    SUPPORTED: 'Supported by archived data',
+    CONFLICTING: 'Conflicting evidence',
+    NOT_REPRODUCED: 'Not reproduced',
+    REJECTED: 'Rejected',
+    CURRENT_BUILD_VERIFIED: 'Current build verified',
+  };
+  return labels[status] ?? status;
+}
+
+function experimentStatusTone(status: WeaponExperiment['status']) {
+  return ['NEEDS_TEST', 'TESTING', 'CONFLICTING', 'RESEARCH_LEAD'].includes(
+    status,
+  )
+    ? 'warning'
+    : status === 'CURRENT_BUILD_VERIFIED' || status === 'SUPPORTED'
+      ? 'success'
+      : 'neutral';
 }
 
 function ExperimentPanel({
   catalog,
   query,
   onQueryChange,
+  statusFilter,
+  onStatusFilterChange,
+  priorityFilter,
+  onPriorityFilterChange,
   onOpenWeapon,
 }: {
   catalog: Catalog;
   query: string;
   onQueryChange: (value: string) => void;
+  statusFilter: string;
+  onStatusFilterChange: (value: string) => void;
+  priorityFilter: string;
+  onPriorityFilterChange: (value: string) => void;
   onOpenWeapon: (id: string) => void;
 }) {
   const normalizedQuery = query.trim().toLowerCase();
+  const gapReport = buildResearchGapReport(catalog);
   const experiments = catalog.experiments.filter((experiment) => {
     const weaponNames = experiment.weaponIds
       .map((id) => catalog.weapons.find((weapon) => weapon.id === id)?.name ?? id)
       .join(' ');
-    return `${weaponNames} ${experiment.metric} ${experiment.summary} ${experiment.catalogSignal}`
-      .toLowerCase()
-      .includes(normalizedQuery);
+    const researchLabels =
+      'badges' in experiment ? experiment.badges.join(' ') : '';
+    const priority = 'priority' in experiment ? experiment.priority : '';
+    return (
+      (statusFilter === 'All statuses' || experiment.status === statusFilter) &&
+      (priorityFilter === 'All priorities' || priority === priorityFilter) &&
+      `${weaponNames} ${experiment.metric} ${experiment.summary} ${experiment.catalogSignal} ${experiment.testPlan} ${researchLabels} ${priority}`
+        .toLowerCase()
+        .includes(normalizedQuery)
+    );
   });
+  const visibleGapRows = gapReport.rows.filter((row) =>
+    `${row.weaponName} ${row.category} ${row.missing.join(' ')}`
+      .toLowerCase()
+      .includes(normalizedQuery),
+  );
   return (
     <>
       <div className="topline experiments-hero">
@@ -1482,7 +1742,7 @@ function ExperimentPanel({
             the gaps we still need to measure, and a concrete next test.
           </p>
         </div>
-        <span className="pill warning">{catalog.experiments.length} open records</span>
+        <span className="pill warning">{catalog.experiments.length} research records</span>
       </div>
       <div className="filters experiments-filter">
         <div className="field search">
@@ -1497,21 +1757,89 @@ function ExperimentPanel({
             />
           </div>
         </div>
+        <Picker
+          label="Research status"
+          value={statusFilter}
+          options={['All statuses', ...researchStatuses]}
+          onChange={onStatusFilterChange}
+        />
+        <Picker
+          label="Priority"
+          value={priorityFilter}
+          options={['All priorities', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW']}
+          onChange={onPriorityFilterChange}
+        />
       </div>
       <Note>
-        A supported record means the archived snapshot points in the same
-        direction. It does not turn a community post into a controlled current
-        build measurement.
+        Supported means the archived catalog signal points in the same
+        direction; source confidence describes each evidence item and does not
+        establish a current-build result. Empty context and result fields mean
+        no trial context or result has been entered in that experiment record;
+        cited historical data may still exist.
       </Note>
+      <details className="research-gap-report">
+        <summary>
+          Data completeness report · {gapReport.rows.length} weapons ·{' '}
+          {gapReport.metricSummary.reduce((sum, item) => sum + item.weaponsMissing, 0)}{' '}
+          missing metric entries
+        </summary>
+        <p className="muted small">
+          Generated from release {gapReport.generatedFromRelease}. A missing
+          structured measurement means the catalog does not hold that value; it
+          does not prove the source archive contains no relevant evidence.
+        </p>
+        <div className="gap-metric-list">
+          {gapReport.metricSummary.map(({ metric, weaponsMissing }) => (
+            <span className="pill neutral" key={metric}>
+              {metric}: {weaponsMissing} missing
+            </span>
+          ))}
+        </div>
+        <div className="tableframe gap-table-frame">
+          <table className="lab-table research-gap-table">
+            <thead>
+              <tr>
+                <th>Weapon</th>
+                <th>Class</th>
+                <th>Missing structured data</th>
+                <th>Linked experiments</th>
+              </tr>
+            </thead>
+            <tbody>
+              {visibleGapRows.map((row) => (
+                <tr key={row.weaponId}>
+                  <th>{row.weaponName}</th>
+                  <td>{row.category}</td>
+                  <td>{row.missing.join(', ') || 'No listed gaps'}</td>
+                  <td>{row.experimentIds.length || 'None'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {!visibleGapRows.length && <NoResults />}
+        </div>
+      </details>
       <section className="experiment-grid" aria-label="Weapon information and experiments">
         {experiments.map((experiment) => (
           <article className="experiment-card" key={experiment.id}>
             <div className="experiment-card-heading">
-              <span className={`pill ${experiment.status === 'needs_test' ? 'warning' : 'neutral'}`}>
+              <span className={`pill ${experimentStatusTone(experiment.status)}`}>
                 {experimentStatusLabel(experiment.status)}
               </span>
+              {'priority' in experiment && (
+                <span className="pill priority-critical">
+                  {experiment.priority} priority
+                </span>
+              )}
               <span className="eyebrow">{experiment.metric}</span>
             </div>
+            {'badges' in experiment && experiment.badges.length > 0 && (
+              <div className="experiment-badges" aria-label="Research labels">
+                {experiment.badges.map((badge) => (
+                  <span className="pill neutral" key={badge}>{badge.replaceAll('_', ' ')}</span>
+                ))}
+              </div>
+            )}
             <div className="experiment-weapons">
               {experiment.weaponIds.map((id) => {
                 const weapon = catalog.weapons.find((item) => item.id === id);
@@ -1523,6 +1851,21 @@ function ExperimentPanel({
               })}
             </div>
             <p>{experiment.summary}</p>
+            {'whyItMatters' in experiment && (
+              <div className="experiment-detail">
+                <span>Why it matters</span>
+                <p>{experiment.whyItMatters}</p>
+              </div>
+            )}
+            {'evidenceSources' in experiment && (
+              <div className="experiment-evidence-confidence">
+                {experiment.evidenceSources.map((evidence) => (
+                  <span className="pill neutral" key={evidence.sourceId}>
+                    {evidence.type.replaceAll('_', ' ')} · {evidence.confidence} confidence
+                  </span>
+                ))}
+              </div>
+            )}
             <div className="experiment-detail">
               <span>Current catalog signal</span>
               <p>{experiment.catalogSignal}</p>
@@ -1531,6 +1874,30 @@ function ExperimentPanel({
               <span>Suggested test</span>
               <p>{experiment.testPlan}</p>
             </div>
+            {'testContext' in experiment && (
+              <details className="experiment-context">
+                <summary>Recorded context and result</summary>
+                {(() => {
+                  const captured = Object.entries(experiment.testContext).filter(
+                    ([, value]) => value !== null && value !== '',
+                  );
+                  return captured.length ? (
+                    <ul>
+                      {captured.map(([key, value]) => (
+                        <li key={key}>{key}: {String(value)}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>No trial context entered in this record yet.</p>
+                  );
+                })()}
+                <p>
+                  {'result' in experiment && experiment.result
+                    ? JSON.stringify(experiment.result)
+                    : 'No result entered in this experiment record.'}
+                </p>
+              </details>
+            )}
             <SourceLinks ids={experiment.sourceIds} catalog={catalog} />
           </article>
         ))}
@@ -1833,7 +2200,7 @@ function WeaponDossier({
               </p>
               {experiments.map((experiment) => (
                 <article className="dossier-experiment" key={experiment.id}>
-                  <span className={`pill ${experiment.status === 'needs_test' ? 'warning' : 'neutral'}`}>
+                  <span className={`pill ${experimentStatusTone(experiment.status)}`}>
                     {experimentStatusLabel(experiment.status)}
                   </span>
                   <strong>{experiment.metric}</strong>
@@ -1901,6 +2268,8 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
   const [missionQuery, setMissionQuery] = useState('');
   const [showSpoilers, setShowSpoilers] = useState(false);
   const [experimentQuery, setExperimentQuery] = useState('');
+  const [experimentStatusFilter, setExperimentStatusFilter] = useState('All statuses');
+  const [experimentPriorityFilter, setExperimentPriorityFilter] = useState('All priorities');
   const [realWorldReferenceId, setRealWorldReferenceId] = useState<string | null>(null);
   const [damageWorkbook, setDamageWorkbook] = useState<DamageWorkbook | null>(
     null,
@@ -2001,7 +2370,9 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
           ? configuration.tierOne
           : configuration.nonTier
         : undefined;
-      const bodyHits = bodyHitsForMode(modeStats);
+      // The armory comparison uses the archived semi-auto column consistently.
+      // Full-auto observations remain separate in Damage Lab.
+      const bodyHits = modeStats?.semiAuto.body ?? null;
       const magazines = configuration
         ? (stats?.configurations
             .flatMap((item) => [
@@ -2028,6 +2399,7 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
       return {
         weapon,
         ttk: bodyHits,
+        idealTtk: calculatedIdealBodyTtk(bodyHits, configuration?.rpm),
         damage,
         rpm,
         dps,
@@ -2243,9 +2615,9 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   onChange={chooseWeaponSort}
                 />
               </div>
-              <span className="operator-evidence">
+                  <span className="operator-evidence">
                 Uses archived measurements. Treat the order as a comparison aid,
-                not a field verdict.
+                not a field verdict. Ideal TTK is a separate derived metric.
               </span>
             </div>
             <div className="armory-controls">
@@ -2282,7 +2654,8 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                 <strong>{weaponRows.length}</strong> weapons · {mode}
               </span>
               <span className="derived-legend">
-                * Derived from body hits against the 1,000-HP reference
+                Ideal TTK assumes consecutive semi-auto body hits; first shot at
+                time zero. It is calculated from recorded STK + RPM.
               </span>
               <button className="text-button" onClick={clearFilters}>
                 Clear filters
@@ -2316,6 +2689,14 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   <button onClick={() => toggleWeaponSort('ttk')}>
                     Body STK{' '}
                     {weaponSort === 'ttk'
+                      ? weaponSortDirection === 'asc'
+                        ? '↑'
+                        : '↓'
+                      : ''}
+                  </button>
+                  <button onClick={() => toggleWeaponSort('idealTtk')}>
+                    Ideal TTK · semi{' '}
+                    {weaponSort === 'idealTtk'
                       ? weaponSortDirection === 'asc'
                         ? '↑'
                         : '↓'
@@ -2427,6 +2808,16 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                         aria-hidden="true"
                       />
                       <strong>{decisionShownValue(row.damage)}</strong>
+                    </span>
+                    <span
+                      className="shortlist-metric metric-ideal-ttk"
+                      data-label="Ideal TTK · semi-auto"
+                    >
+                      <strong>
+                        {row.idealTtk === null
+                          ? 'Not recorded'
+                          : `${row.idealTtk.toFixed(3)} s`}
+                      </strong>
                     </span>
                     <span
                       className="shortlist-metric metric-rpm"
@@ -2577,9 +2968,9 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   />
                 </div>
                 <p className="muted small mt-3">
-                  Unidad Heavy · body hits · semi-auto column · lower shot count
-                  is better. This is a source comparison, not a general weapon
-                  ranking.
+                  Unidad Heavy · body hits · semi-auto column. The ideal TTK
+                  below is derived from that STK and recorded RPM; the archived
+                  measured TTK remains separate in Damage Lab.
                 </p>
                 <div className="compare-grid">
                   {selectedWeapons.map((w) => {
@@ -2588,6 +2979,21 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                       w.id,
                       barrelId,
                       mode,
+                    );
+                    const comparisonConfig = catalog.weaponSheetStats
+                      .find((entry) => entry.weaponId === w.id)
+                      ?.configurations.find(
+                        (configuration) =>
+                          configuration.barrel.toLowerCase() ===
+                          barrel.toLowerCase(),
+                      );
+                    const comparisonBodyHits =
+                      mode === 'Tier One'
+                        ? comparisonConfig?.tierOne.semiAuto.body
+                        : comparisonConfig?.nonTier.semiAuto.body;
+                    const comparisonIdealTtk = calculatedIdealBodyTtk(
+                      comparisonBodyHits,
+                      comparisonConfig?.rpm,
                     );
                     return (
                       <article className="compare-card" key={w.id}>
@@ -2607,6 +3013,15 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                             {measurement
                               ? 'body shots to kill · reported'
                               : 'No measurement for this combination'}
+                          </div>
+                        </div>
+                        <div className="metric mt-3">
+                          <strong>
+                            {formatSeconds(comparisonIdealTtk)}
+                          </strong>
+                          <div className="muted small">
+                            calculated ideal body TTK · semi-auto · first shot
+                            at time zero
                           </div>
                         </div>
                         {measurement && (
@@ -3042,8 +3457,10 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
                   <div>
                     <dt>Hits</dt>
                     <dd>
-                      Semi-auto body hits for the selected enemy model.
-                      Full-auto is the fallback when semi-auto is unavailable.
+                      The armory uses the archived semi-auto body-hit column for
+                      the selected Tier Mode and leaves a missing value unknown.
+                      Damage Lab retains semi-auto and full-auto records
+                      separately.
                     </dd>
                   </div>
                   <div>
@@ -3156,6 +3573,10 @@ export function DatabaseApp({ initialCatalog }: { initialCatalog: Catalog }) {
               catalog={catalog}
               query={experimentQuery}
               onQueryChange={setExperimentQuery}
+              statusFilter={experimentStatusFilter}
+              onStatusFilterChange={setExperimentStatusFilter}
+              priorityFilter={experimentPriorityFilter}
+              onPriorityFilterChange={setExperimentPriorityFilter}
               onOpenWeapon={(id) => {
                 setDetailId(id);
                 setTab('weapons');
